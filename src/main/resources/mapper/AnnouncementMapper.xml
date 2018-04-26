@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qualityevaluationsys.demo.dao.AnnouncementMapper">
+  <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.Announcement">
+    <id column="Ano" jdbcType="INTEGER" property="ano" />
+    <result column="Atitle" jdbcType="VARCHAR" property="atitle" />
+    <result column="Acontent" jdbcType="VARCHAR" property="acontent" />
+    <result column="Atime" jdbcType="TIMESTAMP" property="atime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Ano, Atitle, Acontent, Atime
+  </sql>
+  <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.AnnouncementExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from announcement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from announcement
+    where Ano = #{ano,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from announcement
+    where Ano = #{ano,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qualityevaluationsys.demo.domain.AnnouncementExample">
+    delete from announcement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.Announcement">
+    insert into announcement (Ano, Atitle, Acontent, 
+      Atime)
+    values (#{ano,jdbcType=INTEGER}, #{atitle,jdbcType=VARCHAR}, #{acontent,jdbcType=VARCHAR}, 
+      #{atime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.Announcement">
+    insert into announcement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ano != null">
+        Ano,
+      </if>
+      <if test="atitle != null">
+        Atitle,
+      </if>
+      <if test="acontent != null">
+        Acontent,
+      </if>
+      <if test="atime != null">
+        Atime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ano != null">
+        #{ano,jdbcType=INTEGER},
+      </if>
+      <if test="atitle != null">
+        #{atitle,jdbcType=VARCHAR},
+      </if>
+      <if test="acontent != null">
+        #{acontent,jdbcType=VARCHAR},
+      </if>
+      <if test="atime != null">
+        #{atime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qualityevaluationsys.demo.domain.AnnouncementExample" resultType="java.lang.Long">
+    select count(*) from announcement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update announcement
+    <set>
+      <if test="record.ano != null">
+        Ano = #{record.ano,jdbcType=INTEGER},
+      </if>
+      <if test="record.atitle != null">
+        Atitle = #{record.atitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acontent != null">
+        Acontent = #{record.acontent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.atime != null">
+        Atime = #{record.atime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update announcement
+    set Ano = #{record.ano,jdbcType=INTEGER},
+      Atitle = #{record.atitle,jdbcType=VARCHAR},
+      Acontent = #{record.acontent,jdbcType=VARCHAR},
+      Atime = #{record.atime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qualityevaluationsys.demo.domain.Announcement">
+    update announcement
+    <set>
+      <if test="atitle != null">
+        Atitle = #{atitle,jdbcType=VARCHAR},
+      </if>
+      <if test="acontent != null">
+        Acontent = #{acontent,jdbcType=VARCHAR},
+      </if>
+      <if test="atime != null">
+        Atime = #{atime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where Ano = #{ano,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qualityevaluationsys.demo.domain.Announcement">
+    update announcement
+    set Atitle = #{atitle,jdbcType=VARCHAR},
+      Acontent = #{acontent,jdbcType=VARCHAR},
+      Atime = #{atime,jdbcType=TIMESTAMP}
+    where Ano = #{ano,jdbcType=INTEGER}
+  </update>
+</mapper>

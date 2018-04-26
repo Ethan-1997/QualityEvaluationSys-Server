@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qualityevaluationsys.demo.dao.StudentMapper">
+  <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.Student">
+    <id column="Sno" jdbcType="VARCHAR" property="sno" />
+    <result column="Sname" jdbcType="CHAR" property="sname" />
+    <result column="Ssex" jdbcType="CHAR" property="ssex" />
+    <result column="Sclass" jdbcType="CHAR" property="sclass" />
+    <result column="Birth" jdbcType="INTEGER" property="birth" />
+    <result column="Saddress" jdbcType="CHAR" property="saddress" />
+    <result column="Sdept" jdbcType="VARCHAR" property="sdept" />
+    <result column="Stime" jdbcType="INTEGER" property="stime" />
+    <result column="Uno" jdbcType="INTEGER" property="uno" />
+    <result column="Ssignature" jdbcType="VARCHAR" property="ssignature" />
+    <result column="Stel" jdbcType="VARCHAR" property="stel" />
+    <result column="CareerExperience" jdbcType="VARCHAR" property="careerexperience" />
+    <result column="Sprofile" jdbcType="VARCHAR" property="sprofile" />
+    <result column="Cid" jdbcType="INTEGER" property="cid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Sno, Sname, Ssex, Sclass, Birth, Saddress, Sdept, Stime, Uno, Ssignature, Stel, CareerExperience, 
+    Sprofile, Cid
+  </sql>
+  <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.StudentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from student
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where Sno = #{sno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from student
+    where Sno = #{sno,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qualityevaluationsys.demo.domain.StudentExample">
+    delete from student
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.Student">
+    insert into student (Sno, Sname, Ssex, Sclass, 
+      Birth, Saddress, Sdept, 
+      Stime, Uno, Ssignature, 
+      Stel, CareerExperience, Sprofile, 
+      Cid)
+    values (#{sno,jdbcType=VARCHAR}, #{sname,jdbcType=CHAR}, #{ssex,jdbcType=CHAR}, #{sclass,jdbcType=CHAR}, 
+      #{birth,jdbcType=INTEGER}, #{saddress,jdbcType=CHAR}, #{sdept,jdbcType=VARCHAR}, 
+      #{stime,jdbcType=INTEGER}, #{uno,jdbcType=INTEGER}, #{ssignature,jdbcType=VARCHAR}, 
+      #{stel,jdbcType=VARCHAR}, #{careerexperience,jdbcType=VARCHAR}, #{sprofile,jdbcType=VARCHAR}, 
+      #{cid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.Student">
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sno != null">
+        Sno,
+      </if>
+      <if test="sname != null">
+        Sname,
+      </if>
+      <if test="ssex != null">
+        Ssex,
+      </if>
+      <if test="sclass != null">
+        Sclass,
+      </if>
+      <if test="birth != null">
+        Birth,
+      </if>
+      <if test="saddress != null">
+        Saddress,
+      </if>
+      <if test="sdept != null">
+        Sdept,
+      </if>
+      <if test="stime != null">
+        Stime,
+      </if>
+      <if test="uno != null">
+        Uno,
+      </if>
+      <if test="ssignature != null">
+        Ssignature,
+      </if>
+      <if test="stel != null">
+        Stel,
+      </if>
+      <if test="careerexperience != null">
+        CareerExperience,
+      </if>
+      <if test="sprofile != null">
+        Sprofile,
+      </if>
+      <if test="cid != null">
+        Cid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sno != null">
+        #{sno,jdbcType=VARCHAR},
+      </if>
+      <if test="sname != null">
+        #{sname,jdbcType=CHAR},
+      </if>
+      <if test="ssex != null">
+        #{ssex,jdbcType=CHAR},
+      </if>
+      <if test="sclass != null">
+        #{sclass,jdbcType=CHAR},
+      </if>
+      <if test="birth != null">
+        #{birth,jdbcType=INTEGER},
+      </if>
+      <if test="saddress != null">
+        #{saddress,jdbcType=CHAR},
+      </if>
+      <if test="sdept != null">
+        #{sdept,jdbcType=VARCHAR},
+      </if>
+      <if test="stime != null">
+        #{stime,jdbcType=INTEGER},
+      </if>
+      <if test="uno != null">
+        #{uno,jdbcType=INTEGER},
+      </if>
+      <if test="ssignature != null">
+        #{ssignature,jdbcType=VARCHAR},
+      </if>
+      <if test="stel != null">
+        #{stel,jdbcType=VARCHAR},
+      </if>
+      <if test="careerexperience != null">
+        #{careerexperience,jdbcType=VARCHAR},
+      </if>
+      <if test="sprofile != null">
+        #{sprofile,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qualityevaluationsys.demo.domain.StudentExample" resultType="java.lang.Long">
+    select count(*) from student
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update student
+    <set>
+      <if test="record.sno != null">
+        Sno = #{record.sno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sname != null">
+        Sname = #{record.sname,jdbcType=CHAR},
+      </if>
+      <if test="record.ssex != null">
+        Ssex = #{record.ssex,jdbcType=CHAR},
+      </if>
+      <if test="record.sclass != null">
+        Sclass = #{record.sclass,jdbcType=CHAR},
+      </if>
+      <if test="record.birth != null">
+        Birth = #{record.birth,jdbcType=INTEGER},
+      </if>
+      <if test="record.saddress != null">
+        Saddress = #{record.saddress,jdbcType=CHAR},
+      </if>
+      <if test="record.sdept != null">
+        Sdept = #{record.sdept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stime != null">
+        Stime = #{record.stime,jdbcType=INTEGER},
+      </if>
+      <if test="record.uno != null">
+        Uno = #{record.uno,jdbcType=INTEGER},
+      </if>
+      <if test="record.ssignature != null">
+        Ssignature = #{record.ssignature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stel != null">
+        Stel = #{record.stel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.careerexperience != null">
+        CareerExperience = #{record.careerexperience,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sprofile != null">
+        Sprofile = #{record.sprofile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cid != null">
+        Cid = #{record.cid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update student
+    set Sno = #{record.sno,jdbcType=VARCHAR},
+      Sname = #{record.sname,jdbcType=CHAR},
+      Ssex = #{record.ssex,jdbcType=CHAR},
+      Sclass = #{record.sclass,jdbcType=CHAR},
+      Birth = #{record.birth,jdbcType=INTEGER},
+      Saddress = #{record.saddress,jdbcType=CHAR},
+      Sdept = #{record.sdept,jdbcType=VARCHAR},
+      Stime = #{record.stime,jdbcType=INTEGER},
+      Uno = #{record.uno,jdbcType=INTEGER},
+      Ssignature = #{record.ssignature,jdbcType=VARCHAR},
+      Stel = #{record.stel,jdbcType=VARCHAR},
+      CareerExperience = #{record.careerexperience,jdbcType=VARCHAR},
+      Sprofile = #{record.sprofile,jdbcType=VARCHAR},
+      Cid = #{record.cid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qualityevaluationsys.demo.domain.Student">
+    update student
+    <set>
+      <if test="sname != null">
+        Sname = #{sname,jdbcType=CHAR},
+      </if>
+      <if test="ssex != null">
+        Ssex = #{ssex,jdbcType=CHAR},
+      </if>
+      <if test="sclass != null">
+        Sclass = #{sclass,jdbcType=CHAR},
+      </if>
+      <if test="birth != null">
+        Birth = #{birth,jdbcType=INTEGER},
+      </if>
+      <if test="saddress != null">
+        Saddress = #{saddress,jdbcType=CHAR},
+      </if>
+      <if test="sdept != null">
+        Sdept = #{sdept,jdbcType=VARCHAR},
+      </if>
+      <if test="stime != null">
+        Stime = #{stime,jdbcType=INTEGER},
+      </if>
+      <if test="uno != null">
+        Uno = #{uno,jdbcType=INTEGER},
+      </if>
+      <if test="ssignature != null">
+        Ssignature = #{ssignature,jdbcType=VARCHAR},
+      </if>
+      <if test="stel != null">
+        Stel = #{stel,jdbcType=VARCHAR},
+      </if>
+      <if test="careerexperience != null">
+        CareerExperience = #{careerexperience,jdbcType=VARCHAR},
+      </if>
+      <if test="sprofile != null">
+        Sprofile = #{sprofile,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null">
+        Cid = #{cid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Sno = #{sno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qualityevaluationsys.demo.domain.Student">
+    update student
+    set Sname = #{sname,jdbcType=CHAR},
+      Ssex = #{ssex,jdbcType=CHAR},
+      Sclass = #{sclass,jdbcType=CHAR},
+      Birth = #{birth,jdbcType=INTEGER},
+      Saddress = #{saddress,jdbcType=CHAR},
+      Sdept = #{sdept,jdbcType=VARCHAR},
+      Stime = #{stime,jdbcType=INTEGER},
+      Uno = #{uno,jdbcType=INTEGER},
+      Ssignature = #{ssignature,jdbcType=VARCHAR},
+      Stel = #{stel,jdbcType=VARCHAR},
+      CareerExperience = #{careerexperience,jdbcType=VARCHAR},
+      Sprofile = #{sprofile,jdbcType=VARCHAR},
+      Cid = #{cid,jdbcType=INTEGER}
+    where Sno = #{sno,jdbcType=VARCHAR}
+  </update>
+</mapper>
