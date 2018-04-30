@@ -1,5 +1,6 @@
 package com.qualityevaluationsys.demo.dao;
 
+import com.qualityevaluationsys.demo.domain.Roles;
 import com.qualityevaluationsys.demo.domain.Sysuser;
 import com.qualityevaluationsys.demo.domain.SysuserExample;
 import java.util.List;
@@ -32,4 +33,7 @@ public interface SysuserMapper {
     int updateByPrimaryKeySelective(Sysuser record);
 
     int updateByPrimaryKey(Sysuser record);
+
+
+    List<Roles> getRolesByUno(@Param("uno")Integer uno);
 }

@@ -208,4 +208,8 @@
       Gid = #{gid,jdbcType=INTEGER}
     where Uno = #{uno,jdbcType=INTEGER}
   </update>
+
+  <select id="getRolesByUno" parameterType="int" resultType="com.qualityevaluationsys.demo.domain.Roles">
+   select uid,SysUserGroup.groupName as role from UG,SysUserGroup where uid=#{uno,jdbcType=INTEGER}   and SysUserGroup.id=UG.gid
+  </select>
 </mapper>
