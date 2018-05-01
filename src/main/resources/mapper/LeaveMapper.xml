@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qualityevaluationsys.demo.dao.LeaveMapper">
+  <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.Leave">
+    <id column="Lid" jdbcType="INTEGER" property="lid" />
+    <result column="Ltime" jdbcType="TIMESTAMP" property="ltime" />
+    <result column="Lday" jdbcType="INTEGER" property="lday" />
+    <result column="Lreasion" jdbcType="VARCHAR" property="lreasion" />
+    <result column="Lapprover" jdbcType="VARCHAR" property="lapprover" />
+    <result column="sname" jdbcType="VARCHAR" property="sname" />
+    <result column="sclass" jdbcType="VARCHAR" property="sclass" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Lid, Ltime, Lday, Lreasion, Lapprover, sname, sclass
+  </sql>
+  <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.LeaveExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Leave
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from Leave
+    where Lid = #{lid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from Leave
+    where Lid = #{lid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qualityevaluationsys.demo.domain.LeaveExample">
+    delete from Leave
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.Leave">
+    insert into Leave (Lid, Ltime, Lday, 
+      Lreasion, Lapprover, sname, 
+      sclass)
+    values (#{lid,jdbcType=INTEGER}, #{ltime,jdbcType=TIMESTAMP}, #{lday,jdbcType=INTEGER}, 
+      #{lreasion,jdbcType=VARCHAR}, #{lapprover,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, 
+      #{sclass,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.Leave">
+    insert into Leave
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lid != null">
+        Lid,
+      </if>
+      <if test="ltime != null">
+        Ltime,
+      </if>
+      <if test="lday != null">
+        Lday,
+      </if>
+      <if test="lreasion != null">
+        Lreasion,
+      </if>
+      <if test="lapprover != null">
+        Lapprover,
+      </if>
+      <if test="sname != null">
+        sname,
+      </if>
+      <if test="sclass != null">
+        sclass,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lid != null">
+        #{lid,jdbcType=INTEGER},
+      </if>
+      <if test="ltime != null">
+        #{ltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lday != null">
+        #{lday,jdbcType=INTEGER},
+      </if>
+      <if test="lreasion != null">
+        #{lreasion,jdbcType=VARCHAR},
+      </if>
+      <if test="lapprover != null">
+        #{lapprover,jdbcType=VARCHAR},
+      </if>
+      <if test="sname != null">
+        #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="sclass != null">
+        #{sclass,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qualityevaluationsys.demo.domain.LeaveExample" resultType="java.lang.Long">
+    select count(*) from Leave
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update Leave
+    <set>
+      <if test="record.lid != null">
+        Lid = #{record.lid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ltime != null">
+        Ltime = #{record.ltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lday != null">
+        Lday = #{record.lday,jdbcType=INTEGER},
+      </if>
+      <if test="record.lreasion != null">
+        Lreasion = #{record.lreasion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lapprover != null">
+        Lapprover = #{record.lapprover,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sname != null">
+        sname = #{record.sname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sclass != null">
+        sclass = #{record.sclass,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update Leave
+    set Lid = #{record.lid,jdbcType=INTEGER},
+      Ltime = #{record.ltime,jdbcType=TIMESTAMP},
+      Lday = #{record.lday,jdbcType=INTEGER},
+      Lreasion = #{record.lreasion,jdbcType=VARCHAR},
+      Lapprover = #{record.lapprover,jdbcType=VARCHAR},
+      sname = #{record.sname,jdbcType=VARCHAR},
+      sclass = #{record.sclass,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qualityevaluationsys.demo.domain.Leave">
+    update Leave
+    <set>
+      <if test="ltime != null">
+        Ltime = #{ltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lday != null">
+        Lday = #{lday,jdbcType=INTEGER},
+      </if>
+      <if test="lreasion != null">
+        Lreasion = #{lreasion,jdbcType=VARCHAR},
+      </if>
+      <if test="lapprover != null">
+        Lapprover = #{lapprover,jdbcType=VARCHAR},
+      </if>
+      <if test="sname != null">
+        sname = #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="sclass != null">
+        sclass = #{sclass,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Lid = #{lid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qualityevaluationsys.demo.domain.Leave">
+    update Leave
+    set Ltime = #{ltime,jdbcType=TIMESTAMP},
+      Lday = #{lday,jdbcType=INTEGER},
+      Lreasion = #{lreasion,jdbcType=VARCHAR},
+      Lapprover = #{lapprover,jdbcType=VARCHAR},
+      sname = #{sname,jdbcType=VARCHAR},
+      sclass = #{sclass,jdbcType=VARCHAR}
+    where Lid = #{lid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -6,23 +6,18 @@ import java.util.Date;
 /**
  * @author 
  */
-public class BreakRule implements Serializable {
-    private Integer bid;
+public class OtherImportant implements Serializable {
+    private Integer oid;
 
     /**
-     * 违纪内容
+     * 标题
      */
-    private String content;
+    private String title;
 
     /**
-     * 违纪日期
+     * 时间
      */
     private Date time;
-
-    /**
-     * 程度
-     */
-    private String status;
 
     /**
      * 学生姓名
@@ -36,20 +31,20 @@ public class BreakRule implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getBid() {
-        return bid;
+    public Integer getOid() {
+        return oid;
     }
 
-    public void setBid(Integer bid) {
-        this.bid = bid;
+    public void setOid(Integer oid) {
+        this.oid = oid;
     }
 
-    public String getContent() {
-        return content;
+    public String getTitle() {
+        return title;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Date getTime() {
@@ -58,14 +53,6 @@ public class BreakRule implements Serializable {
 
     public void setTime(Date time) {
         this.time = time;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getSname() {
@@ -95,11 +82,10 @@ public class BreakRule implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        BreakRule other = (BreakRule) that;
-        return (this.getBid() == null ? other.getBid() == null : this.getBid().equals(other.getBid()))
-            && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
+        OtherImportant other = (OtherImportant) that;
+        return (this.getOid() == null ? other.getOid() == null : this.getOid().equals(other.getOid()))
+            && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
             && (this.getTime() == null ? other.getTime() == null : this.getTime().equals(other.getTime()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
             && (this.getSname() == null ? other.getSname() == null : this.getSname().equals(other.getSname()))
             && (this.getSclass() == null ? other.getSclass() == null : this.getSclass().equals(other.getSclass()));
     }
@@ -108,10 +94,9 @@ public class BreakRule implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((getBid() == null) ? 0 : getBid().hashCode());
-        result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
+        result = prime * result + ((getOid() == null) ? 0 : getOid().hashCode());
+        result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
         result = prime * result + ((getTime() == null) ? 0 : getTime().hashCode());
-        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getSname() == null) ? 0 : getSname().hashCode());
         result = prime * result + ((getSclass() == null) ? 0 : getSclass().hashCode());
         return result;
@@ -123,10 +108,9 @@ public class BreakRule implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", bid=").append(bid);
-        sb.append(", content=").append(content);
+        sb.append(", oid=").append(oid);
+        sb.append(", title=").append(title);
         sb.append(", time=").append(time);
-        sb.append(", status=").append(status);
         sb.append(", sname=").append(sname);
         sb.append(", sclass=").append(sclass);
         sb.append(", serialVersionUID=").append(serialVersionUID);
