@@ -10,12 +10,14 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping(value = "announcement")
 public class AnnouncementController extends BaseController {
     @Autowired
     AnnouncementService announcementService;
 
-    @RequestMapping(value = "/announcement/list",method = RequestMethod.GET)
+    @RequestMapping(value = "/list",method = RequestMethod.GET)
     public Map<String,Object> list( Integer limit, String sort, Integer page,@ModelAttribute Announcement announcement){
+        msg.clear();
         try {
             PageBean pageBean= announcementService.getPageBean(limit,sort,page,announcement);
             msg.put("total",pageBean.getTotalCount());
@@ -26,8 +28,9 @@ public class AnnouncementController extends BaseController {
         }
         return  msg;
     }
-    @RequestMapping(value = "/announcement/create",method = RequestMethod.POST)
+    @RequestMapping(value = "/create",method = RequestMethod.POST)
     public Map<String,Object> create(@ModelAttribute Announcement announcement){
+        msg.clear();
         try {
             int i = announcementService.insert(announcement);
             if(i==1){
@@ -41,8 +44,9 @@ public class AnnouncementController extends BaseController {
         }
         return  msg;
     }
-    @RequestMapping(value = "/announcement/delete",method = RequestMethod.POST)
+    @RequestMapping(value = "/delete",method = RequestMethod.POST)
     public Map<String,Object> delete(@ModelAttribute Announcement announcement){
+        msg.clear();
         try {
             int i = announcementService.deleteByPrimaryKey(announcement.getAno());
             if(i==1){
@@ -57,8 +61,9 @@ public class AnnouncementController extends BaseController {
         return  msg;
     }
 
-    @RequestMapping(value = "/announcement/get",method = RequestMethod.GET)
+    @RequestMapping(value = "/get",method = RequestMethod.GET)
     public Map<String,Object> get(@ModelAttribute Announcement announcement){
+        msg.clear();
         try {
             Announcement temp = announcementService.selectByPrimaryKey(announcement.getAno());
             msg.put("item",temp);
@@ -68,8 +73,9 @@ public class AnnouncementController extends BaseController {
         }
         return  msg;
     }
-    @RequestMapping(value = "/announcement/update",method = RequestMethod.POST)
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
     public Map<String,Object> update(@ModelAttribute Announcement announcement){
+        msg.clear();
         try {
             int i = announcementService.updateByPrimaryKey(announcement);
             if(i==1){
@@ -83,8 +89,9 @@ public class AnnouncementController extends BaseController {
         }
         return  msg;
     }
-    @RequestMapping(value = "/announcement/deleteBathById",method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteBathById",method = RequestMethod.POST)
     public Map<String,Object> deleteBathById(List<Integer> ids){
+        msg.clear();
         try {
             int i = announcementService.deleteBathById(ids);
             if(i==1){

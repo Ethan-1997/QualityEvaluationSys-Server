@@ -24,8 +24,7 @@ public class Announcement implements Serializable {
     /**
      * 发布时间
      */
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date atime;
+    private String atime;
 
     private static final long serialVersionUID = 1L;
 
@@ -53,41 +52,13 @@ public class Announcement implements Serializable {
         this.acontent = acontent;
     }
 
-    public Date getAtime() {
+
+    public String getAtime() {
         return atime;
     }
 
-    public void setAtime(Date atime) {
+    public void setAtime(String atime) {
         this.atime = atime;
-    }
-
-    @Override
-    public boolean equals(Object that) {
-        if (this == that) {
-            return true;
-        }
-        if (that == null) {
-            return false;
-        }
-        if (getClass() != that.getClass()) {
-            return false;
-        }
-        Announcement other = (Announcement) that;
-        return (this.getAno() == null ? other.getAno() == null : this.getAno().equals(other.getAno()))
-            && (this.getAtitle() == null ? other.getAtitle() == null : this.getAtitle().equals(other.getAtitle()))
-            && (this.getAcontent() == null ? other.getAcontent() == null : this.getAcontent().equals(other.getAcontent()))
-            && (this.getAtime() == null ? other.getAtime() == null : this.getAtime().equals(other.getAtime()));
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getAno() == null) ? 0 : getAno().hashCode());
-        result = prime * result + ((getAtitle() == null) ? 0 : getAtitle().hashCode());
-        result = prime * result + ((getAcontent() == null) ? 0 : getAcontent().hashCode());
-        result = prime * result + ((getAtime() == null) ? 0 : getAtime().hashCode());
-        return result;
     }
 
     @Override

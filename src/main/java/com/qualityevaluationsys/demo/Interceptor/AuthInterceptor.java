@@ -17,12 +17,11 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
                              Object handler) throws Exception {
         System.out.println("-------------------preHandle");
-        // 验证用户是否登陆
-//        String header = request.getHeader("X-Token");
-//        if(header.isEmpty()){
-//            return  false;
-//        }
-
+//         验证用户是否登陆
+        String header = request.getHeader("X-Token");
+        if(header==null||header.isEmpty()) {
+            return false;
+        }
         return true;
     }
 

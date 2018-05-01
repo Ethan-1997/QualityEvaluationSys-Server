@@ -11,6 +11,7 @@ import java.util.Map;
 public class TokenController extends BaseController {
     @RequestMapping(value="getUpToken", method= RequestMethod.GET)
     public Map<String,Object> getUpToken(){
+        msg.clear();
         String accessKey = "dj8UWa4IqlmzhrKAysU4YzZPZVUQhVNf-pOnR4Ib";
         String secretKey = "CcKuXFuJNAL4gGDvWbiqfwakmYfuAalM1M28p5PV";
         String bucket = "media";

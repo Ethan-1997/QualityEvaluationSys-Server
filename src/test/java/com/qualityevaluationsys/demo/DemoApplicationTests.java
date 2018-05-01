@@ -11,6 +11,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.TimeZone;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class DemoApplicationTests {
@@ -31,6 +33,7 @@ public class DemoApplicationTests {
 	}
 	@Test
 	public void contextLoads() {
+		System.out.println(TimeZone.getDefault());
 
 	}
 

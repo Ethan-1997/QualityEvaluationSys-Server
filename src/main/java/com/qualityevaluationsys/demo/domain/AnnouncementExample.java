@@ -335,22 +335,22 @@ public class AnnouncementExample {
             return (Criteria) this;
         }
 
-        public Criteria andAtimeEqualTo(Date value) {
-            addCriterion("Atime =", value, "atime");
+        public Criteria andAtimeLike(String value) {
+            addCriterion("Atime like", value, "atime");
             return (Criteria) this;
         }
 
-        public Criteria andAtimeNotEqualTo(Date value) {
+        public Criteria andAtimeNotEqualTo(String value) {
             addCriterion("Atime <>", value, "atime");
             return (Criteria) this;
         }
 
-        public Criteria andAtimeGreaterThan(Date value) {
+        public Criteria andAtimeGreaterThan(String value) {
             addCriterion("Atime >", value, "atime");
             return (Criteria) this;
         }
 
-        public Criteria andAtimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andAtimeGreaterThanOrEqualTo(String value) {
             addCriterion("Atime >=", value, "atime");
             return (Criteria) this;
         }
