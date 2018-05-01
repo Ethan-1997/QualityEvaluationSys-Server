@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface SysuserMapper {
-    int countByExample(SysuserExample example);
+    long countByExample(SysuserExample example);
 
     int deleteByExample(SysuserExample example);
 

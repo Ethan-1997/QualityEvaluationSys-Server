@@ -1,7 +1,6 @@
 package com.qualityevaluationsys.demo.domain;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class TeacherExample {
@@ -265,52 +264,62 @@ public class TeacherExample {
             return (Criteria) this;
         }
 
-        public Criteria andTtimeEqualTo(Date value) {
+        public Criteria andTtimeEqualTo(String value) {
             addCriterion("Ttime =", value, "ttime");
             return (Criteria) this;
         }
 
-        public Criteria andTtimeNotEqualTo(Date value) {
+        public Criteria andTtimeNotEqualTo(String value) {
             addCriterion("Ttime <>", value, "ttime");
             return (Criteria) this;
         }
 
-        public Criteria andTtimeGreaterThan(Date value) {
+        public Criteria andTtimeGreaterThan(String value) {
             addCriterion("Ttime >", value, "ttime");
             return (Criteria) this;
         }
 
-        public Criteria andTtimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andTtimeGreaterThanOrEqualTo(String value) {
             addCriterion("Ttime >=", value, "ttime");
             return (Criteria) this;
         }
 
-        public Criteria andTtimeLessThan(Date value) {
+        public Criteria andTtimeLessThan(String value) {
             addCriterion("Ttime <", value, "ttime");
             return (Criteria) this;
         }
 
-        public Criteria andTtimeLessThanOrEqualTo(Date value) {
+        public Criteria andTtimeLessThanOrEqualTo(String value) {
             addCriterion("Ttime <=", value, "ttime");
             return (Criteria) this;
         }
 
-        public Criteria andTtimeIn(List<Date> values) {
+        public Criteria andTtimeLike(String value) {
+            addCriterion("Ttime like", value, "ttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andTtimeNotLike(String value) {
+            addCriterion("Ttime not like", value, "ttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andTtimeIn(List<String> values) {
             addCriterion("Ttime in", values, "ttime");
             return (Criteria) this;
         }
 
-        public Criteria andTtimeNotIn(List<Date> values) {
+        public Criteria andTtimeNotIn(List<String> values) {
             addCriterion("Ttime not in", values, "ttime");
             return (Criteria) this;
         }
 
-        public Criteria andTtimeBetween(Date value1, Date value2) {
+        public Criteria andTtimeBetween(String value1, String value2) {
             addCriterion("Ttime between", value1, value2, "ttime");
             return (Criteria) this;
         }
 
-        public Criteria andTtimeNotBetween(Date value1, Date value2) {
+        public Criteria andTtimeNotBetween(String value1, String value2) {
             addCriterion("Ttime not between", value1, value2, "ttime");
             return (Criteria) this;
         }
@@ -572,6 +581,76 @@ public class TeacherExample {
 
         public Criteria andUnoNotBetween(Integer value1, Integer value2) {
             addCriterion("Uno not between", value1, value2, "uno");
+            return (Criteria) this;
+        }
+
+        public Criteria andTtelIsNull() {
+            addCriterion("Ttel is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTtelIsNotNull() {
+            addCriterion("Ttel is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTtelEqualTo(String value) {
+            addCriterion("Ttel =", value, "ttel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTtelNotEqualTo(String value) {
+            addCriterion("Ttel <>", value, "ttel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTtelGreaterThan(String value) {
+            addCriterion("Ttel >", value, "ttel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTtelGreaterThanOrEqualTo(String value) {
+            addCriterion("Ttel >=", value, "ttel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTtelLessThan(String value) {
+            addCriterion("Ttel <", value, "ttel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTtelLessThanOrEqualTo(String value) {
+            addCriterion("Ttel <=", value, "ttel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTtelLike(String value) {
+            addCriterion("Ttel like", value, "ttel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTtelNotLike(String value) {
+            addCriterion("Ttel not like", value, "ttel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTtelIn(List<String> values) {
+            addCriterion("Ttel in", values, "ttel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTtelNotIn(List<String> values) {
+            addCriterion("Ttel not in", values, "ttel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTtelBetween(String value1, String value2) {
+            addCriterion("Ttel between", value1, value2, "ttel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTtelNotBetween(String value1, String value2) {
+            addCriterion("Ttel not between", value1, value2, "ttel");
             return (Criteria) this;
         }
     }
