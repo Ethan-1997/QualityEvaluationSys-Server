@@ -10,6 +10,10 @@ public class SysuserExample {
 
     protected List<Criteria> oredCriteria;
 
+    private Integer limit;
+
+    private Integer offset;
+
     public SysuserExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
@@ -61,6 +65,22 @@ public class SysuserExample {
         oredCriteria.clear();
         orderByClause = null;
         distinct = false;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public void setOffset(Integer offset) {
+        this.offset = offset;
+    }
+
+    public Integer getOffset() {
+        return offset;
     }
 
     protected abstract static class GeneratedCriteria {
@@ -374,67 +394,79 @@ public class SysuserExample {
             return (Criteria) this;
         }
 
-        public Criteria andGidIsNull() {
-            addCriterion("Gid is null");
+        public Criteria andAvatarIsNull() {
+            addCriterion("avatar is null");
             return (Criteria) this;
         }
 
-        public Criteria andGidIsNotNull() {
-            addCriterion("Gid is not null");
+        public Criteria andAvatarIsNotNull() {
+            addCriterion("avatar is not null");
             return (Criteria) this;
         }
 
-        public Criteria andGidEqualTo(Integer value) {
-            addCriterion("Gid =", value, "gid");
+        public Criteria andAvatarEqualTo(String value) {
+            addCriterion("avatar =", value, "avatar");
             return (Criteria) this;
         }
 
-        public Criteria andGidNotEqualTo(Integer value) {
-            addCriterion("Gid <>", value, "gid");
+        public Criteria andAvatarNotEqualTo(String value) {
+            addCriterion("avatar <>", value, "avatar");
             return (Criteria) this;
         }
 
-        public Criteria andGidGreaterThan(Integer value) {
-            addCriterion("Gid >", value, "gid");
+        public Criteria andAvatarGreaterThan(String value) {
+            addCriterion("avatar >", value, "avatar");
             return (Criteria) this;
         }
 
-        public Criteria andGidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("Gid >=", value, "gid");
+        public Criteria andAvatarGreaterThanOrEqualTo(String value) {
+            addCriterion("avatar >=", value, "avatar");
             return (Criteria) this;
         }
 
-        public Criteria andGidLessThan(Integer value) {
-            addCriterion("Gid <", value, "gid");
+        public Criteria andAvatarLessThan(String value) {
+            addCriterion("avatar <", value, "avatar");
             return (Criteria) this;
         }
 
-        public Criteria andGidLessThanOrEqualTo(Integer value) {
-            addCriterion("Gid <=", value, "gid");
+        public Criteria andAvatarLessThanOrEqualTo(String value) {
+            addCriterion("avatar <=", value, "avatar");
             return (Criteria) this;
         }
 
-        public Criteria andGidIn(List<Integer> values) {
-            addCriterion("Gid in", values, "gid");
+        public Criteria andAvatarLike(String value) {
+            addCriterion("avatar like", value, "avatar");
             return (Criteria) this;
         }
 
-        public Criteria andGidNotIn(List<Integer> values) {
-            addCriterion("Gid not in", values, "gid");
+        public Criteria andAvatarNotLike(String value) {
+            addCriterion("avatar not like", value, "avatar");
             return (Criteria) this;
         }
 
-        public Criteria andGidBetween(Integer value1, Integer value2) {
-            addCriterion("Gid between", value1, value2, "gid");
+        public Criteria andAvatarIn(List<String> values) {
+            addCriterion("avatar in", values, "avatar");
             return (Criteria) this;
         }
 
-        public Criteria andGidNotBetween(Integer value1, Integer value2) {
-            addCriterion("Gid not between", value1, value2, "gid");
+        public Criteria andAvatarNotIn(List<String> values) {
+            addCriterion("avatar not in", values, "avatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andAvatarBetween(String value1, String value2) {
+            addCriterion("avatar between", value1, value2, "avatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andAvatarNotBetween(String value1, String value2) {
+            addCriterion("avatar not between", value1, value2, "avatar");
             return (Criteria) this;
         }
     }
 
+    /**
+     */
     public static class Criteria extends GeneratedCriteria {
 
         protected Criteria() {

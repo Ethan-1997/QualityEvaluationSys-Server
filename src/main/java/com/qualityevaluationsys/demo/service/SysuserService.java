@@ -3,6 +3,8 @@ package com.qualityevaluationsys.demo.service;
 import com.qualityevaluationsys.demo.domain.Sysuser;
 import com.qualityevaluationsys.demo.utils.PageBean;
 
+import java.util.List;
+
 public interface SysuserService {
     int deleteByPrimaryKey(Integer uno);
 
@@ -16,5 +18,11 @@ public interface SysuserService {
 
     int updateByPrimaryKey(Sysuser record);
 
-    PageBean getPageBean(Integer page, Integer limit, String sort, Sysuser example);
+    PageBean getPageBean(Integer page, String limit, Integer sort, Sysuser example);
+
+    String login(Sysuser user);
+
+    Sysuser info(String token);
+
+    List<String> getRole(Sysuser id);
 }

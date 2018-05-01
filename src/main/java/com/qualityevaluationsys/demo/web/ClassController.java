@@ -1,25 +1,28 @@
 package com.qualityevaluationsys.demo.web;
 
-import com.qualityevaluationsys.demo.domain.Announcement;
-import com.qualityevaluationsys.demo.service.AnnouncementService;
+import com.qualityevaluationsys.demo.domain.Class;
+import com.qualityevaluationsys.demo.service.ClassService;
+import com.qualityevaluationsys.demo.service.ClassService;
 import com.qualityevaluationsys.demo.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "announcement")
-public class AnnouncementController extends BaseController {
+@RequestMapping(value = "class")
+public class ClassController extends BaseController {
     @Autowired
-    AnnouncementService announcementService;
+    ClassService service;
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public Map<String,Object> list( Integer limit, String sort, Integer page,@ModelAttribute Announcement announcement){
+    public Map<String,Object> list(Integer limit, String sort, Integer page, @ModelAttribute Class pojo){
         msg.clear();
         try {
-            PageBean pageBean= announcementService.getPageBean(limit,sort,page,announcement);
+            PageBean pageBean= service.getPageBean(limit,sort,page,pojo);
             msg.put("total",pageBean.getTotalCount());
             msg.put("items",pageBean.getList());
         }catch (Exception e){
@@ -29,10 +32,10 @@ public class AnnouncementController extends BaseController {
         return  msg;
     }
     @RequestMapping(value = "/create",method = RequestMethod.POST)
-    public Map<String,Object> create(@ModelAttribute Announcement announcement){
+    public Map<String,Object> create(@ModelAttribute Class pojo){
         msg.clear();
         try {
-            int i = announcementService.insert(announcement);
+            int i = service.insertSelective(pojo);
             if(i==1){
                 msg.put("data","success");
             }else{
@@ -45,10 +48,10 @@ public class AnnouncementController extends BaseController {
         return  msg;
     }
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
-    public Map<String,Object> delete(@ModelAttribute Announcement announcement){
+    public Map<String,Object> delete(@ModelAttribute Class pojo){
         msg.clear();
         try {
-            int i = announcementService.deleteByPrimaryKey(announcement.getAno());
+            int i = service.deleteByPrimaryKey(pojo.getCid());
             if(i==1){
                 msg.put("data","success");
             }else{
@@ -62,10 +65,10 @@ public class AnnouncementController extends BaseController {
     }
 
     @RequestMapping(value = "/get",method = RequestMethod.GET)
-    public Map<String,Object> get(@ModelAttribute Announcement announcement){
+    public Map<String,Object> get(@ModelAttribute Class pojo){
         msg.clear();
         try {
-            Announcement temp = announcementService.selectByPrimaryKey(announcement.getAno());
+            Class temp = service.selectByPrimaryKey(pojo.getCid());
             msg.put("item",temp);
         }catch (Exception e){
             msg.put("data","error");
@@ -74,10 +77,10 @@ public class AnnouncementController extends BaseController {
         return  msg;
     }
     @RequestMapping(value = "/update",method = RequestMethod.POST)
-    public Map<String,Object> update(@ModelAttribute Announcement announcement){
+    public Map<String,Object> update(@ModelAttribute Class pojo){
         msg.clear();
         try {
-            int i = announcementService.updateByPrimaryKey(announcement);
+            int i = service.updateByPrimaryKeySelective(pojo);
             if(i==1){
                 msg.put("data","success");
             }else{
@@ -89,22 +92,4 @@ public class AnnouncementController extends BaseController {
         }
         return  msg;
     }
-    @RequestMapping(value = "/deleteBathById",method = RequestMethod.POST)
-    public Map<String,Object> deleteBathById(List<Integer> ids){
-        msg.clear();
-        try {
-            int i = announcementService.deleteBathById(ids);
-            if(i==1){
-                msg.put("data","success");
-            }else{
-                msg.put("data","update failed");
-            }
-        }catch (Exception e){
-            msg.put("data","error");
-            msg.put("message",e.getMessage());
-        }
-        return  msg;
-    }
-
-
 }

@@ -1,12 +1,18 @@
 package com.qualityevaluationsys.demo.service.impl;
 
 import com.qualityevaluationsys.demo.dao.SysuserMapper;
+import com.qualityevaluationsys.demo.domain.Roles;
 import com.qualityevaluationsys.demo.domain.Sysuser;
 import com.qualityevaluationsys.demo.domain.SysuserExample;
 import com.qualityevaluationsys.demo.service.SysuserService;
+import com.qualityevaluationsys.demo.utils.JwtUtil;
 import com.qualityevaluationsys.demo.utils.PageBean;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class SysuserServiceImpl implements SysuserService {
@@ -45,7 +51,7 @@ public class SysuserServiceImpl implements SysuserService {
     }
 
     @Override
-    public PageBean getPageBean(Integer page, Integer limit, String sort, Sysuser example) {
+    public PageBean getPageBean(Integer page, String limit, Integer sort, Sysuser example) {
         SysuserExample sysuserExample=new SysuserExample();
         if(sort!=null){
             if(sort.equals("-id")){
@@ -56,6 +62,74 @@ public class SysuserServiceImpl implements SysuserService {
         }
         SysuserExample.Criteria criteria = sysuserExample.createCriteria();
         return null;
+    }
+
+    @Override
+    public String login(Sysuser user) throws RuntimeException {
+        SysuserExample example=new SysuserExample();
+        SysuserExample.Criteria criteria = example.createCriteria();
+        if(user!=null){
+            if(user.getUname()!=null){
+                criteria.andUnameEqualTo(user.getUname());
+                if(user.getUpassword()!=null){
+                    criteria.andUpasswordEqualTo(user.getUpassword());
+                    List<Sysuser> sysusers = sysuserMapper.selectByExample(example);
+                    if(sysusers!=null&&sysusers.size()!=0){
+                        Sysuser sysuser = sysusers.get(0);
+                        JwtUtil jwtUtil=new JwtUtil();
+                        try {
+                            return jwtUtil.createJWT(sysuser.getUno().toString(), sysuser.getUname(), 1000 * 60*60);
+                        } catch (Exception e) {
+                           throw new RuntimeException(e.getMessage()) ;
+                        }
+                    }else
+                    {
+                        throw new RuntimeException("账号或者密码错误！") ;
+                    }
+                }else{
+                    throw new RuntimeException("密码不能为空！") ;
+                }
+            }else{
+                throw new RuntimeException("用户名不能为空！") ;
+            }
+        }
+
+
+        //判断密码
+        //获取权限
+        //TODO 判断身份类别然后返回权限
+        return null;
+    }
+
+    @Override
+    public Sysuser info(String token) {
+        JwtUtil jwtUtil=new JwtUtil();
+        try {
+            Claims claims = jwtUtil.parseJWT(token);
+            return sysuserMapper.selectByPrimaryKey(Integer.valueOf(claims.getId()));
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<String> getRole(Sysuser user) {
+        SysuserExample example=new SysuserExample();
+        SysuserExample.Criteria criteria = example.createCriteria();
+        criteria.andUnameEqualTo(user.getUname());
+        criteria.andUpasswordEqualTo(user.getUpassword());
+        List<Roles> rolesByGid = sysuserMapper.getRolesByUno(sysuserMapper.selectByExample(example).get(0).getUno());
+        ArrayList<String> list=new ArrayList<String>();
+        if(list!=null){
+            for (Roles r:
+                    rolesByGid) {
+                list.add(r.getRole());
+            }
+        }
+        return list;
     }
 
 

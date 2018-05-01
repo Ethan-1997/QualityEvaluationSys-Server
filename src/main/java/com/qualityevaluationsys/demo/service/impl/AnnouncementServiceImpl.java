@@ -1,5 +1,6 @@
 package com.qualityevaluationsys.demo.service.impl;
 
+import com.qiniu.util.StringUtils;
 import com.qualityevaluationsys.demo.dao.AnnouncementMapper;
 import com.qualityevaluationsys.demo.domain.Announcement;
 import com.qualityevaluationsys.demo.domain.AnnouncementExample;
@@ -41,19 +42,24 @@ public class AnnouncementServiceImpl implements AnnouncementService {
         if(announcement!=null){
             AnnouncementExample.Criteria criteria = example.createCriteria();
             if(announcement.getAcontent()!=null){
-                criteria.andAcontentEqualTo(announcement.getAcontent());
+                criteria.andAcontentLike("%"+announcement.getAcontent()+"%");
             }
-            if(announcement.getAno()!=null){
-                criteria.andAnoEqualTo(announcement.getAno());
+//            if(announcement.getAno()!=null){
+//                criteria.andanoli(announcement.getAno());
+//            }
+            if(!StringUtils.isNullOrEmpty(announcement.getAtime())){
+                criteria.andAtimeLike("%"+announcement.getAtime()+"%");
             }
-            if(announcement.getAtime()!=null){
-                criteria.andAtimeEqualTo(announcement.getAtime());
-            }
-            if(announcement.getAtitle()!=null){
-                criteria.andAtitleEqualTo(announcement.getAtitle());
+            if(!StringUtils.isNullOrEmpty(announcement.getAtitle())){
+                criteria.andAtitleLike("%"+announcement.getAtitle()+"%");
             }
         }
-        example.setOrderByClause("atime desc");
+        if(sort.equals("-id")){
+            example.setOrderByClause("ano desc");
+        }else{
+            example.setOrderByClause("ano asc");
+        }
+
         int count = (int) announcementMapper.countByExample(example);
         PageBean pageBean=new PageBean(page,count,limit);
         example.setLimit(limit);

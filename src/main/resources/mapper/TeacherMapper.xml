@@ -4,11 +4,12 @@
   <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.Teacher">
     <id column="Tno" jdbcType="INTEGER" property="tno" />
     <result column="Tname" jdbcType="VARCHAR" property="tname" />
-    <result column="Ttime" jdbcType="TIMESTAMP" property="ttime" />
+    <result column="Ttime" jdbcType="VARCHAR" property="ttime" />
     <result column="TIntroduce" jdbcType="VARCHAR" property="tintroduce" />
     <result column="Tsex" jdbcType="CHAR" property="tsex" />
     <result column="Twage" jdbcType="REAL" property="twage" />
     <result column="Uno" jdbcType="INTEGER" property="uno" />
+    <result column="Ttel" jdbcType="VARCHAR" property="ttel" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    Tno, Tname, Ttime, TIntroduce, Tsex, Twage, Uno
+    Tno, Tname, Ttime, TIntroduce, Tsex, Twage, Uno, Ttel
   </sql>
   <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.TeacherExample" resultMap="BaseResultMap">
     select
@@ -112,10 +113,10 @@
   <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.Teacher">
     insert into Teacher (Tno, Tname, Ttime, 
       TIntroduce, Tsex, Twage, 
-      Uno)
-    values (#{tno,jdbcType=INTEGER}, #{tname,jdbcType=VARCHAR}, #{ttime,jdbcType=TIMESTAMP}, 
+      Uno, Ttel)
+    values (#{tno,jdbcType=INTEGER}, #{tname,jdbcType=VARCHAR}, #{ttime,jdbcType=VARCHAR}, 
       #{tintroduce,jdbcType=VARCHAR}, #{tsex,jdbcType=CHAR}, #{twage,jdbcType=REAL}, 
-      #{uno,jdbcType=INTEGER})
+      #{uno,jdbcType=INTEGER}, #{ttel,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.Teacher">
     insert into Teacher
@@ -141,6 +142,9 @@
       <if test="uno != null">
         Uno,
       </if>
+      <if test="ttel != null">
+        Ttel,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="tno != null">
@@ -150,7 +154,7 @@
         #{tname,jdbcType=VARCHAR},
       </if>
       <if test="ttime != null">
-        #{ttime,jdbcType=TIMESTAMP},
+        #{ttime,jdbcType=VARCHAR},
       </if>
       <if test="tintroduce != null">
         #{tintroduce,jdbcType=VARCHAR},
@@ -163,6 +167,9 @@
       </if>
       <if test="uno != null">
         #{uno,jdbcType=INTEGER},
+      </if>
+      <if test="ttel != null">
+        #{ttel,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -182,7 +189,7 @@
         Tname = #{record.tname,jdbcType=VARCHAR},
       </if>
       <if test="record.ttime != null">
-        Ttime = #{record.ttime,jdbcType=TIMESTAMP},
+        Ttime = #{record.ttime,jdbcType=VARCHAR},
       </if>
       <if test="record.tintroduce != null">
         TIntroduce = #{record.tintroduce,jdbcType=VARCHAR},
@@ -196,6 +203,9 @@
       <if test="record.uno != null">
         Uno = #{record.uno,jdbcType=INTEGER},
       </if>
+      <if test="record.ttel != null">
+        Ttel = #{record.ttel,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -205,11 +215,12 @@
     update Teacher
     set Tno = #{record.tno,jdbcType=INTEGER},
       Tname = #{record.tname,jdbcType=VARCHAR},
-      Ttime = #{record.ttime,jdbcType=TIMESTAMP},
+      Ttime = #{record.ttime,jdbcType=VARCHAR},
       TIntroduce = #{record.tintroduce,jdbcType=VARCHAR},
       Tsex = #{record.tsex,jdbcType=CHAR},
       Twage = #{record.twage,jdbcType=REAL},
-      Uno = #{record.uno,jdbcType=INTEGER}
+      Uno = #{record.uno,jdbcType=INTEGER},
+      Ttel = #{record.ttel,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -221,7 +232,7 @@
         Tname = #{tname,jdbcType=VARCHAR},
       </if>
       <if test="ttime != null">
-        Ttime = #{ttime,jdbcType=TIMESTAMP},
+        Ttime = #{ttime,jdbcType=VARCHAR},
       </if>
       <if test="tintroduce != null">
         TIntroduce = #{tintroduce,jdbcType=VARCHAR},
@@ -235,17 +246,21 @@
       <if test="uno != null">
         Uno = #{uno,jdbcType=INTEGER},
       </if>
+      <if test="ttel != null">
+        Ttel = #{ttel,jdbcType=VARCHAR},
+      </if>
     </set>
     where Tno = #{tno,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.qualityevaluationsys.demo.domain.Teacher">
     update Teacher
     set Tname = #{tname,jdbcType=VARCHAR},
-      Ttime = #{ttime,jdbcType=TIMESTAMP},
+      Ttime = #{ttime,jdbcType=VARCHAR},
       TIntroduce = #{tintroduce,jdbcType=VARCHAR},
       Tsex = #{tsex,jdbcType=CHAR},
       Twage = #{twage,jdbcType=REAL},
-      Uno = #{uno,jdbcType=INTEGER}
+      Uno = #{uno,jdbcType=INTEGER},
+      Ttel = #{ttel,jdbcType=VARCHAR}
     where Tno = #{tno,jdbcType=INTEGER}
   </update>
 </mapper>

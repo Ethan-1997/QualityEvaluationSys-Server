@@ -6,7 +6,9 @@ import java.io.Serializable;
  * @author 
  */
 public class Student implements Serializable {
-    private String sno;
+    private String sid;
+
+    private Integer uno;
 
     /**
      * 学生姓名
@@ -26,7 +28,7 @@ public class Student implements Serializable {
     /**
      * 学生生日
      */
-    private Integer birth;
+    private String birth;
 
     /**
      * 学生地址
@@ -41,9 +43,7 @@ public class Student implements Serializable {
     /**
      * 入学时间
      */
-    private Integer stime;
-
-    private Integer uno;
+    private String stime;
 
     /**
      * 个性签名
@@ -60,18 +60,24 @@ public class Student implements Serializable {
      */
     private String careerexperience;
 
-    private String sprofile;
-
     private Integer cid;
 
     private static final long serialVersionUID = 1L;
 
-    public String getSno() {
-        return sno;
+    public String getSid() {
+        return sid;
     }
 
-    public void setSno(String sno) {
-        this.sno = sno;
+    public void setSid(String sid) {
+        this.sid = sid;
+    }
+
+    public Integer getUno() {
+        return uno;
+    }
+
+    public void setUno(Integer uno) {
+        this.uno = uno;
     }
 
     public String getSname() {
@@ -98,11 +104,11 @@ public class Student implements Serializable {
         this.sclass = sclass;
     }
 
-    public Integer getBirth() {
+    public String getBirth() {
         return birth;
     }
 
-    public void setBirth(Integer birth) {
+    public void setBirth(String birth) {
         this.birth = birth;
     }
 
@@ -122,20 +128,12 @@ public class Student implements Serializable {
         this.sdept = sdept;
     }
 
-    public Integer getStime() {
+    public String getStime() {
         return stime;
     }
 
-    public void setStime(Integer stime) {
+    public void setStime(String stime) {
         this.stime = stime;
-    }
-
-    public Integer getUno() {
-        return uno;
-    }
-
-    public void setUno(Integer uno) {
-        this.uno = uno;
     }
 
     public String getSsignature() {
@@ -162,14 +160,6 @@ public class Student implements Serializable {
         this.careerexperience = careerexperience;
     }
 
-    public String getSprofile() {
-        return sprofile;
-    }
-
-    public void setSprofile(String sprofile) {
-        this.sprofile = sprofile;
-    }
-
     public Integer getCid() {
         return cid;
     }
@@ -190,7 +180,8 @@ public class Student implements Serializable {
             return false;
         }
         Student other = (Student) that;
-        return (this.getSno() == null ? other.getSno() == null : this.getSno().equals(other.getSno()))
+        return (this.getSid() == null ? other.getSid() == null : this.getSid().equals(other.getSid()))
+            && (this.getUno() == null ? other.getUno() == null : this.getUno().equals(other.getUno()))
             && (this.getSname() == null ? other.getSname() == null : this.getSname().equals(other.getSname()))
             && (this.getSsex() == null ? other.getSsex() == null : this.getSsex().equals(other.getSsex()))
             && (this.getSclass() == null ? other.getSclass() == null : this.getSclass().equals(other.getSclass()))
@@ -198,11 +189,9 @@ public class Student implements Serializable {
             && (this.getSaddress() == null ? other.getSaddress() == null : this.getSaddress().equals(other.getSaddress()))
             && (this.getSdept() == null ? other.getSdept() == null : this.getSdept().equals(other.getSdept()))
             && (this.getStime() == null ? other.getStime() == null : this.getStime().equals(other.getStime()))
-            && (this.getUno() == null ? other.getUno() == null : this.getUno().equals(other.getUno()))
             && (this.getSsignature() == null ? other.getSsignature() == null : this.getSsignature().equals(other.getSsignature()))
             && (this.getStel() == null ? other.getStel() == null : this.getStel().equals(other.getStel()))
             && (this.getCareerexperience() == null ? other.getCareerexperience() == null : this.getCareerexperience().equals(other.getCareerexperience()))
-            && (this.getSprofile() == null ? other.getSprofile() == null : this.getSprofile().equals(other.getSprofile()))
             && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()));
     }
 
@@ -210,7 +199,8 @@ public class Student implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((getSno() == null) ? 0 : getSno().hashCode());
+        result = prime * result + ((getSid() == null) ? 0 : getSid().hashCode());
+        result = prime * result + ((getUno() == null) ? 0 : getUno().hashCode());
         result = prime * result + ((getSname() == null) ? 0 : getSname().hashCode());
         result = prime * result + ((getSsex() == null) ? 0 : getSsex().hashCode());
         result = prime * result + ((getSclass() == null) ? 0 : getSclass().hashCode());
@@ -218,11 +208,9 @@ public class Student implements Serializable {
         result = prime * result + ((getSaddress() == null) ? 0 : getSaddress().hashCode());
         result = prime * result + ((getSdept() == null) ? 0 : getSdept().hashCode());
         result = prime * result + ((getStime() == null) ? 0 : getStime().hashCode());
-        result = prime * result + ((getUno() == null) ? 0 : getUno().hashCode());
         result = prime * result + ((getSsignature() == null) ? 0 : getSsignature().hashCode());
         result = prime * result + ((getStel() == null) ? 0 : getStel().hashCode());
         result = prime * result + ((getCareerexperience() == null) ? 0 : getCareerexperience().hashCode());
-        result = prime * result + ((getSprofile() == null) ? 0 : getSprofile().hashCode());
         result = prime * result + ((getCid() == null) ? 0 : getCid().hashCode());
         return result;
     }
@@ -233,7 +221,8 @@ public class Student implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", sno=").append(sno);
+        sb.append(", sid=").append(sid);
+        sb.append(", uno=").append(uno);
         sb.append(", sname=").append(sname);
         sb.append(", ssex=").append(ssex);
         sb.append(", sclass=").append(sclass);
@@ -241,11 +230,9 @@ public class Student implements Serializable {
         sb.append(", saddress=").append(saddress);
         sb.append(", sdept=").append(sdept);
         sb.append(", stime=").append(stime);
-        sb.append(", uno=").append(uno);
         sb.append(", ssignature=").append(ssignature);
         sb.append(", stel=").append(stel);
         sb.append(", careerexperience=").append(careerexperience);
-        sb.append(", sprofile=").append(sprofile);
         sb.append(", cid=").append(cid);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

@@ -1,7 +1,6 @@
 package com.qualityevaluationsys.demo.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @author 
@@ -17,7 +16,7 @@ public class Teacher implements Serializable {
     /**
      * 入学时间
      */
-    private Date ttime;
+    private String ttime;
 
     /**
      * 简介
@@ -35,6 +34,8 @@ public class Teacher implements Serializable {
     private Float twage;
 
     private Integer uno;
+
+    private String ttel;
 
     private static final long serialVersionUID = 1L;
 
@@ -54,11 +55,11 @@ public class Teacher implements Serializable {
         this.tname = tname;
     }
 
-    public Date getTtime() {
+    public String getTtime() {
         return ttime;
     }
 
-    public void setTtime(Date ttime) {
+    public void setTtime(String ttime) {
         this.ttime = ttime;
     }
 
@@ -94,6 +95,14 @@ public class Teacher implements Serializable {
         this.uno = uno;
     }
 
+    public String getTtel() {
+        return ttel;
+    }
+
+    public void setTtel(String ttel) {
+        this.ttel = ttel;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -112,7 +121,8 @@ public class Teacher implements Serializable {
             && (this.getTintroduce() == null ? other.getTintroduce() == null : this.getTintroduce().equals(other.getTintroduce()))
             && (this.getTsex() == null ? other.getTsex() == null : this.getTsex().equals(other.getTsex()))
             && (this.getTwage() == null ? other.getTwage() == null : this.getTwage().equals(other.getTwage()))
-            && (this.getUno() == null ? other.getUno() == null : this.getUno().equals(other.getUno()));
+            && (this.getUno() == null ? other.getUno() == null : this.getUno().equals(other.getUno()))
+            && (this.getTtel() == null ? other.getTtel() == null : this.getTtel().equals(other.getTtel()));
     }
 
     @Override
@@ -126,6 +136,7 @@ public class Teacher implements Serializable {
         result = prime * result + ((getTsex() == null) ? 0 : getTsex().hashCode());
         result = prime * result + ((getTwage() == null) ? 0 : getTwage().hashCode());
         result = prime * result + ((getUno() == null) ? 0 : getUno().hashCode());
+        result = prime * result + ((getTtel() == null) ? 0 : getTtel().hashCode());
         return result;
     }
 
@@ -142,6 +153,7 @@ public class Teacher implements Serializable {
         sb.append(", tsex=").append(tsex);
         sb.append(", twage=").append(twage);
         sb.append(", uno=").append(uno);
+        sb.append(", ttel=").append(ttel);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

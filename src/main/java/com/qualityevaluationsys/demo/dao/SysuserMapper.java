@@ -1,5 +1,6 @@
 package com.qualityevaluationsys.demo.dao;
 
+import com.qualityevaluationsys.demo.domain.Roles;
 import com.qualityevaluationsys.demo.domain.Sysuser;
 import com.qualityevaluationsys.demo.domain.SysuserExample;
 import java.util.List;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface SysuserMapper {
-    int countByExample(SysuserExample example);
+    long countByExample(SysuserExample example);
 
     int deleteByExample(SysuserExample example);
 
@@ -32,4 +33,10 @@ public interface SysuserMapper {
     int updateByPrimaryKeySelective(Sysuser record);
 
     int updateByPrimaryKey(Sysuser record);
+
+    int lastInsertId();
+
+    void addRole(@Param("uid")int uid,@Param("gid")int gid);
+
+    List<Roles> getRolesByUno(@Param("uno")Integer uno);
 }
