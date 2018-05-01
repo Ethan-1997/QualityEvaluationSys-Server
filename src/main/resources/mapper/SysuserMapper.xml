@@ -212,4 +212,11 @@
   <select id="getRolesByUno" parameterType="int" resultType="com.qualityevaluationsys.demo.domain.Roles">
    select uid,SysUserGroup.groupName as role from UG,SysUserGroup where uid=#{uno,jdbcType=INTEGER}   and SysUserGroup.id=UG.gid
   </select>
+  <select id="lastInsertId"  resultType="java.lang.Integer">
+    SELECT LAST_INSERT_ID();
+  </select>
+  <select id="addRole"  resultType="java.lang.Integer">
+    insert into UG values(#{uid,jdbcType=INTEGER},#{gid,jdbcType=INTEGER})
+  </select>
+
 </mapper>

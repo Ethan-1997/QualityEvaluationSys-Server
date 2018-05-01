@@ -34,6 +34,9 @@ public interface SysuserMapper {
 
     int updateByPrimaryKey(Sysuser record);
 
+    int lastInsertId();
+
+    void addRole(@Param("uid")int uid,@Param("gid")int gid);
 
     List<Roles> getRolesByUno(@Param("uno")Integer uno);
 }
