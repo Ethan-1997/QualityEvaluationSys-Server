@@ -1,7 +1,6 @@
 package com.qualityevaluationsys.demo.domain;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class LeaveExample {
@@ -195,52 +194,62 @@ public class LeaveExample {
             return (Criteria) this;
         }
 
-        public Criteria andLtimeEqualTo(Date value) {
+        public Criteria andLtimeEqualTo(String value) {
             addCriterion("Ltime =", value, "ltime");
             return (Criteria) this;
         }
 
-        public Criteria andLtimeNotEqualTo(Date value) {
+        public Criteria andLtimeNotEqualTo(String value) {
             addCriterion("Ltime <>", value, "ltime");
             return (Criteria) this;
         }
 
-        public Criteria andLtimeGreaterThan(Date value) {
+        public Criteria andLtimeGreaterThan(String value) {
             addCriterion("Ltime >", value, "ltime");
             return (Criteria) this;
         }
 
-        public Criteria andLtimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andLtimeGreaterThanOrEqualTo(String value) {
             addCriterion("Ltime >=", value, "ltime");
             return (Criteria) this;
         }
 
-        public Criteria andLtimeLessThan(Date value) {
+        public Criteria andLtimeLessThan(String value) {
             addCriterion("Ltime <", value, "ltime");
             return (Criteria) this;
         }
 
-        public Criteria andLtimeLessThanOrEqualTo(Date value) {
+        public Criteria andLtimeLessThanOrEqualTo(String value) {
             addCriterion("Ltime <=", value, "ltime");
             return (Criteria) this;
         }
 
-        public Criteria andLtimeIn(List<Date> values) {
+        public Criteria andLtimeLike(String value) {
+            addCriterion("Ltime like", value, "ltime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLtimeNotLike(String value) {
+            addCriterion("Ltime not like", value, "ltime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLtimeIn(List<String> values) {
             addCriterion("Ltime in", values, "ltime");
             return (Criteria) this;
         }
 
-        public Criteria andLtimeNotIn(List<Date> values) {
+        public Criteria andLtimeNotIn(List<String> values) {
             addCriterion("Ltime not in", values, "ltime");
             return (Criteria) this;
         }
 
-        public Criteria andLtimeBetween(Date value1, Date value2) {
+        public Criteria andLtimeBetween(String value1, String value2) {
             addCriterion("Ltime between", value1, value2, "ltime");
             return (Criteria) this;
         }
 
-        public Criteria andLtimeNotBetween(Date value1, Date value2) {
+        public Criteria andLtimeNotBetween(String value1, String value2) {
             addCriterion("Ltime not between", value1, value2, "ltime");
             return (Criteria) this;
         }

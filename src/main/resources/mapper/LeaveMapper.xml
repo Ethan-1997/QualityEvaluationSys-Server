@@ -3,7 +3,7 @@
 <mapper namespace="com.qualityevaluationsys.demo.dao.LeaveMapper">
   <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.Leave">
     <id column="Lid" jdbcType="INTEGER" property="lid" />
-    <result column="Ltime" jdbcType="TIMESTAMP" property="ltime" />
+    <result column="Ltime" jdbcType="VARCHAR" property="ltime" />
     <result column="Lday" jdbcType="INTEGER" property="lday" />
     <result column="Lreasion" jdbcType="VARCHAR" property="lreasion" />
     <result column="Lapprover" jdbcType="VARCHAR" property="lapprover" />
@@ -113,7 +113,7 @@
     insert into Leave (Lid, Ltime, Lday, 
       Lreasion, Lapprover, sname, 
       sclass)
-    values (#{lid,jdbcType=INTEGER}, #{ltime,jdbcType=TIMESTAMP}, #{lday,jdbcType=INTEGER}, 
+    values (#{lid,jdbcType=INTEGER}, #{ltime,jdbcType=VARCHAR}, #{lday,jdbcType=INTEGER}, 
       #{lreasion,jdbcType=VARCHAR}, #{lapprover,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, 
       #{sclass,jdbcType=VARCHAR})
   </insert>
@@ -147,7 +147,7 @@
         #{lid,jdbcType=INTEGER},
       </if>
       <if test="ltime != null">
-        #{ltime,jdbcType=TIMESTAMP},
+        #{ltime,jdbcType=VARCHAR},
       </if>
       <if test="lday != null">
         #{lday,jdbcType=INTEGER},
@@ -179,7 +179,7 @@
         Lid = #{record.lid,jdbcType=INTEGER},
       </if>
       <if test="record.ltime != null">
-        Ltime = #{record.ltime,jdbcType=TIMESTAMP},
+        Ltime = #{record.ltime,jdbcType=VARCHAR},
       </if>
       <if test="record.lday != null">
         Lday = #{record.lday,jdbcType=INTEGER},
@@ -204,7 +204,7 @@
   <update id="updateByExample" parameterType="map">
     update Leave
     set Lid = #{record.lid,jdbcType=INTEGER},
-      Ltime = #{record.ltime,jdbcType=TIMESTAMP},
+      Ltime = #{record.ltime,jdbcType=VARCHAR},
       Lday = #{record.lday,jdbcType=INTEGER},
       Lreasion = #{record.lreasion,jdbcType=VARCHAR},
       Lapprover = #{record.lapprover,jdbcType=VARCHAR},
@@ -218,7 +218,7 @@
     update Leave
     <set>
       <if test="ltime != null">
-        Ltime = #{ltime,jdbcType=TIMESTAMP},
+        Ltime = #{ltime,jdbcType=VARCHAR},
       </if>
       <if test="lday != null">
         Lday = #{lday,jdbcType=INTEGER},
@@ -240,7 +240,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.qualityevaluationsys.demo.domain.Leave">
     update Leave
-    set Ltime = #{ltime,jdbcType=TIMESTAMP},
+    set Ltime = #{ltime,jdbcType=VARCHAR},
       Lday = #{lday,jdbcType=INTEGER},
       Lreasion = #{lreasion,jdbcType=VARCHAR},
       Lapprover = #{lapprover,jdbcType=VARCHAR},

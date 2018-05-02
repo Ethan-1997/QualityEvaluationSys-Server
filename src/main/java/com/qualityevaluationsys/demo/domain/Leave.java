@@ -1,7 +1,6 @@
 package com.qualityevaluationsys.demo.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @author 
@@ -12,7 +11,7 @@ public class Leave implements Serializable {
     /**
      * 请假时间
      */
-    private Date ltime;
+    private String ltime;
 
     /**
      * 请假天数
@@ -49,11 +48,11 @@ public class Leave implements Serializable {
         this.lid = lid;
     }
 
-    public Date getLtime() {
+    public String getLtime() {
         return ltime;
     }
 
-    public void setLtime(Date ltime) {
+    public void setLtime(String ltime) {
         this.ltime = ltime;
     }
 
