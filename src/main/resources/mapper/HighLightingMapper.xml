@@ -5,6 +5,7 @@
     <id column="Hid" jdbcType="INTEGER" property="hid" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="time" jdbcType="VARCHAR" property="time" />
+    <result column="sid" jdbcType="VARCHAR" property="sid" />
     <result column="sname" jdbcType="VARCHAR" property="sname" />
     <result column="sclass" jdbcType="VARCHAR" property="sclass" />
   </resultMap>
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    Hid, title, time, sname, sclass
+    Hid, title, time, sid, sname, sclass
   </sql>
   <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.HighLightingExample" resultMap="BaseResultMap">
     select
@@ -109,9 +110,9 @@
   </delete>
   <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.HighLighting">
     insert into HighLighting (Hid, title, time, 
-      sname, sclass)
+      sid, sname, sclass)
     values (#{hid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, 
-      #{sname,jdbcType=VARCHAR}, #{sclass,jdbcType=VARCHAR})
+      #{sid,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, #{sclass,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.HighLighting">
     insert into HighLighting
@@ -124,6 +125,9 @@
       </if>
       <if test="time != null">
         time,
+      </if>
+      <if test="sid != null">
+        sid,
       </if>
       <if test="sname != null">
         sname,
@@ -141,6 +145,9 @@
       </if>
       <if test="time != null">
         #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null">
+        #{sid,jdbcType=VARCHAR},
       </if>
       <if test="sname != null">
         #{sname,jdbcType=VARCHAR},
@@ -168,6 +175,9 @@
       <if test="record.time != null">
         time = #{record.time,jdbcType=VARCHAR},
       </if>
+      <if test="record.sid != null">
+        sid = #{record.sid,jdbcType=VARCHAR},
+      </if>
       <if test="record.sname != null">
         sname = #{record.sname,jdbcType=VARCHAR},
       </if>
@@ -184,6 +194,7 @@
     set Hid = #{record.hid,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
       time = #{record.time,jdbcType=VARCHAR},
+      sid = #{record.sid,jdbcType=VARCHAR},
       sname = #{record.sname,jdbcType=VARCHAR},
       sclass = #{record.sclass,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -199,6 +210,9 @@
       <if test="time != null">
         time = #{time,jdbcType=VARCHAR},
       </if>
+      <if test="sid != null">
+        sid = #{sid,jdbcType=VARCHAR},
+      </if>
       <if test="sname != null">
         sname = #{sname,jdbcType=VARCHAR},
       </if>
@@ -212,6 +226,7 @@
     update HighLighting
     set title = #{title,jdbcType=VARCHAR},
       time = #{time,jdbcType=VARCHAR},
+      sid = #{sid,jdbcType=VARCHAR},
       sname = #{sname,jdbcType=VARCHAR},
       sclass = #{sclass,jdbcType=VARCHAR}
     where Hid = #{hid,jdbcType=INTEGER}

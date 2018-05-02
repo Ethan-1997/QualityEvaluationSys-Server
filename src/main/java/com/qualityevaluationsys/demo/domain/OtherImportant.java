@@ -19,6 +19,8 @@ public class OtherImportant implements Serializable {
      */
     private Date time;
 
+    private String sid;
+
     /**
      * 学生姓名
      */
@@ -55,6 +57,14 @@ public class OtherImportant implements Serializable {
         this.time = time;
     }
 
+    public String getSid() {
+        return sid;
+    }
+
+    public void setSid(String sid) {
+        this.sid = sid;
+    }
+
     public String getSname() {
         return sname;
     }
@@ -86,6 +96,7 @@ public class OtherImportant implements Serializable {
         return (this.getOid() == null ? other.getOid() == null : this.getOid().equals(other.getOid()))
             && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
             && (this.getTime() == null ? other.getTime() == null : this.getTime().equals(other.getTime()))
+            && (this.getSid() == null ? other.getSid() == null : this.getSid().equals(other.getSid()))
             && (this.getSname() == null ? other.getSname() == null : this.getSname().equals(other.getSname()))
             && (this.getSclass() == null ? other.getSclass() == null : this.getSclass().equals(other.getSclass()));
     }
@@ -97,6 +108,7 @@ public class OtherImportant implements Serializable {
         result = prime * result + ((getOid() == null) ? 0 : getOid().hashCode());
         result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
         result = prime * result + ((getTime() == null) ? 0 : getTime().hashCode());
+        result = prime * result + ((getSid() == null) ? 0 : getSid().hashCode());
         result = prime * result + ((getSname() == null) ? 0 : getSname().hashCode());
         result = prime * result + ((getSclass() == null) ? 0 : getSclass().hashCode());
         return result;
@@ -111,6 +123,7 @@ public class OtherImportant implements Serializable {
         sb.append(", oid=").append(oid);
         sb.append(", title=").append(title);
         sb.append(", time=").append(time);
+        sb.append(", sid=").append(sid);
         sb.append(", sname=").append(sname);
         sb.append(", sclass=").append(sclass);
         sb.append(", serialVersionUID=").append(serialVersionUID);

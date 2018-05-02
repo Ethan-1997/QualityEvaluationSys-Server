@@ -28,6 +28,8 @@ public class Leave implements Serializable {
      */
     private String lapprover;
 
+    private String sid;
+
     /**
      * 学生姓名
      */
@@ -80,6 +82,14 @@ public class Leave implements Serializable {
         this.lapprover = lapprover;
     }
 
+    public String getSid() {
+        return sid;
+    }
+
+    public void setSid(String sid) {
+        this.sid = sid;
+    }
+
     public String getSname() {
         return sname;
     }
@@ -113,6 +123,7 @@ public class Leave implements Serializable {
             && (this.getLday() == null ? other.getLday() == null : this.getLday().equals(other.getLday()))
             && (this.getLreasion() == null ? other.getLreasion() == null : this.getLreasion().equals(other.getLreasion()))
             && (this.getLapprover() == null ? other.getLapprover() == null : this.getLapprover().equals(other.getLapprover()))
+            && (this.getSid() == null ? other.getSid() == null : this.getSid().equals(other.getSid()))
             && (this.getSname() == null ? other.getSname() == null : this.getSname().equals(other.getSname()))
             && (this.getSclass() == null ? other.getSclass() == null : this.getSclass().equals(other.getSclass()));
     }
@@ -126,6 +137,7 @@ public class Leave implements Serializable {
         result = prime * result + ((getLday() == null) ? 0 : getLday().hashCode());
         result = prime * result + ((getLreasion() == null) ? 0 : getLreasion().hashCode());
         result = prime * result + ((getLapprover() == null) ? 0 : getLapprover().hashCode());
+        result = prime * result + ((getSid() == null) ? 0 : getSid().hashCode());
         result = prime * result + ((getSname() == null) ? 0 : getSname().hashCode());
         result = prime * result + ((getSclass() == null) ? 0 : getSclass().hashCode());
         return result;
@@ -142,6 +154,7 @@ public class Leave implements Serializable {
         sb.append(", lday=").append(lday);
         sb.append(", lreasion=").append(lreasion);
         sb.append(", lapprover=").append(lapprover);
+        sb.append(", sid=").append(sid);
         sb.append(", sname=").append(sname);
         sb.append(", sclass=").append(sclass);
         sb.append(", serialVersionUID=").append(serialVersionUID);

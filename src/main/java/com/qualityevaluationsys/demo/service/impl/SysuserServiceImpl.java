@@ -136,6 +136,36 @@ public class SysuserServiceImpl implements SysuserService {
     }
 
     @Override
+    public Object getCurrentUser(String token) {
+        JwtUtil jwtUtil=new JwtUtil();
+        try {
+            Claims claims = jwtUtil.parseJWT(token);
+            Sysuser sysuser = sysuserMapper.selectByPrimaryKey(Integer.valueOf(claims.getId()));
+            if(sysuser.getUtype().equals("老师")){
+                TeacherExample example=new TeacherExample();
+                TeacherExample.Criteria criteria = example.createCriteria();
+                criteria.andTnoEqualTo(sysuser.getUno());
+                List<Teacher> teachers = teacherMapper.selectByExample(example);
+                LocalConfig.ID= teachers.get(0).getTno().toString();
+                return  teachers.get(0);
+            }else if(sysuser.getUtype().equals("学生")){
+                StudentExample example=new StudentExample();
+                StudentExample.Criteria criteria = example.createCriteria();
+                criteria.andUnoEqualTo(sysuser.getUno());
+                List<Student> students = studentMapper.selectByExample(example);
+                LocalConfig.ID= students.get(0).getSid();
+                return  students.get(0);
+            }
+            return null;
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public List<String> getRole(Sysuser user) {
         SysuserExample example=new SysuserExample();
         SysuserExample.Criteria criteria = example.createCriteria();

@@ -7,6 +7,7 @@
     <result column="Lday" jdbcType="INTEGER" property="lday" />
     <result column="Lreasion" jdbcType="VARCHAR" property="lreasion" />
     <result column="Lapprover" jdbcType="VARCHAR" property="lapprover" />
+    <result column="sid" jdbcType="VARCHAR" property="sid" />
     <result column="sname" jdbcType="VARCHAR" property="sname" />
     <result column="sclass" jdbcType="VARCHAR" property="sclass" />
   </resultMap>
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    Lid, Ltime, Lday, Lreasion, Lapprover, sname, sclass
+    Lid, Ltime, Lday, Lreasion, Lapprover, sid, sname, sclass
   </sql>
   <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.LeaveExample" resultMap="BaseResultMap">
     select
@@ -111,11 +112,11 @@
   </delete>
   <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.Leave">
     insert into Leave (Lid, Ltime, Lday, 
-      Lreasion, Lapprover, sname, 
-      sclass)
+      Lreasion, Lapprover, sid, 
+      sname, sclass)
     values (#{lid,jdbcType=INTEGER}, #{ltime,jdbcType=VARCHAR}, #{lday,jdbcType=INTEGER}, 
-      #{lreasion,jdbcType=VARCHAR}, #{lapprover,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, 
-      #{sclass,jdbcType=VARCHAR})
+      #{lreasion,jdbcType=VARCHAR}, #{lapprover,jdbcType=VARCHAR}, #{sid,jdbcType=VARCHAR}, 
+      #{sname,jdbcType=VARCHAR}, #{sclass,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.Leave">
     insert into Leave
@@ -134,6 +135,9 @@
       </if>
       <if test="lapprover != null">
         Lapprover,
+      </if>
+      <if test="sid != null">
+        sid,
       </if>
       <if test="sname != null">
         sname,
@@ -157,6 +161,9 @@
       </if>
       <if test="lapprover != null">
         #{lapprover,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null">
+        #{sid,jdbcType=VARCHAR},
       </if>
       <if test="sname != null">
         #{sname,jdbcType=VARCHAR},
@@ -190,6 +197,9 @@
       <if test="record.lapprover != null">
         Lapprover = #{record.lapprover,jdbcType=VARCHAR},
       </if>
+      <if test="record.sid != null">
+        sid = #{record.sid,jdbcType=VARCHAR},
+      </if>
       <if test="record.sname != null">
         sname = #{record.sname,jdbcType=VARCHAR},
       </if>
@@ -208,6 +218,7 @@
       Lday = #{record.lday,jdbcType=INTEGER},
       Lreasion = #{record.lreasion,jdbcType=VARCHAR},
       Lapprover = #{record.lapprover,jdbcType=VARCHAR},
+      sid = #{record.sid,jdbcType=VARCHAR},
       sname = #{record.sname,jdbcType=VARCHAR},
       sclass = #{record.sclass,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -229,6 +240,9 @@
       <if test="lapprover != null">
         Lapprover = #{lapprover,jdbcType=VARCHAR},
       </if>
+      <if test="sid != null">
+        sid = #{sid,jdbcType=VARCHAR},
+      </if>
       <if test="sname != null">
         sname = #{sname,jdbcType=VARCHAR},
       </if>
@@ -244,6 +258,7 @@
       Lday = #{lday,jdbcType=INTEGER},
       Lreasion = #{lreasion,jdbcType=VARCHAR},
       Lapprover = #{lapprover,jdbcType=VARCHAR},
+      sid = #{sid,jdbcType=VARCHAR},
       sname = #{sname,jdbcType=VARCHAR},
       sclass = #{sclass,jdbcType=VARCHAR}
     where Lid = #{lid,jdbcType=INTEGER}

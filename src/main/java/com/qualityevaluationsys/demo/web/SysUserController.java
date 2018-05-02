@@ -9,6 +9,7 @@ import org.omg.CORBA.INTERNAL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -113,4 +114,10 @@ public class SysUserController extends BaseController {
         return  msg;
     }
 
+    @RequestMapping(value = "/getCurrentUser",method = RequestMethod.GET)
+    public Map<String,Object> getCurrentUser(HttpServletRequest request){
+        msg.clear();
+        msg.put("user",sysuserService.getCurrentUser(request.getHeader("X-Token")));
+        return  msg;
+    }
 }
