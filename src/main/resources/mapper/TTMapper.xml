@@ -169,4 +169,21 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  <delete id="deleteByTid" parameterType="java.lang.String">
+    delete from TT
+    where Tid = #{tid,jdbcType=VARCHAR}
+  </delete>
+  <select id="selectByTno" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from TT
+    where Tno = #{tno,jdbcType=VARCHAR}
+  </select>
+  <update id="updateByTid" parameterType="com.qualityevaluationsys.demo.domain.TestInformation">
+    update TT
+    <set>
+      Tdate = #{tdate,jdbcType=VARCHAR}
+    </set>
+    where Tid = #{tid,jdbcType=VARCHAR}
+  </update>
 </mapper>

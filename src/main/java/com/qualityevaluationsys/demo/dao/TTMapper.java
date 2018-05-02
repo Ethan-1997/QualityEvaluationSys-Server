@@ -3,8 +3,13 @@ package com.qualityevaluationsys.demo.dao;
 import com.qualityevaluationsys.demo.domain.TT;
 import com.qualityevaluationsys.demo.domain.TTExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+@Repository
+@Mapper
 public interface TTMapper {
     long countByExample(TTExample example);
 
@@ -13,6 +18,12 @@ public interface TTMapper {
     int insert(TT record);
 
     int insertSelective(TT record);
+
+    TT selectByTno(Integer tid);
+
+    int updateByTid(TT record);
+
+    int deleteByTid(String tid);
 
     List<TT> selectByExample(TTExample example);
 
