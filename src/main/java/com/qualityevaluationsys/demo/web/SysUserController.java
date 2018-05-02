@@ -3,6 +3,7 @@ package com.qualityevaluationsys.demo.web;
 import com.qiniu.util.Auth;
 import com.qualityevaluationsys.demo.domain.Sysuser;
 import com.qualityevaluationsys.demo.service.SysuserService;
+import com.qualityevaluationsys.demo.utils.LocalConfig;
 import com.qualityevaluationsys.demo.utils.PageBean;
 import org.omg.CORBA.INTERNAL;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,6 +102,7 @@ public class SysUserController extends BaseController {
             String bucket = "media";
             Auth auth = Auth.create(accessKey, secretKey);
             String upToken = auth.uploadToken(bucket);
+            msg.put("id", LocalConfig.ID);
             msg.put("upToken",upToken);
             msg.put("roles",roles);
             msg.put("user",user);

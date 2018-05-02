@@ -1,11 +1,12 @@
 package com.qualityevaluationsys.demo.service.impl;
 
+import com.qualityevaluationsys.demo.dao.StudentMapper;
 import com.qualityevaluationsys.demo.dao.SysuserMapper;
-import com.qualityevaluationsys.demo.domain.Roles;
-import com.qualityevaluationsys.demo.domain.Sysuser;
-import com.qualityevaluationsys.demo.domain.SysuserExample;
+import com.qualityevaluationsys.demo.dao.TeacherMapper;
+import com.qualityevaluationsys.demo.domain.*;
 import com.qualityevaluationsys.demo.service.SysuserService;
 import com.qualityevaluationsys.demo.utils.JwtUtil;
+import com.qualityevaluationsys.demo.utils.LocalConfig;
 import com.qualityevaluationsys.demo.utils.PageBean;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,10 @@ import java.util.List;
 public class SysuserServiceImpl implements SysuserService {
     @Autowired
     private SysuserMapper sysuserMapper;
+    @Autowired
+    private StudentMapper studentMapper;
+    @Autowired
+    private TeacherMapper teacherMapper;
 
 
     @Override
@@ -106,7 +111,22 @@ public class SysuserServiceImpl implements SysuserService {
         JwtUtil jwtUtil=new JwtUtil();
         try {
             Claims claims = jwtUtil.parseJWT(token);
-            return sysuserMapper.selectByPrimaryKey(Integer.valueOf(claims.getId()));
+            Sysuser sysuser = sysuserMapper.selectByPrimaryKey(Integer.valueOf(claims.getId()));
+            if(sysuser.getUtype().equals("老师")){
+                TeacherExample example=new TeacherExample();
+                TeacherExample.Criteria criteria = example.createCriteria();
+                criteria.andTnoEqualTo(sysuser.getUno());
+                List<Teacher> teachers = teacherMapper.selectByExample(example);
+                LocalConfig.ID= teachers.get(0).getTno().toString();
+            }else if(sysuser.getUtype().equals("学生")){
+                StudentExample example=new StudentExample();
+                StudentExample.Criteria criteria = example.createCriteria();
+                criteria.andUnoEqualTo(sysuser.getUno());
+
+                List<Student> students = studentMapper.selectByExample(example);
+                LocalConfig.ID= students.get(0).getSid();
+            }
+            return sysuser;
 
 
         } catch (Exception e) {
