@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qualityevaluationsys.demo.dao.TTMapper">
+  <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.TT">
+    <result column="Tno" jdbcType="INTEGER" property="tno" />
+    <result column="Tid" jdbcType="VARCHAR" property="tid" />
+    <result column="Tname" jdbcType="VARCHAR" property="tname" />
+    <result column="Tdate" jdbcType="VARCHAR" property="tdate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Tno, Tid, Tname, Tdate
+  </sql>
+  <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.TTExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from TT
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.qualityevaluationsys.demo.domain.TTExample">
+    delete from TT
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.TT">
+    insert into TT (Tno, Tid, Tname, 
+      Tdate)
+    values (#{tno,jdbcType=INTEGER}, #{tid,jdbcType=VARCHAR}, #{tname,jdbcType=VARCHAR}, 
+      #{tdate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.TT">
+    insert into TT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tno != null">
+        Tno,
+      </if>
+      <if test="tid != null">
+        Tid,
+      </if>
+      <if test="tname != null">
+        Tname,
+      </if>
+      <if test="tdate != null">
+        Tdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tno != null">
+        #{tno,jdbcType=INTEGER},
+      </if>
+      <if test="tid != null">
+        #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="tname != null">
+        #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="tdate != null">
+        #{tdate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qualityevaluationsys.demo.domain.TTExample" resultType="java.lang.Long">
+    select count(*) from TT
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update TT
+    <set>
+      <if test="record.tno != null">
+        Tno = #{record.tno,jdbcType=INTEGER},
+      </if>
+      <if test="record.tid != null">
+        Tid = #{record.tid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tname != null">
+        Tname = #{record.tname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdate != null">
+        Tdate = #{record.tdate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update TT
+    set Tno = #{record.tno,jdbcType=INTEGER},
+      Tid = #{record.tid,jdbcType=VARCHAR},
+      Tname = #{record.tname,jdbcType=VARCHAR},
+      Tdate = #{record.tdate,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

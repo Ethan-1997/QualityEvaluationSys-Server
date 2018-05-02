@@ -9,6 +9,7 @@
     <result column="reason" jdbcType="VARCHAR" property="reason" />
     <result column="sname" jdbcType="VARCHAR" property="sname" />
     <result column="sclass" jdbcType="VARCHAR" property="sclass" />
+    <result column="Sid" jdbcType="CHAR" property="sid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    Pid, date, time, status, reason, sname, sclass
+    Pid, date, time, status, reason, sname, sclass, Sid
   </sql>
   <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.ParticipationExample" resultMap="BaseResultMap">
     select
@@ -112,10 +113,10 @@
   <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.Participation">
     insert into Participation (Pid, date, time, 
       status, reason, sname, 
-      sclass)
+      sclass, Sid)
     values (#{pid,jdbcType=INTEGER}, #{date,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, 
       #{status,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, 
-      #{sclass,jdbcType=VARCHAR})
+      #{sclass,jdbcType=VARCHAR}, #{sid,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.Participation">
     insert into Participation
@@ -141,6 +142,9 @@
       <if test="sclass != null">
         sclass,
       </if>
+      <if test="sid != null">
+        Sid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="pid != null">
@@ -163,6 +167,9 @@
       </if>
       <if test="sclass != null">
         #{sclass,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null">
+        #{sid,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -196,6 +203,9 @@
       <if test="record.sclass != null">
         sclass = #{record.sclass,jdbcType=VARCHAR},
       </if>
+      <if test="record.sid != null">
+        Sid = #{record.sid,jdbcType=CHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -209,7 +219,8 @@
       status = #{record.status,jdbcType=VARCHAR},
       reason = #{record.reason,jdbcType=VARCHAR},
       sname = #{record.sname,jdbcType=VARCHAR},
-      sclass = #{record.sclass,jdbcType=VARCHAR}
+      sclass = #{record.sclass,jdbcType=VARCHAR},
+      Sid = #{record.sid,jdbcType=CHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -235,6 +246,9 @@
       <if test="sclass != null">
         sclass = #{sclass,jdbcType=VARCHAR},
       </if>
+      <if test="sid != null">
+        Sid = #{sid,jdbcType=CHAR},
+      </if>
     </set>
     where Pid = #{pid,jdbcType=INTEGER}
   </update>
@@ -245,7 +259,8 @@
       status = #{status,jdbcType=VARCHAR},
       reason = #{reason,jdbcType=VARCHAR},
       sname = #{sname,jdbcType=VARCHAR},
-      sclass = #{sclass,jdbcType=VARCHAR}
+      sclass = #{sclass,jdbcType=VARCHAR},
+      Sid = #{sid,jdbcType=CHAR}
     where Pid = #{pid,jdbcType=INTEGER}
   </update>
 </mapper>

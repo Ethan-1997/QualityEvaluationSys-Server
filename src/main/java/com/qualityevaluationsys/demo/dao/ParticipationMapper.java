@@ -3,7 +3,7 @@ package com.qualityevaluationsys.demo.dao;
 import com.qualityevaluationsys.demo.domain.Participation;
 import com.qualityevaluationsys.demo.domain.ParticipationExample;
 import java.util.List;
-
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
