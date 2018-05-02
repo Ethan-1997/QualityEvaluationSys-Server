@@ -27,6 +27,7 @@ public class StudentServiceImpl implements StudentService {
     public int insert(Student record) {
 
         //TODO 事务优化
+        //TODO 插入面试成绩基本记录
         //默认账号密码
         Sysuser sysuser = new Sysuser();
         sysuser.setUname(record.getStel());

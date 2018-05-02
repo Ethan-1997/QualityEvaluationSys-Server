@@ -35,18 +35,21 @@ public class ParticipationServiceImpl implements ParticipationService {
         ParticipationExample example=new ParticipationExample();
         if(participation!=null){
             ParticipationExample.Criteria criteria = example.createCriteria();
-            if(!StringUtils.isNullOrEmpty(participation.getSname())){
-                criteria.andSnameLike("%"+participation.getSname()+"%");
+            if(!StringUtils.isNullOrEmpty(participation.getSid())){
+                criteria.andSidEqualTo(participation.getSid());
             }
             if(!StringUtils.isNullOrEmpty(participation.getSclass())){
                 criteria.andSclassLike("%"+participation.getSclass()+"%");
             }
+            if(!StringUtils.isNullOrEmpty(participation.getDate())){
+                criteria.andDateEqualTo(participation.getDate());
+            }
 
         }
         if(!StringUtils.isNullOrEmpty(sort)&& sort.equals("-id")){
-            example.setOrderByClause("cid desc");
+            example.setOrderByClause("pid desc");
         }else if(!StringUtils.isNullOrEmpty(sort)){
-            example.setOrderByClause("cid asc");
+            example.setOrderByClause("pid asc");
         }
 
         int count = (int) participationMapper.countByExample(example);

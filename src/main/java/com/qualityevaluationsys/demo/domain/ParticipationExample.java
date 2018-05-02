@@ -603,6 +603,76 @@ public class ParticipationExample {
             addCriterion("sclass not between", value1, value2, "sclass");
             return (Criteria) this;
         }
+
+        public Criteria andSidIsNull() {
+            addCriterion("Sid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSidIsNotNull() {
+            addCriterion("Sid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSidEqualTo(String value) {
+            addCriterion("Sid =", value, "sid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSidNotEqualTo(String value) {
+            addCriterion("Sid <>", value, "sid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSidGreaterThan(String value) {
+            addCriterion("Sid >", value, "sid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSidGreaterThanOrEqualTo(String value) {
+            addCriterion("Sid >=", value, "sid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSidLessThan(String value) {
+            addCriterion("Sid <", value, "sid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSidLessThanOrEqualTo(String value) {
+            addCriterion("Sid <=", value, "sid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSidLike(String value) {
+            addCriterion("Sid like", value, "sid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSidNotLike(String value) {
+            addCriterion("Sid not like", value, "sid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSidIn(List<String> values) {
+            addCriterion("Sid in", values, "sid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSidNotIn(List<String> values) {
+            addCriterion("Sid not in", values, "sid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSidBetween(String value1, String value2) {
+            addCriterion("Sid between", value1, value2, "sid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSidNotBetween(String value1, String value2) {
+            addCriterion("Sid not between", value1, value2, "sid");
+            return (Criteria) this;
+        }
     }
 
     /**
