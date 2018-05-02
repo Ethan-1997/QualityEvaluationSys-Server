@@ -40,17 +40,20 @@ public class OtherImportantServiceImpl implements OtherImportantService {
         OtherImportantExample example=new OtherImportantExample();
         if(otherImportant!=null){
             OtherImportantExample.Criteria criteria = example.createCriteria();
-            if(!StringUtils.isNullOrEmpty(otherImportant.getSname())){
-                criteria.andSnameLike("%"+otherImportant.getSname()+"%");
+            if(!StringUtils.isNullOrEmpty(otherImportant.getSid())){
+                criteria.andSidLike("%"+otherImportant.getSid()+"%");
             }
             if(!StringUtils.isNullOrEmpty(otherImportant.getSclass())){
                 criteria.andSclassLike("%"+otherImportant.getSclass()+"%");
             }
+            if(!StringUtils.isNullOrEmpty(otherImportant.getTime())){
+                criteria.andTimeLike("%"+otherImportant.getTime()+"%");
+            }
         }
         if(!StringUtils.isNullOrEmpty(sort)&& sort.equals("-id")){
-            example.setOrderByClause("cid desc");
+            example.setOrderByClause("oid desc");
         }else if(!StringUtils.isNullOrEmpty(sort)){
-            example.setOrderByClause("cid asc");
+            example.setOrderByClause("oid asc");
         }
 
         int count = (int) otherImportantMapper.countByExample(example);

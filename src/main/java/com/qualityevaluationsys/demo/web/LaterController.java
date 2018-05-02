@@ -1,7 +1,7 @@
 package com.qualityevaluationsys.demo.web;
 
-import com.qualityevaluationsys.demo.domain.Leave;
-import com.qualityevaluationsys.demo.service.LeaveService;
+import com.qualityevaluationsys.demo.domain.Later;
+import com.qualityevaluationsys.demo.service.LaterService;
 import com.qualityevaluationsys.demo.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "leave")
-public class LeaveController  extends BaseController{
+@RequestMapping(value = "later")
+public class LaterController  extends BaseController{
     @Autowired
-    LeaveService service;
+    LaterService service;
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public Map<String,Object> list(Integer limit, String sort, Integer page, @ModelAttribute Leave pojo){
+    public Map<String,Object> list(Integer limit, String sort, Integer page, @ModelAttribute Later pojo){
         msg.clear();
         try {
             PageBean pageBean= service.getPageBean(limit,sort,page,pojo);
@@ -31,7 +31,7 @@ public class LeaveController  extends BaseController{
         return  msg;
     }
     @RequestMapping(value = "/create",method = RequestMethod.POST)
-    public Map<String,Object> create(@ModelAttribute Leave pojo){
+    public Map<String,Object> create(@ModelAttribute Later pojo){
         msg.clear();
         try {
             int i = service.insertSelective(pojo);
@@ -47,7 +47,7 @@ public class LeaveController  extends BaseController{
         return  msg;
     }
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
-    public Map<String,Object> delete(@ModelAttribute Leave pojo){
+    public Map<String,Object> delete(@ModelAttribute Later pojo){
         msg.clear();
         try {
             int i = service.deleteByPrimaryKey(pojo.getLid());
@@ -64,10 +64,10 @@ public class LeaveController  extends BaseController{
     }
 
     @RequestMapping(value = "/get",method = RequestMethod.GET)
-    public Map<String,Object> get(@ModelAttribute Leave pojo){
+    public Map<String,Object> get(@ModelAttribute Later pojo){
         msg.clear();
         try {
-            Leave temp = service.selectByPrimaryKey(pojo.getLid());
+            Later temp = service.selectByPrimaryKey(pojo.getLid());
             msg.put("item",temp);
         }catch (Exception e){
             msg.put("data","error");
@@ -76,7 +76,7 @@ public class LeaveController  extends BaseController{
         return  msg;
     }
     @RequestMapping(value = "/update",method = RequestMethod.POST)
-    public Map<String,Object> update(@ModelAttribute Leave pojo){
+    public Map<String,Object> update(@ModelAttribute Later pojo){
         msg.clear();
         try {
             int i = service.updateByPrimaryKeySelective(pojo);

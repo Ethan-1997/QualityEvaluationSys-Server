@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qualityevaluationsys.demo.dao.LeaveMapper">
-  <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.Leave">
+<mapper namespace="com.qualityevaluationsys.demo.dao.LaterMapper">
+  <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.Later">
     <id column="Lid" jdbcType="INTEGER" property="lid" />
     <result column="Ltime" jdbcType="VARCHAR" property="ltime" />
     <result column="Lday" jdbcType="INTEGER" property="lday" />
@@ -72,13 +72,13 @@
   <sql id="Base_Column_List">
     Lid, Ltime, Lday, Lreasion, Lapprover, sid, sname, sclass
   </sql>
-  <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.LeaveExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.LaterExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from Leave
+    from Later
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -97,29 +97,29 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from Leave
+    from Later
     where Lid = #{lid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from Leave
+    delete from Later
     where Lid = #{lid,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.qualityevaluationsys.demo.domain.LeaveExample">
-    delete from Leave
+  <delete id="deleteByExample" parameterType="com.qualityevaluationsys.demo.domain.LaterExample">
+    delete from Later
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.Leave">
-    insert into Leave (Lid, Ltime, Lday, 
+  <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.Later">
+    insert into Later (Lid, Ltime, Lday, 
       Lreasion, Lapprover, sid, 
       sname, sclass)
     values (#{lid,jdbcType=INTEGER}, #{ltime,jdbcType=VARCHAR}, #{lday,jdbcType=INTEGER}, 
       #{lreasion,jdbcType=VARCHAR}, #{lapprover,jdbcType=VARCHAR}, #{sid,jdbcType=VARCHAR}, 
       #{sname,jdbcType=VARCHAR}, #{sclass,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.Leave">
-    insert into Leave
+  <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.Later">
+    insert into Later
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="lid != null">
         Lid,
@@ -173,14 +173,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.qualityevaluationsys.demo.domain.LeaveExample" resultType="java.lang.Long">
-    select count(*) from Leave
+  <select id="countByExample" parameterType="com.qualityevaluationsys.demo.domain.LaterExample" resultType="java.lang.Long">
+    select count(*) from Later
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update Leave
+    update Later
     <set>
       <if test="record.lid != null">
         Lid = #{record.lid,jdbcType=INTEGER},
@@ -212,7 +212,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update Leave
+    update Later
     set Lid = #{record.lid,jdbcType=INTEGER},
       Ltime = #{record.ltime,jdbcType=VARCHAR},
       Lday = #{record.lday,jdbcType=INTEGER},
@@ -225,8 +225,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.qualityevaluationsys.demo.domain.Leave">
-    update Leave
+  <update id="updateByPrimaryKeySelective" parameterType="com.qualityevaluationsys.demo.domain.Later">
+    update Later
     <set>
       <if test="ltime != null">
         Ltime = #{ltime,jdbcType=VARCHAR},
@@ -252,8 +252,8 @@
     </set>
     where Lid = #{lid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.qualityevaluationsys.demo.domain.Leave">
-    update Leave
+  <update id="updateByPrimaryKey" parameterType="com.qualityevaluationsys.demo.domain.Later">
+    update Later
     set Ltime = #{ltime,jdbcType=VARCHAR},
       Lday = #{lday,jdbcType=INTEGER},
       Lreasion = #{lreasion,jdbcType=VARCHAR},

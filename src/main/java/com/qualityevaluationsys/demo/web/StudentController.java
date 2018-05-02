@@ -1,8 +1,10 @@
 package com.qualityevaluationsys.demo.web;
 
 import com.qualityevaluationsys.demo.domain.Student;
+import com.qualityevaluationsys.demo.domain.StudentExample;
 import com.qualityevaluationsys.demo.service.StudentService;
 import com.qualityevaluationsys.demo.utils.PageBean;
+import com.qualityevaluationsys.demo.utils.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -93,4 +95,16 @@ public class StudentController  extends BaseController{
         return  msg;
     }
 
+    @RequestMapping(value = "/getstudent",method = RequestMethod.GET)
+    public Map<String,Object> getstudent(Integer Cid){
+        msg.clear();
+        try {
+            List temp = service.selectByCid(Cid);
+            msg.put("item",temp);
+        }catch (Exception e){
+            msg.put("data","error");
+            msg.put("message",e.getMessage());
+        }
+        return  msg;
+    }
 }

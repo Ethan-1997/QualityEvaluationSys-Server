@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * @author 
  */
-public class Leave implements Serializable {
+public class Later implements Serializable {
     private Integer lid;
 
     /**
@@ -117,7 +117,7 @@ public class Leave implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        Leave other = (Leave) that;
+        Later other = (Later) that;
         return (this.getLid() == null ? other.getLid() == null : this.getLid().equals(other.getLid()))
             && (this.getLtime() == null ? other.getLtime() == null : this.getLtime().equals(other.getLtime()))
             && (this.getLday() == null ? other.getLday() == null : this.getLday().equals(other.getLday()))

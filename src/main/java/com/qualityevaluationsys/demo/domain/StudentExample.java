@@ -42,6 +42,8 @@ public class StudentExample {
         oredCriteria.add(criteria);
     }
 
+    private List	list;
+
     public Criteria or() {
         Criteria criteria = createCriteriaInternal();
         oredCriteria.add(criteria);
@@ -81,6 +83,14 @@ public class StudentExample {
 
     public Integer getOffset() {
         return offset;
+    }
+
+    public List getList() {
+        return list;
+    }
+
+    public void setList(List list) {
+        this.list = list;
     }
 
     protected abstract static class GeneratedCriteria {

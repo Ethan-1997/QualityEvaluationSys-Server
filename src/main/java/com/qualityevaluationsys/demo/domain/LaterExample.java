@@ -3,7 +3,7 @@ package com.qualityevaluationsys.demo.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LeaveExample {
+public class LaterExample {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -14,7 +14,7 @@ public class LeaveExample {
 
     private Integer offset;
 
-    public LeaveExample() {
+    public LaterExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

@@ -34,11 +34,14 @@ public class BreakRuleServiceImpl implements BreakRuleService {
         BreakRuleExample example=new BreakRuleExample();
         if(breakRule!=null){
             BreakRuleExample.Criteria criteria = example.createCriteria();
-            if(!StringUtils.isNullOrEmpty(breakRule.getSname())){
-                criteria.andSnameLike("%"+breakRule.getSname()+"%");
+            if(!StringUtils.isNullOrEmpty(breakRule.getSid())){
+                criteria.andSidLike("%"+breakRule.getSid()+"%");
             }
             if(!StringUtils.isNullOrEmpty(breakRule.getSclass())){
                 criteria.andSclassLike("%"+breakRule.getSclass()+"%");
+            }
+            if(!StringUtils.isNullOrEmpty(breakRule.getTime())){
+                criteria.andTimeLike("%"+breakRule.getTime()+"%");
             }
             if(!StringUtils.isNullOrEmpty(breakRule.getStatus())){
                 criteria.andStatusEqualTo(breakRule.getStatus());

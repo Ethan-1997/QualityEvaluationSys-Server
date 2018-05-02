@@ -1,6 +1,7 @@
 package com.qualityevaluationsys.demo.service.impl;
 
 import com.qiniu.util.StringUtils;
+import java.util.List;
 import com.qualityevaluationsys.demo.dao.StudentMapper;
 import com.qualityevaluationsys.demo.dao.SysuserMapper;
 import com.qualityevaluationsys.demo.domain.Student;
@@ -9,6 +10,7 @@ import com.qualityevaluationsys.demo.domain.Sysuser;
 import com.qualityevaluationsys.demo.service.StudentService;
 import com.qualityevaluationsys.demo.utils.GroupType;
 import com.qualityevaluationsys.demo.utils.PageBean;
+import com.qualityevaluationsys.demo.utils.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public int deleteByPrimaryKey(String sid) {
         return studentMapper.deleteByPrimaryKey(sid);
+    }
+
+    @Override
+    public List selectByCid(Integer cid) {
+        return studentMapper.selectByCid(cid);
     }
 
     @Override
