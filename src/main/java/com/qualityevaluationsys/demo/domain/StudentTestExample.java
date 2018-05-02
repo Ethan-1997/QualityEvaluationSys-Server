@@ -264,273 +264,343 @@ public class StudentTestExample {
             return (Criteria) this;
         }
 
-        public Criteria andNameIsNull() {
-            addCriterion("name is null");
+        public Criteria andTnameIsNull() {
+            addCriterion("Tname is null");
             return (Criteria) this;
         }
 
-        public Criteria andNameIsNotNull() {
-            addCriterion("name is not null");
+        public Criteria andTnameIsNotNull() {
+            addCriterion("Tname is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNameEqualTo(String value) {
-            addCriterion("name =", value, "name");
+        public Criteria andTnameEqualTo(String value) {
+            addCriterion("Tname =", value, "tname");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotEqualTo(String value) {
-            addCriterion("name <>", value, "name");
+        public Criteria andTnameNotEqualTo(String value) {
+            addCriterion("Tname <>", value, "tname");
             return (Criteria) this;
         }
 
-        public Criteria andNameGreaterThan(String value) {
-            addCriterion("name >", value, "name");
+        public Criteria andTnameGreaterThan(String value) {
+            addCriterion("Tname >", value, "tname");
             return (Criteria) this;
         }
 
-        public Criteria andNameGreaterThanOrEqualTo(String value) {
-            addCriterion("name >=", value, "name");
+        public Criteria andTnameGreaterThanOrEqualTo(String value) {
+            addCriterion("Tname >=", value, "tname");
             return (Criteria) this;
         }
 
-        public Criteria andNameLessThan(String value) {
-            addCriterion("name <", value, "name");
+        public Criteria andTnameLessThan(String value) {
+            addCriterion("Tname <", value, "tname");
             return (Criteria) this;
         }
 
-        public Criteria andNameLessThanOrEqualTo(String value) {
-            addCriterion("name <=", value, "name");
+        public Criteria andTnameLessThanOrEqualTo(String value) {
+            addCriterion("Tname <=", value, "tname");
             return (Criteria) this;
         }
 
-        public Criteria andNameLike(String value) {
-            addCriterion("name like", value, "name");
+        public Criteria andTnameLike(String value) {
+            addCriterion("Tname like", value, "tname");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotLike(String value) {
-            addCriterion("name not like", value, "name");
+        public Criteria andTnameNotLike(String value) {
+            addCriterion("Tname not like", value, "tname");
             return (Criteria) this;
         }
 
-        public Criteria andNameIn(List<String> values) {
-            addCriterion("name in", values, "name");
+        public Criteria andTnameIn(List<String> values) {
+            addCriterion("Tname in", values, "tname");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotIn(List<String> values) {
-            addCriterion("name not in", values, "name");
+        public Criteria andTnameNotIn(List<String> values) {
+            addCriterion("Tname not in", values, "tname");
             return (Criteria) this;
         }
 
-        public Criteria andNameBetween(String value1, String value2) {
-            addCriterion("name between", value1, value2, "name");
+        public Criteria andTnameBetween(String value1, String value2) {
+            addCriterion("Tname between", value1, value2, "tname");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotBetween(String value1, String value2) {
-            addCriterion("name not between", value1, value2, "name");
+        public Criteria andTnameNotBetween(String value1, String value2) {
+            addCriterion("Tname not between", value1, value2, "tname");
             return (Criteria) this;
         }
 
-        public Criteria andDateIsNull() {
-            addCriterion("date is null");
+        public Criteria andTdateIsNull() {
+            addCriterion("Tdate is null");
             return (Criteria) this;
         }
 
-        public Criteria andDateIsNotNull() {
-            addCriterion("date is not null");
+        public Criteria andTdateIsNotNull() {
+            addCriterion("Tdate is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDateEqualTo(String value) {
-            addCriterion("date =", value, "date");
+        public Criteria andTdateEqualTo(String value) {
+            addCriterion("Tdate =", value, "tdate");
             return (Criteria) this;
         }
 
-        public Criteria andDateNotEqualTo(String value) {
-            addCriterion("date <>", value, "date");
+        public Criteria andTdateNotEqualTo(String value) {
+            addCriterion("Tdate <>", value, "tdate");
             return (Criteria) this;
         }
 
-        public Criteria andDateGreaterThan(String value) {
-            addCriterion("date >", value, "date");
+        public Criteria andTdateGreaterThan(String value) {
+            addCriterion("Tdate >", value, "tdate");
             return (Criteria) this;
         }
 
-        public Criteria andDateGreaterThanOrEqualTo(String value) {
-            addCriterion("date >=", value, "date");
+        public Criteria andTdateGreaterThanOrEqualTo(String value) {
+            addCriterion("Tdate >=", value, "tdate");
             return (Criteria) this;
         }
 
-        public Criteria andDateLessThan(String value) {
-            addCriterion("date <", value, "date");
+        public Criteria andTdateLessThan(String value) {
+            addCriterion("Tdate <", value, "tdate");
             return (Criteria) this;
         }
 
-        public Criteria andDateLessThanOrEqualTo(String value) {
-            addCriterion("date <=", value, "date");
+        public Criteria andTdateLessThanOrEqualTo(String value) {
+            addCriterion("Tdate <=", value, "tdate");
             return (Criteria) this;
         }
 
-        public Criteria andDateLike(String value) {
-            addCriterion("date like", value, "date");
+        public Criteria andTdateLike(String value) {
+            addCriterion("Tdate like", value, "tdate");
             return (Criteria) this;
         }
 
-        public Criteria andDateNotLike(String value) {
-            addCriterion("date not like", value, "date");
+        public Criteria andTdateNotLike(String value) {
+            addCriterion("Tdate not like", value, "tdate");
             return (Criteria) this;
         }
 
-        public Criteria andDateIn(List<String> values) {
-            addCriterion("date in", values, "date");
+        public Criteria andTdateIn(List<String> values) {
+            addCriterion("Tdate in", values, "tdate");
             return (Criteria) this;
         }
 
-        public Criteria andDateNotIn(List<String> values) {
-            addCriterion("date not in", values, "date");
+        public Criteria andTdateNotIn(List<String> values) {
+            addCriterion("Tdate not in", values, "tdate");
             return (Criteria) this;
         }
 
-        public Criteria andDateBetween(String value1, String value2) {
-            addCriterion("date between", value1, value2, "date");
+        public Criteria andTdateBetween(String value1, String value2) {
+            addCriterion("Tdate between", value1, value2, "tdate");
             return (Criteria) this;
         }
 
-        public Criteria andDateNotBetween(String value1, String value2) {
-            addCriterion("date not between", value1, value2, "date");
+        public Criteria andTdateNotBetween(String value1, String value2) {
+            addCriterion("Tdate not between", value1, value2, "tdate");
             return (Criteria) this;
         }
 
-        public Criteria andGradeIsNull() {
-            addCriterion("grade is null");
+        public Criteria andSstateIsNull() {
+            addCriterion("Sstate is null");
             return (Criteria) this;
         }
 
-        public Criteria andGradeIsNotNull() {
-            addCriterion("grade is not null");
+        public Criteria andSstateIsNotNull() {
+            addCriterion("Sstate is not null");
             return (Criteria) this;
         }
 
-        public Criteria andGradeEqualTo(Integer value) {
-            addCriterion("grade =", value, "grade");
+        public Criteria andSstateEqualTo(String value) {
+            addCriterion("Sstate =", value, "sstate");
             return (Criteria) this;
         }
 
-        public Criteria andGradeNotEqualTo(Integer value) {
-            addCriterion("grade <>", value, "grade");
+        public Criteria andSstateNotEqualTo(String value) {
+            addCriterion("Sstate <>", value, "sstate");
             return (Criteria) this;
         }
 
-        public Criteria andGradeGreaterThan(Integer value) {
-            addCriterion("grade >", value, "grade");
+        public Criteria andSstateGreaterThan(String value) {
+            addCriterion("Sstate >", value, "sstate");
             return (Criteria) this;
         }
 
-        public Criteria andGradeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("grade >=", value, "grade");
+        public Criteria andSstateGreaterThanOrEqualTo(String value) {
+            addCriterion("Sstate >=", value, "sstate");
             return (Criteria) this;
         }
 
-        public Criteria andGradeLessThan(Integer value) {
-            addCriterion("grade <", value, "grade");
+        public Criteria andSstateLessThan(String value) {
+            addCriterion("Sstate <", value, "sstate");
             return (Criteria) this;
         }
 
-        public Criteria andGradeLessThanOrEqualTo(Integer value) {
-            addCriterion("grade <=", value, "grade");
+        public Criteria andSstateLessThanOrEqualTo(String value) {
+            addCriterion("Sstate <=", value, "sstate");
             return (Criteria) this;
         }
 
-        public Criteria andGradeIn(List<Integer> values) {
-            addCriterion("grade in", values, "grade");
+        public Criteria andSstateLike(String value) {
+            addCriterion("Sstate like", value, "sstate");
             return (Criteria) this;
         }
 
-        public Criteria andGradeNotIn(List<Integer> values) {
-            addCriterion("grade not in", values, "grade");
+        public Criteria andSstateNotLike(String value) {
+            addCriterion("Sstate not like", value, "sstate");
             return (Criteria) this;
         }
 
-        public Criteria andGradeBetween(Integer value1, Integer value2) {
-            addCriterion("grade between", value1, value2, "grade");
+        public Criteria andSstateIn(List<String> values) {
+            addCriterion("Sstate in", values, "sstate");
             return (Criteria) this;
         }
 
-        public Criteria andGradeNotBetween(Integer value1, Integer value2) {
-            addCriterion("grade not between", value1, value2, "grade");
+        public Criteria andSstateNotIn(List<String> values) {
+            addCriterion("Sstate not in", values, "sstate");
             return (Criteria) this;
         }
 
-        public Criteria andRadioIsNull() {
-            addCriterion("radio is null");
+        public Criteria andSstateBetween(String value1, String value2) {
+            addCriterion("Sstate between", value1, value2, "sstate");
             return (Criteria) this;
         }
 
-        public Criteria andRadioIsNotNull() {
-            addCriterion("radio is not null");
+        public Criteria andSstateNotBetween(String value1, String value2) {
+            addCriterion("Sstate not between", value1, value2, "sstate");
             return (Criteria) this;
         }
 
-        public Criteria andRadioEqualTo(String value) {
-            addCriterion("radio =", value, "radio");
+        public Criteria andSgradeIsNull() {
+            addCriterion("Sgrade is null");
             return (Criteria) this;
         }
 
-        public Criteria andRadioNotEqualTo(String value) {
-            addCriterion("radio <>", value, "radio");
+        public Criteria andSgradeIsNotNull() {
+            addCriterion("Sgrade is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRadioGreaterThan(String value) {
-            addCriterion("radio >", value, "radio");
+        public Criteria andSgradeEqualTo(Integer value) {
+            addCriterion("Sgrade =", value, "sgrade");
             return (Criteria) this;
         }
 
-        public Criteria andRadioGreaterThanOrEqualTo(String value) {
-            addCriterion("radio >=", value, "radio");
+        public Criteria andSgradeNotEqualTo(Integer value) {
+            addCriterion("Sgrade <>", value, "sgrade");
             return (Criteria) this;
         }
 
-        public Criteria andRadioLessThan(String value) {
-            addCriterion("radio <", value, "radio");
+        public Criteria andSgradeGreaterThan(Integer value) {
+            addCriterion("Sgrade >", value, "sgrade");
             return (Criteria) this;
         }
 
-        public Criteria andRadioLessThanOrEqualTo(String value) {
-            addCriterion("radio <=", value, "radio");
+        public Criteria andSgradeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("Sgrade >=", value, "sgrade");
             return (Criteria) this;
         }
 
-        public Criteria andRadioLike(String value) {
-            addCriterion("radio like", value, "radio");
+        public Criteria andSgradeLessThan(Integer value) {
+            addCriterion("Sgrade <", value, "sgrade");
             return (Criteria) this;
         }
 
-        public Criteria andRadioNotLike(String value) {
-            addCriterion("radio not like", value, "radio");
+        public Criteria andSgradeLessThanOrEqualTo(Integer value) {
+            addCriterion("Sgrade <=", value, "sgrade");
             return (Criteria) this;
         }
 
-        public Criteria andRadioIn(List<String> values) {
-            addCriterion("radio in", values, "radio");
+        public Criteria andSgradeIn(List<Integer> values) {
+            addCriterion("Sgrade in", values, "sgrade");
             return (Criteria) this;
         }
 
-        public Criteria andRadioNotIn(List<String> values) {
-            addCriterion("radio not in", values, "radio");
+        public Criteria andSgradeNotIn(List<Integer> values) {
+            addCriterion("Sgrade not in", values, "sgrade");
             return (Criteria) this;
         }
 
-        public Criteria andRadioBetween(String value1, String value2) {
-            addCriterion("radio between", value1, value2, "radio");
+        public Criteria andSgradeBetween(Integer value1, Integer value2) {
+            addCriterion("Sgrade between", value1, value2, "sgrade");
             return (Criteria) this;
         }
 
-        public Criteria andRadioNotBetween(String value1, String value2) {
-            addCriterion("radio not between", value1, value2, "radio");
+        public Criteria andSgradeNotBetween(Integer value1, Integer value2) {
+            addCriterion("Sgrade not between", value1, value2, "sgrade");
+            return (Criteria) this;
+        }
+
+        public Criteria andSradioIsNull() {
+            addCriterion("Sradio is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSradioIsNotNull() {
+            addCriterion("Sradio is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSradioEqualTo(String value) {
+            addCriterion("Sradio =", value, "sradio");
+            return (Criteria) this;
+        }
+
+        public Criteria andSradioNotEqualTo(String value) {
+            addCriterion("Sradio <>", value, "sradio");
+            return (Criteria) this;
+        }
+
+        public Criteria andSradioGreaterThan(String value) {
+            addCriterion("Sradio >", value, "sradio");
+            return (Criteria) this;
+        }
+
+        public Criteria andSradioGreaterThanOrEqualTo(String value) {
+            addCriterion("Sradio >=", value, "sradio");
+            return (Criteria) this;
+        }
+
+        public Criteria andSradioLessThan(String value) {
+            addCriterion("Sradio <", value, "sradio");
+            return (Criteria) this;
+        }
+
+        public Criteria andSradioLessThanOrEqualTo(String value) {
+            addCriterion("Sradio <=", value, "sradio");
+            return (Criteria) this;
+        }
+
+        public Criteria andSradioLike(String value) {
+            addCriterion("Sradio like", value, "sradio");
+            return (Criteria) this;
+        }
+
+        public Criteria andSradioNotLike(String value) {
+            addCriterion("Sradio not like", value, "sradio");
+            return (Criteria) this;
+        }
+
+        public Criteria andSradioIn(List<String> values) {
+            addCriterion("Sradio in", values, "sradio");
+            return (Criteria) this;
+        }
+
+        public Criteria andSradioNotIn(List<String> values) {
+            addCriterion("Sradio not in", values, "sradio");
+            return (Criteria) this;
+        }
+
+        public Criteria andSradioBetween(String value1, String value2) {
+            addCriterion("Sradio between", value1, value2, "sradio");
+            return (Criteria) this;
+        }
+
+        public Criteria andSradioNotBetween(String value1, String value2) {
+            addCriterion("Sradio not between", value1, value2, "sradio");
             return (Criteria) this;
         }
     }

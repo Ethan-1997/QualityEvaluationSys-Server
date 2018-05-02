@@ -4,13 +4,11 @@
   <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.StudentTest">
     <result column="Tid" jdbcType="VARCHAR" property="tid" />
     <result column="Sid" jdbcType="VARCHAR" property="sid" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="date" jdbcType="VARCHAR" property="date" />
-    <result column="grade" jdbcType="INTEGER" property="grade" />
-    <result column="radio" jdbcType="VARCHAR" property="radio" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.qualityevaluationsys.demo.domain.StudentTest">
-    <result column="state" jdbcType="LONGVARBINARY" property="state" />
+    <result column="Tname" jdbcType="VARCHAR" property="tname" />
+    <result column="Tdate" jdbcType="VARCHAR" property="tdate" />
+    <result column="Sstate" jdbcType="VARCHAR" property="sstate" />
+    <result column="Sgrade" jdbcType="INTEGER" property="sgrade" />
+    <result column="Sradio" jdbcType="VARCHAR" property="sradio" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,27 +69,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    Tid, Sid, name, date, grade, radio
+    Tid, Sid, Tname, Tdate, Sstate, Sgrade, Sradio
   </sql>
-  <sql id="Blob_Column_List">
-    state
-  </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.qualityevaluationsys.demo.domain.StudentTestExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from StudentTest
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.StudentTestExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -121,12 +100,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.StudentTest">
-    insert into StudentTest (Tid, Sid, name, 
-      date, grade, radio, 
-      state)
-    values (#{tid,jdbcType=VARCHAR}, #{sid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{date,jdbcType=VARCHAR}, #{grade,jdbcType=INTEGER}, #{radio,jdbcType=VARCHAR}, 
-      #{state,jdbcType=LONGVARBINARY})
+    insert into StudentTest (Tid, Sid, Tname, 
+      Tdate, Sstate, Sgrade, 
+      Sradio)
+    values (#{tid,jdbcType=VARCHAR}, #{sid,jdbcType=VARCHAR}, #{tname,jdbcType=VARCHAR}, 
+      #{tdate,jdbcType=VARCHAR}, #{sstate,jdbcType=VARCHAR}, #{sgrade,jdbcType=INTEGER}, 
+      #{sradio,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.StudentTest">
     insert into StudentTest
@@ -137,20 +116,20 @@
       <if test="sid != null">
         Sid,
       </if>
-      <if test="name != null">
-        name,
+      <if test="tname != null">
+        Tname,
       </if>
-      <if test="date != null">
-        date,
+      <if test="tdate != null">
+        Tdate,
       </if>
-      <if test="grade != null">
-        grade,
+      <if test="sstate != null">
+        Sstate,
       </if>
-      <if test="radio != null">
-        radio,
+      <if test="sgrade != null">
+        Sgrade,
       </if>
-      <if test="state != null">
-        state,
+      <if test="sradio != null">
+        Sradio,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -160,20 +139,20 @@
       <if test="sid != null">
         #{sid,jdbcType=VARCHAR},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="tname != null">
+        #{tname,jdbcType=VARCHAR},
       </if>
-      <if test="date != null">
-        #{date,jdbcType=VARCHAR},
+      <if test="tdate != null">
+        #{tdate,jdbcType=VARCHAR},
       </if>
-      <if test="grade != null">
-        #{grade,jdbcType=INTEGER},
+      <if test="sstate != null">
+        #{sstate,jdbcType=VARCHAR},
       </if>
-      <if test="radio != null">
-        #{radio,jdbcType=VARCHAR},
+      <if test="sgrade != null">
+        #{sgrade,jdbcType=INTEGER},
       </if>
-      <if test="state != null">
-        #{state,jdbcType=LONGVARBINARY},
+      <if test="sradio != null">
+        #{sradio,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -192,35 +171,22 @@
       <if test="record.sid != null">
         Sid = #{record.sid,jdbcType=VARCHAR},
       </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.tname != null">
+        Tname = #{record.tname,jdbcType=VARCHAR},
       </if>
-      <if test="record.date != null">
-        date = #{record.date,jdbcType=VARCHAR},
+      <if test="record.tdate != null">
+        Tdate = #{record.tdate,jdbcType=VARCHAR},
       </if>
-      <if test="record.grade != null">
-        grade = #{record.grade,jdbcType=INTEGER},
+      <if test="record.sstate != null">
+        Sstate = #{record.sstate,jdbcType=VARCHAR},
       </if>
-      <if test="record.radio != null">
-        radio = #{record.radio,jdbcType=VARCHAR},
+      <if test="record.sgrade != null">
+        Sgrade = #{record.sgrade,jdbcType=INTEGER},
       </if>
-      <if test="record.state != null">
-        state = #{record.state,jdbcType=LONGVARBINARY},
+      <if test="record.sradio != null">
+        Sradio = #{record.sradio,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
-    update StudentTest
-    set Tid = #{record.tid,jdbcType=VARCHAR},
-      Sid = #{record.sid,jdbcType=VARCHAR},
-      name = #{record.name,jdbcType=VARCHAR},
-      date = #{record.date,jdbcType=VARCHAR},
-      grade = #{record.grade,jdbcType=INTEGER},
-      radio = #{record.radio,jdbcType=VARCHAR},
-      state = #{record.state,jdbcType=LONGVARBINARY}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -229,12 +195,30 @@
     update StudentTest
     set Tid = #{record.tid,jdbcType=VARCHAR},
       Sid = #{record.sid,jdbcType=VARCHAR},
-      name = #{record.name,jdbcType=VARCHAR},
-      date = #{record.date,jdbcType=VARCHAR},
-      grade = #{record.grade,jdbcType=INTEGER},
-      radio = #{record.radio,jdbcType=VARCHAR}
+      Tname = #{record.tname,jdbcType=VARCHAR},
+      Tdate = #{record.tdate,jdbcType=VARCHAR},
+      Sstate = #{record.sstate,jdbcType=VARCHAR},
+      Sgrade = #{record.sgrade,jdbcType=INTEGER},
+      Sradio = #{record.sradio,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <delete id="deleteByTid" parameterType="java.lang.String">
+    delete from StudentTest
+    where Tid = #{tid,jdbcType=VARCHAR}
+  </delete>
+  <select id="selectBySid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from StudentTest
+    where Sid = #{sid,jdbcType=VARCHAR}
+  </select>
+  <update id="updateBySTid" parameterType="com.qualityevaluationsys.demo.domain.TestInformation">
+    update StudentTest
+    <set>
+      Tdate = #{tdate,jdbcType=VARCHAR}
+    </set>
+    where Tid = #{tid,jdbcType=VARCHAR} and Sid = #{sid,jdbcType=VARCHAR}
   </update>
 </mapper>

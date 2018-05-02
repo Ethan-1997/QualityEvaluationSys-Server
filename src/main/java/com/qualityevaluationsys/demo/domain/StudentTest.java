@@ -1,7 +1,6 @@
 package com.qualityevaluationsys.demo.domain;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 /**
  * @author 
@@ -17,27 +16,27 @@ public class StudentTest implements Serializable {
     /**
      * 试卷名称
      */
-    private String name;
+    private String tname;
 
     /**
      * 发布日期
      */
-    private String date;
-
-    /**
-     * 考试成绩
-     */
-    private Integer grade;
-
-    /**
-     * 试卷类型
-     */
-    private String radio;
+    private String tdate;
 
     /**
      * 试卷完成状态（T/F）
      */
-    private byte[] state;
+    private String sstate;
+
+    /**
+     * 考试成绩
+     */
+    private Integer sgrade;
+
+    /**
+     * 试卷类型
+     */
+    private String sradio;
 
     private static final long serialVersionUID = 1L;
 
@@ -57,44 +56,44 @@ public class StudentTest implements Serializable {
         this.sid = sid;
     }
 
-    public String getName() {
-        return name;
+    public String getTname() {
+        return tname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTname(String tname) {
+        this.tname = tname;
     }
 
-    public String getDate() {
-        return date;
+    public String getTdate() {
+        return tdate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setTdate(String tdate) {
+        this.tdate = tdate;
     }
 
-    public Integer getGrade() {
-        return grade;
+    public String getSstate() {
+        return sstate;
     }
 
-    public void setGrade(Integer grade) {
-        this.grade = grade;
+    public void setSstate(String sstate) {
+        this.sstate = sstate;
     }
 
-    public String getRadio() {
-        return radio;
+    public Integer getSgrade() {
+        return sgrade;
     }
 
-    public void setRadio(String radio) {
-        this.radio = radio;
+    public void setSgrade(Integer sgrade) {
+        this.sgrade = sgrade;
     }
 
-    public byte[] getState() {
-        return state;
+    public String getSradio() {
+        return sradio;
     }
 
-    public void setState(byte[] state) {
-        this.state = state;
+    public void setSradio(String sradio) {
+        this.sradio = sradio;
     }
 
     @Override
@@ -111,11 +110,11 @@ public class StudentTest implements Serializable {
         StudentTest other = (StudentTest) that;
         return (this.getTid() == null ? other.getTid() == null : this.getTid().equals(other.getTid()))
             && (this.getSid() == null ? other.getSid() == null : this.getSid().equals(other.getSid()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getDate() == null ? other.getDate() == null : this.getDate().equals(other.getDate()))
-            && (this.getGrade() == null ? other.getGrade() == null : this.getGrade().equals(other.getGrade()))
-            && (this.getRadio() == null ? other.getRadio() == null : this.getRadio().equals(other.getRadio()))
-            && (Arrays.equals(this.getState(), other.getState()));
+            && (this.getTname() == null ? other.getTname() == null : this.getTname().equals(other.getTname()))
+            && (this.getTdate() == null ? other.getTdate() == null : this.getTdate().equals(other.getTdate()))
+            && (this.getSstate() == null ? other.getSstate() == null : this.getSstate().equals(other.getSstate()))
+            && (this.getSgrade() == null ? other.getSgrade() == null : this.getSgrade().equals(other.getSgrade()))
+            && (this.getSradio() == null ? other.getSradio() == null : this.getSradio().equals(other.getSradio()));
     }
 
     @Override
@@ -124,11 +123,11 @@ public class StudentTest implements Serializable {
         int result = 1;
         result = prime * result + ((getTid() == null) ? 0 : getTid().hashCode());
         result = prime * result + ((getSid() == null) ? 0 : getSid().hashCode());
-        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getDate() == null) ? 0 : getDate().hashCode());
-        result = prime * result + ((getGrade() == null) ? 0 : getGrade().hashCode());
-        result = prime * result + ((getRadio() == null) ? 0 : getRadio().hashCode());
-        result = prime * result + (Arrays.hashCode(getState()));
+        result = prime * result + ((getTname() == null) ? 0 : getTname().hashCode());
+        result = prime * result + ((getTdate() == null) ? 0 : getTdate().hashCode());
+        result = prime * result + ((getSstate() == null) ? 0 : getSstate().hashCode());
+        result = prime * result + ((getSgrade() == null) ? 0 : getSgrade().hashCode());
+        result = prime * result + ((getSradio() == null) ? 0 : getSradio().hashCode());
         return result;
     }
 
@@ -140,11 +139,11 @@ public class StudentTest implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", tid=").append(tid);
         sb.append(", sid=").append(sid);
-        sb.append(", name=").append(name);
-        sb.append(", date=").append(date);
-        sb.append(", grade=").append(grade);
-        sb.append(", radio=").append(radio);
-        sb.append(", state=").append(state);
+        sb.append(", tname=").append(tname);
+        sb.append(", tdate=").append(tdate);
+        sb.append(", sstate=").append(sstate);
+        sb.append(", sgrade=").append(sgrade);
+        sb.append(", sradio=").append(sradio);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
