@@ -24,5 +24,7 @@ public interface SysuserService {
 
     Sysuser info(String token);
 
+    Object getCurrentUser(String token);
+
     List<String> getRole(Sysuser id);
 }

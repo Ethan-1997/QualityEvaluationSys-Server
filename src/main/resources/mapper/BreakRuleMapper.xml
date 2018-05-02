@@ -4,8 +4,9 @@
   <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.BreakRule">
     <id column="Bid" jdbcType="INTEGER" property="bid" />
     <result column="content" jdbcType="VARCHAR" property="content" />
-    <result column="time" jdbcType="DATE" property="time" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
     <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="Sid" jdbcType="VARCHAR" property="sid" />
     <result column="sname" jdbcType="VARCHAR" property="sname" />
     <result column="sclass" jdbcType="VARCHAR" property="sclass" />
   </resultMap>
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    Bid, content, time, status, sname, sclass
+    Bid, content, time, status, Sid, sname, sclass
   </sql>
   <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.BreakRuleExample" resultMap="BaseResultMap">
     select
@@ -110,11 +111,11 @@
   </delete>
   <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.BreakRule">
     insert into BreakRule (Bid, content, time, 
-      status, sname, sclass
-      )
-    values (#{bid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{time,jdbcType=DATE}, 
-      #{status,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, #{sclass,jdbcType=VARCHAR}
-      )
+      status, Sid, sname, 
+      sclass)
+    values (#{bid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{sid,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, 
+      #{sclass,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.BreakRule">
     insert into BreakRule
@@ -131,6 +132,9 @@
       <if test="status != null">
         status,
       </if>
+      <if test="sid != null">
+        Sid,
+      </if>
       <if test="sname != null">
         sname,
       </if>
@@ -146,10 +150,13 @@
         #{content,jdbcType=VARCHAR},
       </if>
       <if test="time != null">
-        #{time,jdbcType=DATE},
+        #{time,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null">
+        #{sid,jdbcType=VARCHAR},
       </if>
       <if test="sname != null">
         #{sname,jdbcType=VARCHAR},
@@ -175,10 +182,13 @@
         content = #{record.content,jdbcType=VARCHAR},
       </if>
       <if test="record.time != null">
-        time = #{record.time,jdbcType=DATE},
+        time = #{record.time,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sid != null">
+        Sid = #{record.sid,jdbcType=VARCHAR},
       </if>
       <if test="record.sname != null">
         sname = #{record.sname,jdbcType=VARCHAR},
@@ -195,8 +205,9 @@
     update BreakRule
     set Bid = #{record.bid,jdbcType=INTEGER},
       content = #{record.content,jdbcType=VARCHAR},
-      time = #{record.time,jdbcType=DATE},
+      time = #{record.time,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=VARCHAR},
+      Sid = #{record.sid,jdbcType=VARCHAR},
       sname = #{record.sname,jdbcType=VARCHAR},
       sclass = #{record.sclass,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -210,10 +221,13 @@
         content = #{content,jdbcType=VARCHAR},
       </if>
       <if test="time != null">
-        time = #{time,jdbcType=DATE},
+        time = #{time,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null">
+        Sid = #{sid,jdbcType=VARCHAR},
       </if>
       <if test="sname != null">
         sname = #{sname,jdbcType=VARCHAR},
@@ -227,8 +241,9 @@
   <update id="updateByPrimaryKey" parameterType="com.qualityevaluationsys.demo.domain.BreakRule">
     update BreakRule
     set content = #{content,jdbcType=VARCHAR},
-      time = #{time,jdbcType=DATE},
+      time = #{time,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR},
+      Sid = #{sid,jdbcType=VARCHAR},
       sname = #{sname,jdbcType=VARCHAR},
       sclass = #{sclass,jdbcType=VARCHAR}
     where Bid = #{bid,jdbcType=INTEGER}
