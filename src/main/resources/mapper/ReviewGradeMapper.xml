@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qualityevaluationsys.demo.dao.ReviewGradeMapper">
+  <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.ReviewGrade">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="Uno" jdbcType="INTEGER" property="uno" />
+    <result column="Sid" jdbcType="VARCHAR" property="sid" />
+    <result column="grade1" jdbcType="INTEGER" property="grade1" />
+    <result column="grade2" jdbcType="INTEGER" property="grade2" />
+    <result column="grade3" jdbcType="INTEGER" property="grade3" />
+    <result column="grade4" jdbcType="INTEGER" property="grade4" />
+    <result column="grade5" jdbcType="INTEGER" property="grade5" />
+    <result column="grade6" jdbcType="INTEGER" property="grade6" />
+    <result column="grade7" jdbcType="INTEGER" property="grade7" />
+    <result column="grade8" jdbcType="INTEGER" property="grade8" />
+    <result column="grade9" jdbcType="INTEGER" property="grade9" />
+    <result column="text" jdbcType="VARCHAR" property="text" />
+    <result column="submitStatus" jdbcType="VARCHAR" property="submitstatus" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, type, Uno, Sid, grade1, grade2, grade3, grade4, grade5, grade6, grade7, grade8, 
+    grade9, text, submitStatus
+  </sql>
+  <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.ReviewGradeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ReviewGrade
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ReviewGrade
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ReviewGrade
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qualityevaluationsys.demo.domain.ReviewGradeExample">
+    delete from ReviewGrade
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.ReviewGrade">
+    insert into ReviewGrade (id, type, Uno, 
+      Sid, grade1, grade2, 
+      grade3, grade4, grade5, 
+      grade6, grade7, grade8, 
+      grade9, text, submitStatus
+      )
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{uno,jdbcType=INTEGER}, 
+      #{sid,jdbcType=VARCHAR}, #{grade1,jdbcType=INTEGER}, #{grade2,jdbcType=INTEGER}, 
+      #{grade3,jdbcType=INTEGER}, #{grade4,jdbcType=INTEGER}, #{grade5,jdbcType=INTEGER}, 
+      #{grade6,jdbcType=INTEGER}, #{grade7,jdbcType=INTEGER}, #{grade8,jdbcType=INTEGER}, 
+      #{grade9,jdbcType=INTEGER}, #{text,jdbcType=VARCHAR}, #{submitstatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.ReviewGrade">
+    insert into ReviewGrade
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="uno != null">
+        Uno,
+      </if>
+      <if test="sid != null">
+        Sid,
+      </if>
+      <if test="grade1 != null">
+        grade1,
+      </if>
+      <if test="grade2 != null">
+        grade2,
+      </if>
+      <if test="grade3 != null">
+        grade3,
+      </if>
+      <if test="grade4 != null">
+        grade4,
+      </if>
+      <if test="grade5 != null">
+        grade5,
+      </if>
+      <if test="grade6 != null">
+        grade6,
+      </if>
+      <if test="grade7 != null">
+        grade7,
+      </if>
+      <if test="grade8 != null">
+        grade8,
+      </if>
+      <if test="grade9 != null">
+        grade9,
+      </if>
+      <if test="text != null">
+        text,
+      </if>
+      <if test="submitstatus != null">
+        submitStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="uno != null">
+        #{uno,jdbcType=INTEGER},
+      </if>
+      <if test="sid != null">
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="grade1 != null">
+        #{grade1,jdbcType=INTEGER},
+      </if>
+      <if test="grade2 != null">
+        #{grade2,jdbcType=INTEGER},
+      </if>
+      <if test="grade3 != null">
+        #{grade3,jdbcType=INTEGER},
+      </if>
+      <if test="grade4 != null">
+        #{grade4,jdbcType=INTEGER},
+      </if>
+      <if test="grade5 != null">
+        #{grade5,jdbcType=INTEGER},
+      </if>
+      <if test="grade6 != null">
+        #{grade6,jdbcType=INTEGER},
+      </if>
+      <if test="grade7 != null">
+        #{grade7,jdbcType=INTEGER},
+      </if>
+      <if test="grade8 != null">
+        #{grade8,jdbcType=INTEGER},
+      </if>
+      <if test="grade9 != null">
+        #{grade9,jdbcType=INTEGER},
+      </if>
+      <if test="text != null">
+        #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="submitstatus != null">
+        #{submitstatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qualityevaluationsys.demo.domain.ReviewGradeExample" resultType="java.lang.Long">
+    select count(*) from ReviewGrade
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ReviewGrade
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uno != null">
+        Uno = #{record.uno,jdbcType=INTEGER},
+      </if>
+      <if test="record.sid != null">
+        Sid = #{record.sid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.grade1 != null">
+        grade1 = #{record.grade1,jdbcType=INTEGER},
+      </if>
+      <if test="record.grade2 != null">
+        grade2 = #{record.grade2,jdbcType=INTEGER},
+      </if>
+      <if test="record.grade3 != null">
+        grade3 = #{record.grade3,jdbcType=INTEGER},
+      </if>
+      <if test="record.grade4 != null">
+        grade4 = #{record.grade4,jdbcType=INTEGER},
+      </if>
+      <if test="record.grade5 != null">
+        grade5 = #{record.grade5,jdbcType=INTEGER},
+      </if>
+      <if test="record.grade6 != null">
+        grade6 = #{record.grade6,jdbcType=INTEGER},
+      </if>
+      <if test="record.grade7 != null">
+        grade7 = #{record.grade7,jdbcType=INTEGER},
+      </if>
+      <if test="record.grade8 != null">
+        grade8 = #{record.grade8,jdbcType=INTEGER},
+      </if>
+      <if test="record.grade9 != null">
+        grade9 = #{record.grade9,jdbcType=INTEGER},
+      </if>
+      <if test="record.text != null">
+        text = #{record.text,jdbcType=VARCHAR},
+      </if>
+      <if test="record.submitstatus != null">
+        submitStatus = #{record.submitstatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ReviewGrade
+    set id = #{record.id,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=VARCHAR},
+      Uno = #{record.uno,jdbcType=INTEGER},
+      Sid = #{record.sid,jdbcType=VARCHAR},
+      grade1 = #{record.grade1,jdbcType=INTEGER},
+      grade2 = #{record.grade2,jdbcType=INTEGER},
+      grade3 = #{record.grade3,jdbcType=INTEGER},
+      grade4 = #{record.grade4,jdbcType=INTEGER},
+      grade5 = #{record.grade5,jdbcType=INTEGER},
+      grade6 = #{record.grade6,jdbcType=INTEGER},
+      grade7 = #{record.grade7,jdbcType=INTEGER},
+      grade8 = #{record.grade8,jdbcType=INTEGER},
+      grade9 = #{record.grade9,jdbcType=INTEGER},
+      text = #{record.text,jdbcType=VARCHAR},
+      submitStatus = #{record.submitstatus,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qualityevaluationsys.demo.domain.ReviewGrade">
+    update ReviewGrade
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="uno != null">
+        Uno = #{uno,jdbcType=INTEGER},
+      </if>
+      <if test="sid != null">
+        Sid = #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="grade1 != null">
+        grade1 = #{grade1,jdbcType=INTEGER},
+      </if>
+      <if test="grade2 != null">
+        grade2 = #{grade2,jdbcType=INTEGER},
+      </if>
+      <if test="grade3 != null">
+        grade3 = #{grade3,jdbcType=INTEGER},
+      </if>
+      <if test="grade4 != null">
+        grade4 = #{grade4,jdbcType=INTEGER},
+      </if>
+      <if test="grade5 != null">
+        grade5 = #{grade5,jdbcType=INTEGER},
+      </if>
+      <if test="grade6 != null">
+        grade6 = #{grade6,jdbcType=INTEGER},
+      </if>
+      <if test="grade7 != null">
+        grade7 = #{grade7,jdbcType=INTEGER},
+      </if>
+      <if test="grade8 != null">
+        grade8 = #{grade8,jdbcType=INTEGER},
+      </if>
+      <if test="grade9 != null">
+        grade9 = #{grade9,jdbcType=INTEGER},
+      </if>
+      <if test="text != null">
+        text = #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="submitstatus != null">
+        submitStatus = #{submitstatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qualityevaluationsys.demo.domain.ReviewGrade">
+    update ReviewGrade
+    set type = #{type,jdbcType=VARCHAR},
+      Uno = #{uno,jdbcType=INTEGER},
+      Sid = #{sid,jdbcType=VARCHAR},
+      grade1 = #{grade1,jdbcType=INTEGER},
+      grade2 = #{grade2,jdbcType=INTEGER},
+      grade3 = #{grade3,jdbcType=INTEGER},
+      grade4 = #{grade4,jdbcType=INTEGER},
+      grade5 = #{grade5,jdbcType=INTEGER},
+      grade6 = #{grade6,jdbcType=INTEGER},
+      grade7 = #{grade7,jdbcType=INTEGER},
+      grade8 = #{grade8,jdbcType=INTEGER},
+      grade9 = #{grade9,jdbcType=INTEGER},
+      text = #{text,jdbcType=VARCHAR},
+      submitStatus = #{submitstatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
