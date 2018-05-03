@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.qualityevaluationsys.demo.dao.StudentTestMapper;
 import com.qualityevaluationsys.demo.service.StudentTestService;
+
+import java.util.List;
+
 @Service
 public class StudentTestServiceImpl implements StudentTestService {
     @Autowired
@@ -63,20 +66,20 @@ public class StudentTestServiceImpl implements StudentTestService {
 
     @Override
     public void switchDisplay(Integer cid, String tid,int status) {
-
-
         StudentExample studentExample=new StudentExample();
         StudentExample.Criteria criteria1 = studentExample.createCriteria();
         criteria1.andCidEqualTo(cid);
         for (Student student : studentMapper.selectByExample(studentExample)) {
-            StudentTestExample example=new StudentTestExample();
-            StudentTestExample.Criteria criteria = example.createCriteria();
-            criteria.andTidEqualTo(tid);
-            criteria.andSidEqualTo(student.getSid());
-            StudentTest studentTest=new StudentTest();
-            studentTest.setDisplay((byte) status);
-            studentTestMapper.updateByExample(studentTest,example);
+            studentTestMapper.updateByTidAndSid(tid,student.getSid(),status);
         }
 
+    }
+
+    @Override
+    public List<StudentTest> listByExample(StudentTest pojo) {
+        StudentTestExample example=new StudentTestExample();
+        StudentTestExample.Criteria criteria = example.createCriteria();
+        criteria.andSidEqualTo(pojo.getSid());
+        return  studentTestMapper.selectByExample(example);
     }
 }

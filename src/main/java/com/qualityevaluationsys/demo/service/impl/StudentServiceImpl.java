@@ -10,7 +10,6 @@ import com.qualityevaluationsys.demo.domain.Sysuser;
 import com.qualityevaluationsys.demo.service.StudentService;
 import com.qualityevaluationsys.demo.utils.GroupType;
 import com.qualityevaluationsys.demo.utils.PageBean;
-import com.qualityevaluationsys.demo.utils.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

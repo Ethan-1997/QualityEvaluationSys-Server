@@ -31,6 +31,20 @@ public class StudentTestController extends BaseController{
         return  msg;
     }
 
+    @RequestMapping(value = "/listByExample",method = RequestMethod.GET)
+    public Map<String,Object> listByExample(@ModelAttribute StudentTest pojo){
+        msg.clear();
+        try {
+            List<StudentTest> studentTests= service.listByExample(pojo);
+            msg.put("total",studentTests.size());
+            msg.put("items",studentTests);
+        }catch (Exception e){
+            msg.put("data","error");
+            msg.put("message",e.getMessage());
+        }
+        return  msg;
+    }
+
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public Map<String,Object> list(Integer limit, String sort, Integer page, @ModelAttribute StudentTest pojo){

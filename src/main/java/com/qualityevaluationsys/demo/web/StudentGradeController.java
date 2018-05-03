@@ -1,8 +1,7 @@
 package com.qualityevaluationsys.demo.web;
 
-import com.qualityevaluationsys.demo.domain.Student;
-import com.qualityevaluationsys.demo.domain.StudentExample;
-import com.qualityevaluationsys.demo.service.StudentService;
+import com.qualityevaluationsys.demo.domain.StudentGrade;
+import com.qualityevaluationsys.demo.service.StudentGradeService;
 import com.qualityevaluationsys.demo.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,29 +13,17 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "student")
-public class StudentController  extends BaseController{
+@RequestMapping(value = "studentgrade")
+public class StudentGradeController extends BaseController {
     @Autowired
-    StudentService service;
+    StudentGradeService service;
 
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public Map<String,Object> list(Integer limit, String sort, Integer page, @ModelAttribute Student pojo){
-        msg.clear();
-        try {
-            PageBean pageBean= service.getPageBean(limit,sort,page,pojo);
-            msg.put("total",pageBean.getTotalCount());
-            msg.put("items",pageBean.getList());
-        }catch (Exception e){
-            msg.put("data","error");
-            msg.put("message",e.getMessage());
-        }
-        return  msg;
-    }
+
     @RequestMapping(value = "/create",method = RequestMethod.POST)
-    public Map<String,Object> create(@ModelAttribute Student pojo){
+    public Map<String,Object> create(@ModelAttribute StudentGrade pojo){
         msg.clear();
         try {
-            int i = service.insert(pojo);
+            int i = service.insertSelective(pojo);
             if(i==1){
                 msg.put("data","success");
             }else{
@@ -49,10 +36,10 @@ public class StudentController  extends BaseController{
         return  msg;
     }
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
-    public Map<String,Object> delete(@ModelAttribute Student pojo){
+    public Map<String,Object> delete(@ModelAttribute StudentGrade pojo){
         msg.clear();
         try {
-            int i = service.deleteByPrimaryKey(pojo.getSid());
+            int i = service.deleteByExample(pojo);
             if(i==1){
                 msg.put("data","success");
             }else{
@@ -66,11 +53,11 @@ public class StudentController  extends BaseController{
     }
 
     @RequestMapping(value = "/get",method = RequestMethod.GET)
-    public Map<String,Object> get(@ModelAttribute Student pojo){
+    public Map<String,Object> get(@ModelAttribute StudentGrade pojo){
         msg.clear();
         try {
-            Student temp = service.selectByPrimaryKey(pojo.getSid());
-            msg.put("item",temp);
+            List<StudentGrade> studentGrades = service.selectByExample(pojo);
+            msg.put("items",studentGrades);
         }catch (Exception e){
             msg.put("data","error");
             msg.put("message",e.getMessage());
@@ -78,28 +65,15 @@ public class StudentController  extends BaseController{
         return  msg;
     }
     @RequestMapping(value = "/update",method = RequestMethod.POST)
-    public Map<String,Object> update(@ModelAttribute Student pojo){
+    public Map<String,Object> update(@ModelAttribute StudentGrade pojo){
         msg.clear();
         try {
-            int i = service.updateByPrimaryKey(pojo);
+            int i = service.updateBySid(pojo);
             if(i==1){
                 msg.put("data","success");
             }else{
                 msg.put("data","update failed");
             }
-        }catch (Exception e){
-            msg.put("data","error");
-            msg.put("message",e.getMessage());
-        }
-        return  msg;
-    }
-
-    @RequestMapping(value = "/getstudent",method = RequestMethod.GET)
-    public Map<String,Object> getstudent(Integer Cid){
-        msg.clear();
-        try {
-            List temp = service.selectByCid(Cid);
-            msg.put("items",temp);
         }catch (Exception e){
             msg.put("data","error");
             msg.put("message",e.getMessage());

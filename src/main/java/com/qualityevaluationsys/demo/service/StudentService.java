@@ -4,7 +4,6 @@ import com.qualityevaluationsys.demo.domain.Announcement;
 import com.qualityevaluationsys.demo.domain.Student;
 import com.qualityevaluationsys.demo.domain.StudentExample;
 import com.qualityevaluationsys.demo.utils.PageBean;
-import com.qualityevaluationsys.demo.utils.Array;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

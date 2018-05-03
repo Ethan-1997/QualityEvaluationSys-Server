@@ -32,4 +32,6 @@ public interface StudentTestMapper {
     int updateByPrimaryKeySelective(StudentTest record);
 
     int updateByPrimaryKey(StudentTest record);
+
+    void updateByTidAndSid(@Param("tid")String tid, @Param("sid")String sid,  @Param("status")int status);
 }

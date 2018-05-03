@@ -278,4 +278,10 @@
       display = #{display,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <update id="updateByTidAndSid">
+    update StudentTest
+    set display = #{status,jdbcType=TINYINT}
+    where Sid = #{sid,jdbcType=VARCHAR} AND  Tid = #{tid,jdbcType=VARCHAR}
+  </update>
 </mapper>

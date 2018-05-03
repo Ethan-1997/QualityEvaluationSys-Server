@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qualityevaluationsys.demo.dao.StudentGradeMapper">
+  <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.StudentGrade">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="Sstatus" jdbcType="INTEGER" property="sstatus" />
+    <result column="Sid" jdbcType="VARCHAR" property="sid" />
+    <result column="Scharacter" jdbcType="VARCHAR" property="scharacter" />
+    <result column="professional" jdbcType="VARCHAR" property="professional" />
+    <result column="thinking" jdbcType="VARCHAR" property="thinking" />
+    <result column="midtest" jdbcType="VARCHAR" property="midtest" />
+    <result column="lasttest1" jdbcType="VARCHAR" property="lasttest1" />
+    <result column="lasttest2" jdbcType="VARCHAR" property="lasttest2" />
+    <result column="lasttest3" jdbcType="VARCHAR" property="lasttest3" />
+    <result column="lasttest4" jdbcType="VARCHAR" property="lasttest4" />
+    <result column="lasttest5" jdbcType="VARCHAR" property="lasttest5" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, Sstatus, Sid, Scharacter, professional, thinking, midtest, lasttest1, lasttest2, 
+    lasttest3, lasttest4, lasttest5
+  </sql>
+  <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.StudentGradeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from StudentGrade
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from StudentGrade
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from StudentGrade
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qualityevaluationsys.demo.domain.StudentGradeExample">
+    delete from StudentGrade
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.StudentGrade">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into StudentGrade (Sstatus, Sid, Scharacter, 
+      professional, thinking, midtest, 
+      lasttest1, lasttest2, lasttest3, 
+      lasttest4, lasttest5)
+    values (#{sstatus,jdbcType=INTEGER}, #{sid,jdbcType=VARCHAR}, #{scharacter,jdbcType=VARCHAR}, 
+      #{professional,jdbcType=VARCHAR}, #{thinking,jdbcType=VARCHAR}, #{midtest,jdbcType=VARCHAR}, 
+      #{lasttest1,jdbcType=VARCHAR}, #{lasttest2,jdbcType=VARCHAR}, #{lasttest3,jdbcType=VARCHAR}, 
+      #{lasttest4,jdbcType=VARCHAR}, #{lasttest5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.StudentGrade">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into StudentGrade
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sstatus != null">
+        Sstatus,
+      </if>
+      <if test="sid != null">
+        Sid,
+      </if>
+      <if test="scharacter != null">
+        Scharacter,
+      </if>
+      <if test="professional != null">
+        professional,
+      </if>
+      <if test="thinking != null">
+        thinking,
+      </if>
+      <if test="midtest != null">
+        midtest,
+      </if>
+      <if test="lasttest1 != null">
+        lasttest1,
+      </if>
+      <if test="lasttest2 != null">
+        lasttest2,
+      </if>
+      <if test="lasttest3 != null">
+        lasttest3,
+      </if>
+      <if test="lasttest4 != null">
+        lasttest4,
+      </if>
+      <if test="lasttest5 != null">
+        lasttest5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sstatus != null">
+        #{sstatus,jdbcType=INTEGER},
+      </if>
+      <if test="sid != null">
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="scharacter != null">
+        #{scharacter,jdbcType=VARCHAR},
+      </if>
+      <if test="professional != null">
+        #{professional,jdbcType=VARCHAR},
+      </if>
+      <if test="thinking != null">
+        #{thinking,jdbcType=VARCHAR},
+      </if>
+      <if test="midtest != null">
+        #{midtest,jdbcType=VARCHAR},
+      </if>
+      <if test="lasttest1 != null">
+        #{lasttest1,jdbcType=VARCHAR},
+      </if>
+      <if test="lasttest2 != null">
+        #{lasttest2,jdbcType=VARCHAR},
+      </if>
+      <if test="lasttest3 != null">
+        #{lasttest3,jdbcType=VARCHAR},
+      </if>
+      <if test="lasttest4 != null">
+        #{lasttest4,jdbcType=VARCHAR},
+      </if>
+      <if test="lasttest5 != null">
+        #{lasttest5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qualityevaluationsys.demo.domain.StudentGradeExample" resultType="java.lang.Long">
+    select count(*) from StudentGrade
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update StudentGrade
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.sstatus != null">
+        Sstatus = #{record.sstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.sid != null">
+        Sid = #{record.sid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scharacter != null">
+        Scharacter = #{record.scharacter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.professional != null">
+        professional = #{record.professional,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thinking != null">
+        thinking = #{record.thinking,jdbcType=VARCHAR},
+      </if>
+      <if test="record.midtest != null">
+        midtest = #{record.midtest,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lasttest1 != null">
+        lasttest1 = #{record.lasttest1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lasttest2 != null">
+        lasttest2 = #{record.lasttest2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lasttest3 != null">
+        lasttest3 = #{record.lasttest3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lasttest4 != null">
+        lasttest4 = #{record.lasttest4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lasttest5 != null">
+        lasttest5 = #{record.lasttest5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update StudentGrade
+    set id = #{record.id,jdbcType=INTEGER},
+      Sstatus = #{record.sstatus,jdbcType=INTEGER},
+      Sid = #{record.sid,jdbcType=VARCHAR},
+      Scharacter = #{record.scharacter,jdbcType=VARCHAR},
+      professional = #{record.professional,jdbcType=VARCHAR},
+      thinking = #{record.thinking,jdbcType=VARCHAR},
+      midtest = #{record.midtest,jdbcType=VARCHAR},
+      lasttest1 = #{record.lasttest1,jdbcType=VARCHAR},
+      lasttest2 = #{record.lasttest2,jdbcType=VARCHAR},
+      lasttest3 = #{record.lasttest3,jdbcType=VARCHAR},
+      lasttest4 = #{record.lasttest4,jdbcType=VARCHAR},
+      lasttest5 = #{record.lasttest5,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qualityevaluationsys.demo.domain.StudentGrade">
+    update StudentGrade
+    <set>
+      <if test="sstatus != null">
+        Sstatus = #{sstatus,jdbcType=INTEGER},
+      </if>
+      <if test="sid != null">
+        Sid = #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="scharacter != null">
+        Scharacter = #{scharacter,jdbcType=VARCHAR},
+      </if>
+      <if test="professional != null">
+        professional = #{professional,jdbcType=VARCHAR},
+      </if>
+      <if test="thinking != null">
+        thinking = #{thinking,jdbcType=VARCHAR},
+      </if>
+      <if test="midtest != null">
+        midtest = #{midtest,jdbcType=VARCHAR},
+      </if>
+      <if test="lasttest1 != null">
+        lasttest1 = #{lasttest1,jdbcType=VARCHAR},
+      </if>
+      <if test="lasttest2 != null">
+        lasttest2 = #{lasttest2,jdbcType=VARCHAR},
+      </if>
+      <if test="lasttest3 != null">
+        lasttest3 = #{lasttest3,jdbcType=VARCHAR},
+      </if>
+      <if test="lasttest4 != null">
+        lasttest4 = #{lasttest4,jdbcType=VARCHAR},
+      </if>
+      <if test="lasttest5 != null">
+        lasttest5 = #{lasttest5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qualityevaluationsys.demo.domain.StudentGrade">
+    update StudentGrade
+    set Sstatus = #{sstatus,jdbcType=INTEGER},
+      Sid = #{sid,jdbcType=VARCHAR},
+      Scharacter = #{scharacter,jdbcType=VARCHAR},
+      professional = #{professional,jdbcType=VARCHAR},
+      thinking = #{thinking,jdbcType=VARCHAR},
+      midtest = #{midtest,jdbcType=VARCHAR},
+      lasttest1 = #{lasttest1,jdbcType=VARCHAR},
+      lasttest2 = #{lasttest2,jdbcType=VARCHAR},
+      lasttest3 = #{lasttest3,jdbcType=VARCHAR},
+      lasttest4 = #{lasttest4,jdbcType=VARCHAR},
+      lasttest5 = #{lasttest5,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

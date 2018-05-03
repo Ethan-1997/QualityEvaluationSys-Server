@@ -5,7 +5,7 @@ public class WorkInfoAndStudentInfo {
     private Integer wid;
     private  String uptime;
     private String submitStatus;
-    private String fileList;
+    private String stuFileList;
     private  Integer grade;
     private String wid1;
     private Integer cid;
@@ -18,7 +18,7 @@ public class WorkInfoAndStudentInfo {
     private String content;
     private Integer submit;
     private Integer sum;
-    private String fileList1;
+    private String teaFileList;
 
     public String getSid() {
         return sid;
@@ -60,13 +60,7 @@ public class WorkInfoAndStudentInfo {
         this.submitStatus = submitStatus;
     }
 
-    public String getFileList() {
-        return fileList;
-    }
 
-    public void setFileList(String fileList) {
-        this.fileList = fileList;
-    }
 
     public Integer getGrade() {
         return grade;
@@ -156,11 +150,19 @@ public class WorkInfoAndStudentInfo {
         this.sum = sum;
     }
 
-    public String getFileList1() {
-        return fileList1;
+    public String getStuFileList() {
+        return stuFileList;
     }
 
-    public void setFileList1(String fileList1) {
-        this.fileList1 = fileList1;
+    public void setStuFileList(String stuFileList) {
+        this.stuFileList = stuFileList;
+    }
+
+    public String getTeaFileList() {
+        return teaFileList;
+    }
+
+    public void setTeaFileList(String teaFileList) {
+        this.teaFileList = teaFileList;
     }
 }
