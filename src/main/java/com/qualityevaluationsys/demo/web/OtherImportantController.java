@@ -1,5 +1,6 @@
 package com.qualityevaluationsys.demo.web;
 
+import com.qualityevaluationsys.demo.domain.Leave;
 import com.qualityevaluationsys.demo.domain.OtherImportant;
 import com.qualityevaluationsys.demo.service.OtherImportantService;
 import com.qualityevaluationsys.demo.utils.PageBean;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -16,6 +18,19 @@ import java.util.Map;
 public class OtherImportantController  extends BaseController{
     @Autowired
     OtherImportantService service;
+
+    @RequestMapping(value = "/listBySid",method = RequestMethod.GET)
+    public Map<String,Object> listBySid( @ModelAttribute OtherImportant pojo){
+        msg.clear();
+        try {
+            List<OtherImportant> otherImportants = service.selectByExample(pojo);
+            msg.put("items",otherImportants);
+        }catch (Exception e){
+            msg.put("data","error");
+            msg.put("message",e.getMessage());
+        }
+        return  msg;
+    }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public Map<String,Object> list(Integer limit, String sort, Integer page, @ModelAttribute OtherImportant pojo){

@@ -10,6 +10,8 @@ import com.qualityevaluationsys.demo.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LeaveServiceImpl implements LeaveService {
     @Autowired
@@ -23,6 +25,16 @@ public class LeaveServiceImpl implements LeaveService {
     @Override
     public int insertSelective(Leave record) {
         return leaveMapper.insertSelective(record);
+    }
+
+    @Override
+    public List<Leave> selectByExample(Leave leave) {
+        LeaveExample example=new LeaveExample();
+        LeaveExample.Criteria criteria = example.createCriteria();
+        if(leave!=null){
+            criteria.andSidEqualTo(leave.getSid());
+        }
+        return null;
     }
 
     @Override

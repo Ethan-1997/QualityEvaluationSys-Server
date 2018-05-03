@@ -1,8 +1,7 @@
 package com.qualityevaluationsys.demo.service;
 
+import com.qualityevaluationsys.demo.domain.*;
 import com.qualityevaluationsys.demo.domain.Class;
-import com.qualityevaluationsys.demo.domain.Leave;
-import com.qualityevaluationsys.demo.domain.LeaveExample;
 import com.qualityevaluationsys.demo.utils.PageBean;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,6 +15,7 @@ public interface LeaveService {
 
     int insertSelective(Leave record);
 
+    List<Leave> selectByExample(Leave leave);
 
     Leave selectByPrimaryKey(Integer lid);
 

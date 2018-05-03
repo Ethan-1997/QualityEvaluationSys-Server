@@ -10,6 +10,8 @@ import com.qualityevaluationsys.demo.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class HighLightingServiceImpl implements HighLightingService {
     @Autowired
@@ -28,6 +30,16 @@ public class HighLightingServiceImpl implements HighLightingService {
     @Override
     public HighLighting selectByPrimaryKey(Integer hid) {
         return highLightingMapper.selectByPrimaryKey(hid);
+    }
+
+    @Override
+    public List<HighLighting> selectByExample(HighLighting highLighting) {
+        HighLightingExample example=new HighLightingExample();
+        HighLightingExample.Criteria criteria = example.createCriteria();
+        if(highLighting!=null){
+            criteria.andSidEqualTo(highLighting.getSid());
+        }
+        return highLightingMapper.selectByExample(example);
     }
 
     @Override

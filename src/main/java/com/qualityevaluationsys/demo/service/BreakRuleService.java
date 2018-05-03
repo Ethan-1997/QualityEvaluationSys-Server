@@ -13,9 +13,11 @@ public interface BreakRuleService {
 
     int deleteByPrimaryKey(Integer bid);
 
+    int countByStatusAndSid(String status,String sid) throws Exception;
 
     int insertSelective(BreakRule record);
 
+    List<BreakRule> selectByExample(BreakRule breakRule);
 
     BreakRule selectByPrimaryKey(Integer bid);
 

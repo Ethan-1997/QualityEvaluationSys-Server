@@ -10,6 +10,8 @@ import com.qualityevaluationsys.demo.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OtherImportantServiceImpl implements OtherImportantService {
     @Autowired
@@ -28,6 +30,16 @@ public class OtherImportantServiceImpl implements OtherImportantService {
     @Override
     public OtherImportant selectByPrimaryKey(Integer oid) {
         return otherImportantMapper.selectByPrimaryKey(oid);
+    }
+
+    @Override
+    public List<OtherImportant> selectByExample(OtherImportant otherImportant) {
+        OtherImportantExample example=new OtherImportantExample();
+        OtherImportantExample.Criteria criteria = example.createCriteria();
+        if(otherImportant!=null){
+            criteria.andSidEqualTo(otherImportant.getSid());
+       }
+        return null;
     }
 
     @Override

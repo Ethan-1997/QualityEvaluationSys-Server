@@ -1,5 +1,6 @@
 package com.qualityevaluationsys.demo.web;
 
+import com.qualityevaluationsys.demo.domain.HighLighting;
 import com.qualityevaluationsys.demo.domain.Leave;
 import com.qualityevaluationsys.demo.service.LeaveService;
 import com.qualityevaluationsys.demo.utils.PageBean;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -16,6 +18,20 @@ import java.util.Map;
 public class LeaveController  extends BaseController{
     @Autowired
     LeaveService service;
+
+
+    @RequestMapping(value = "/listBySid",method = RequestMethod.GET)
+    public Map<String,Object> listBySid( @ModelAttribute Leave pojo){
+        msg.clear();
+        try {
+            List<Leave> leaves = service.selectByExample(pojo);
+            msg.put("items",leaves);
+        }catch (Exception e){
+            msg.put("data","error");
+            msg.put("message",e.getMessage());
+        }
+        return  msg;
+    }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public Map<String,Object> list(Integer limit, String sort, Integer page, @ModelAttribute Leave pojo){

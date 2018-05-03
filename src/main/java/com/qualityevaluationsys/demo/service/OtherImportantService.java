@@ -1,6 +1,7 @@
 package com.qualityevaluationsys.demo.service;
 
 import com.qualityevaluationsys.demo.domain.Class;
+import com.qualityevaluationsys.demo.domain.Leave;
 import com.qualityevaluationsys.demo.domain.OtherImportant;
 import com.qualityevaluationsys.demo.domain.OtherImportantExample;
 import com.qualityevaluationsys.demo.utils.PageBean;
@@ -19,6 +20,7 @@ public interface OtherImportantService {
 
     OtherImportant selectByPrimaryKey(Integer oid);
 
+    List<OtherImportant> selectByExample(OtherImportant otherImportant);
 
 
     int updateByPrimaryKeySelective(OtherImportant record);

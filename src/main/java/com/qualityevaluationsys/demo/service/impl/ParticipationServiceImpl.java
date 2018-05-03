@@ -10,6 +10,8 @@ import com.qualityevaluationsys.demo.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ParticipationServiceImpl implements ParticipationService {
     @Autowired
@@ -23,6 +25,16 @@ public class ParticipationServiceImpl implements ParticipationService {
     @Override
     public int insertSelective(Participation record) {
         return participationMapper.insertSelective(record);
+    }
+
+    @Override
+    public List<Participation> selectByExample(Participation participation) {
+        ParticipationExample example=new ParticipationExample();
+        ParticipationExample.Criteria criteria = example.createCriteria();
+        if(participation!=null){
+            criteria.andSidEqualTo(participation.getSid());
+        }
+        return participationMapper.selectByExample(example);
     }
 
     @Override
