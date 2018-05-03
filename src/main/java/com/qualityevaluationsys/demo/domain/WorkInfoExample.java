@@ -244,6 +244,76 @@ public class WorkInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andCnameIsNull() {
+            addCriterion("Cname is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameIsNotNull() {
+            addCriterion("Cname is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameEqualTo(String value) {
+            addCriterion("Cname =", value, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameNotEqualTo(String value) {
+            addCriterion("Cname <>", value, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameGreaterThan(String value) {
+            addCriterion("Cname >", value, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameGreaterThanOrEqualTo(String value) {
+            addCriterion("Cname >=", value, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameLessThan(String value) {
+            addCriterion("Cname <", value, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameLessThanOrEqualTo(String value) {
+            addCriterion("Cname <=", value, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameLike(String value) {
+            addCriterion("Cname like", value, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameNotLike(String value) {
+            addCriterion("Cname not like", value, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameIn(List<String> values) {
+            addCriterion("Cname in", values, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameNotIn(List<String> values) {
+            addCriterion("Cname not in", values, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameBetween(String value1, String value2) {
+            addCriterion("Cname between", value1, value2, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameNotBetween(String value1, String value2) {
+            addCriterion("Cname not between", value1, value2, "cname");
+            return (Criteria) this;
+        }
+
         public Criteria andTitleIsNull() {
             addCriterion("title is null");
             return (Criteria) this;
@@ -591,6 +661,126 @@ public class WorkInfoExample {
 
         public Criteria andContentNotBetween(String value1, String value2) {
             addCriterion("content not between", value1, value2, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andSubmitIsNull() {
+            addCriterion("submit is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSubmitIsNotNull() {
+            addCriterion("submit is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSubmitEqualTo(Integer value) {
+            addCriterion("submit =", value, "submit");
+            return (Criteria) this;
+        }
+
+        public Criteria andSubmitNotEqualTo(Integer value) {
+            addCriterion("submit <>", value, "submit");
+            return (Criteria) this;
+        }
+
+        public Criteria andSubmitGreaterThan(Integer value) {
+            addCriterion("submit >", value, "submit");
+            return (Criteria) this;
+        }
+
+        public Criteria andSubmitGreaterThanOrEqualTo(Integer value) {
+            addCriterion("submit >=", value, "submit");
+            return (Criteria) this;
+        }
+
+        public Criteria andSubmitLessThan(Integer value) {
+            addCriterion("submit <", value, "submit");
+            return (Criteria) this;
+        }
+
+        public Criteria andSubmitLessThanOrEqualTo(Integer value) {
+            addCriterion("submit <=", value, "submit");
+            return (Criteria) this;
+        }
+
+        public Criteria andSubmitIn(List<Integer> values) {
+            addCriterion("submit in", values, "submit");
+            return (Criteria) this;
+        }
+
+        public Criteria andSubmitNotIn(List<Integer> values) {
+            addCriterion("submit not in", values, "submit");
+            return (Criteria) this;
+        }
+
+        public Criteria andSubmitBetween(Integer value1, Integer value2) {
+            addCriterion("submit between", value1, value2, "submit");
+            return (Criteria) this;
+        }
+
+        public Criteria andSubmitNotBetween(Integer value1, Integer value2) {
+            addCriterion("submit not between", value1, value2, "submit");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumIsNull() {
+            addCriterion("sum is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumIsNotNull() {
+            addCriterion("sum is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumEqualTo(Integer value) {
+            addCriterion("sum =", value, "sum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumNotEqualTo(Integer value) {
+            addCriterion("sum <>", value, "sum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumGreaterThan(Integer value) {
+            addCriterion("sum >", value, "sum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sum >=", value, "sum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumLessThan(Integer value) {
+            addCriterion("sum <", value, "sum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumLessThanOrEqualTo(Integer value) {
+            addCriterion("sum <=", value, "sum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumIn(List<Integer> values) {
+            addCriterion("sum in", values, "sum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumNotIn(List<Integer> values) {
+            addCriterion("sum not in", values, "sum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumBetween(Integer value1, Integer value2) {
+            addCriterion("sum between", value1, value2, "sum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumNotBetween(Integer value1, Integer value2) {
+            addCriterion("sum not between", value1, value2, "sum");
             return (Criteria) this;
         }
 

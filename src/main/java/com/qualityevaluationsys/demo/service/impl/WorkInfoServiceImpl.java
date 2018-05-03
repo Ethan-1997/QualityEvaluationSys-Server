@@ -35,6 +35,9 @@ public class WorkInfoServiceImpl implements WorkInfoService {
         WorkInfoExample example=new WorkInfoExample();
         if(workInfo!=null){
             WorkInfoExample.Criteria criteria = example.createCriteria();
+            if(!StringUtils.isNullOrEmpty(workInfo.getTitle())){
+                criteria.andTitleLike("%"+workInfo.getTitle()+"%");
+            }
             if(!StringUtils.isNullOrEmpty(workInfo.getAuthor())){
                 criteria.andAuthorLike("%"+workInfo.getAuthor()+"%");
             }

@@ -1,12 +1,26 @@
 package com.qualityevaluationsys.demo.service;
 
+import com.qualityevaluationsys.demo.domain.Later;
 import com.qualityevaluationsys.demo.domain.StudentTest;
+import com.qualityevaluationsys.demo.domain.StudentTestExample;
+import com.qualityevaluationsys.demo.utils.PageBean;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
 public interface StudentTestService {
-    int deleteByTid(String tid);
 
-    int insert(StudentTest record);
+    int deleteByPrimaryKey(Integer id);
 
-    StudentTest selectBySid(String sid);
 
-    int updateByTid(StudentTest record);
+    int insertSelective(StudentTest record);
+
+
+    StudentTest selectByPrimaryKey(Integer id);
+
+    PageBean getPageBean(Integer limit, String sort, Integer page, StudentTest studentTest);
+
+
+    int updateByPrimaryKeySelective(StudentTest record);
+
 }

@@ -6,6 +6,8 @@ import java.io.Serializable;
  * @author 
  */
 public class StudentTest implements Serializable {
+    private Integer id;
+
     /**
      * 考试编号
      */
@@ -33,12 +35,17 @@ public class StudentTest implements Serializable {
      */
     private Integer sgrade;
 
-    /**
-     * 试卷类型
-     */
-    private String sradio;
+    private String ttype;
 
     private static final long serialVersionUID = 1L;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getTid() {
         return tid;
@@ -88,12 +95,12 @@ public class StudentTest implements Serializable {
         this.sgrade = sgrade;
     }
 
-    public String getSradio() {
-        return sradio;
+    public String getTtype() {
+        return ttype;
     }
 
-    public void setSradio(String sradio) {
-        this.sradio = sradio;
+    public void setTtype(String ttype) {
+        this.ttype = ttype;
     }
 
     @Override
@@ -108,26 +115,28 @@ public class StudentTest implements Serializable {
             return false;
         }
         StudentTest other = (StudentTest) that;
-        return (this.getTid() == null ? other.getTid() == null : this.getTid().equals(other.getTid()))
+        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+            && (this.getTid() == null ? other.getTid() == null : this.getTid().equals(other.getTid()))
             && (this.getSid() == null ? other.getSid() == null : this.getSid().equals(other.getSid()))
             && (this.getTname() == null ? other.getTname() == null : this.getTname().equals(other.getTname()))
             && (this.getTdate() == null ? other.getTdate() == null : this.getTdate().equals(other.getTdate()))
             && (this.getSstate() == null ? other.getSstate() == null : this.getSstate().equals(other.getSstate()))
             && (this.getSgrade() == null ? other.getSgrade() == null : this.getSgrade().equals(other.getSgrade()))
-            && (this.getSradio() == null ? other.getSradio() == null : this.getSradio().equals(other.getSradio()));
+            && (this.getTtype() == null ? other.getTtype() == null : this.getTtype().equals(other.getTtype()));
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getTid() == null) ? 0 : getTid().hashCode());
         result = prime * result + ((getSid() == null) ? 0 : getSid().hashCode());
         result = prime * result + ((getTname() == null) ? 0 : getTname().hashCode());
         result = prime * result + ((getTdate() == null) ? 0 : getTdate().hashCode());
         result = prime * result + ((getSstate() == null) ? 0 : getSstate().hashCode());
         result = prime * result + ((getSgrade() == null) ? 0 : getSgrade().hashCode());
-        result = prime * result + ((getSradio() == null) ? 0 : getSradio().hashCode());
+        result = prime * result + ((getTtype() == null) ? 0 : getTtype().hashCode());
         return result;
     }
 
@@ -137,13 +146,14 @@ public class StudentTest implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
         sb.append(", tid=").append(tid);
         sb.append(", sid=").append(sid);
         sb.append(", tname=").append(tname);
         sb.append(", tdate=").append(tdate);
         sb.append(", sstate=").append(sstate);
         sb.append(", sgrade=").append(sgrade);
-        sb.append(", sradio=").append(sradio);
+        sb.append(", ttype=").append(ttype);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

@@ -18,7 +18,17 @@ public class Class implements Serializable {
      */
     private String profession;
 
-    private Integer tno;
+    /**
+     * 班主任
+     */
+    private String headTeacher;
+
+    private Integer headTeacherId;
+
+    /**
+     * 学长
+     */
+    private String schoolYear;
 
     private static final long serialVersionUID = 1L;
 
@@ -46,12 +56,28 @@ public class Class implements Serializable {
         this.profession = profession;
     }
 
-    public Integer getTno() {
-        return tno;
+    public String getHeadTeacher() {
+        return headTeacher;
     }
 
-    public void setTno(Integer tno) {
-        this.tno = tno;
+    public void setHeadTeacher(String headTeacher) {
+        this.headTeacher = headTeacher;
+    }
+
+    public Integer getHeadTeacherId() {
+        return headTeacherId;
+    }
+
+    public void setHeadTeacherId(Integer headTeacherId) {
+        this.headTeacherId = headTeacherId;
+    }
+
+    public String getSchoolYear() {
+        return schoolYear;
+    }
+
+    public void setSchoolYear(String schoolYear) {
+        this.schoolYear = schoolYear;
     }
 
     @Override
@@ -69,7 +95,9 @@ public class Class implements Serializable {
         return (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()))
             && (this.getCname() == null ? other.getCname() == null : this.getCname().equals(other.getCname()))
             && (this.getProfession() == null ? other.getProfession() == null : this.getProfession().equals(other.getProfession()))
-            && (this.getTno() == null ? other.getTno() == null : this.getTno().equals(other.getTno()));
+            && (this.getHeadTeacher() == null ? other.getHeadTeacher() == null : this.getHeadTeacher().equals(other.getHeadTeacher()))
+            && (this.getHeadTeacherId() == null ? other.getHeadTeacherId() == null : this.getHeadTeacherId().equals(other.getHeadTeacherId()))
+            && (this.getSchoolYear() == null ? other.getSchoolYear() == null : this.getSchoolYear().equals(other.getSchoolYear()));
     }
 
     @Override
@@ -79,7 +107,9 @@ public class Class implements Serializable {
         result = prime * result + ((getCid() == null) ? 0 : getCid().hashCode());
         result = prime * result + ((getCname() == null) ? 0 : getCname().hashCode());
         result = prime * result + ((getProfession() == null) ? 0 : getProfession().hashCode());
-        result = prime * result + ((getTno() == null) ? 0 : getTno().hashCode());
+        result = prime * result + ((getHeadTeacher() == null) ? 0 : getHeadTeacher().hashCode());
+        result = prime * result + ((getHeadTeacherId() == null) ? 0 : getHeadTeacherId().hashCode());
+        result = prime * result + ((getSchoolYear() == null) ? 0 : getSchoolYear().hashCode());
         return result;
     }
 
@@ -92,7 +122,9 @@ public class Class implements Serializable {
         sb.append(", cid=").append(cid);
         sb.append(", cname=").append(cname);
         sb.append(", profession=").append(profession);
-        sb.append(", tno=").append(tno);
+        sb.append(", headTeacher=").append(headTeacher);
+        sb.append(", headTeacherId=").append(headTeacherId);
+        sb.append(", schoolYear=").append(schoolYear);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

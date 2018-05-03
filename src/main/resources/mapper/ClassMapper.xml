@@ -5,7 +5,9 @@
     <id column="Cid" jdbcType="INTEGER" property="cid" />
     <result column="Cname" jdbcType="VARCHAR" property="cname" />
     <result column="profession" jdbcType="VARCHAR" property="profession" />
-    <result column="Tno" jdbcType="INTEGER" property="tno" />
+    <result column="head_teacher" jdbcType="VARCHAR" property="headTeacher" />
+    <result column="head_teacher_id" jdbcType="INTEGER" property="headTeacherId" />
+    <result column="school_year" jdbcType="VARCHAR" property="schoolYear" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    Cid, Cname, profession, Tno
+    Cid, Cname, profession, head_teacher, head_teacher_id, school_year
   </sql>
   <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.ClassExample" resultMap="BaseResultMap">
     select
@@ -108,9 +110,11 @@
   </delete>
   <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.Class">
     insert into Class (Cid, Cname, profession, 
-      Tno)
+      head_teacher, head_teacher_id, school_year
+      )
     values (#{cid,jdbcType=INTEGER}, #{cname,jdbcType=VARCHAR}, #{profession,jdbcType=VARCHAR}, 
-      #{tno,jdbcType=INTEGER})
+      #{headTeacher,jdbcType=VARCHAR}, #{headTeacherId,jdbcType=INTEGER}, #{schoolYear,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.Class">
     insert into Class
@@ -124,8 +128,14 @@
       <if test="profession != null">
         profession,
       </if>
-      <if test="tno != null">
-        Tno,
+      <if test="headTeacher != null">
+        head_teacher,
+      </if>
+      <if test="headTeacherId != null">
+        head_teacher_id,
+      </if>
+      <if test="schoolYear != null">
+        school_year,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -138,8 +148,14 @@
       <if test="profession != null">
         #{profession,jdbcType=VARCHAR},
       </if>
-      <if test="tno != null">
-        #{tno,jdbcType=INTEGER},
+      <if test="headTeacher != null">
+        #{headTeacher,jdbcType=VARCHAR},
+      </if>
+      <if test="headTeacherId != null">
+        #{headTeacherId,jdbcType=INTEGER},
+      </if>
+      <if test="schoolYear != null">
+        #{schoolYear,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -161,8 +177,14 @@
       <if test="record.profession != null">
         profession = #{record.profession,jdbcType=VARCHAR},
       </if>
-      <if test="record.tno != null">
-        Tno = #{record.tno,jdbcType=INTEGER},
+      <if test="record.headTeacher != null">
+        head_teacher = #{record.headTeacher,jdbcType=VARCHAR},
+      </if>
+      <if test="record.headTeacherId != null">
+        head_teacher_id = #{record.headTeacherId,jdbcType=INTEGER},
+      </if>
+      <if test="record.schoolYear != null">
+        school_year = #{record.schoolYear,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -174,7 +196,9 @@
     set Cid = #{record.cid,jdbcType=INTEGER},
       Cname = #{record.cname,jdbcType=VARCHAR},
       profession = #{record.profession,jdbcType=VARCHAR},
-      Tno = #{record.tno,jdbcType=INTEGER}
+      head_teacher = #{record.headTeacher,jdbcType=VARCHAR},
+      head_teacher_id = #{record.headTeacherId,jdbcType=INTEGER},
+      school_year = #{record.schoolYear,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -188,8 +212,14 @@
       <if test="profession != null">
         profession = #{profession,jdbcType=VARCHAR},
       </if>
-      <if test="tno != null">
-        Tno = #{tno,jdbcType=INTEGER},
+      <if test="headTeacher != null">
+        head_teacher = #{headTeacher,jdbcType=VARCHAR},
+      </if>
+      <if test="headTeacherId != null">
+        head_teacher_id = #{headTeacherId,jdbcType=INTEGER},
+      </if>
+      <if test="schoolYear != null">
+        school_year = #{schoolYear,jdbcType=VARCHAR},
       </if>
     </set>
     where Cid = #{cid,jdbcType=INTEGER}
@@ -198,7 +228,9 @@
     update Class
     set Cname = #{cname,jdbcType=VARCHAR},
       profession = #{profession,jdbcType=VARCHAR},
-      Tno = #{tno,jdbcType=INTEGER}
+      head_teacher = #{headTeacher,jdbcType=VARCHAR},
+      head_teacher_id = #{headTeacherId,jdbcType=INTEGER},
+      school_year = #{schoolYear,jdbcType=VARCHAR}
     where Cid = #{cid,jdbcType=INTEGER}
   </update>
 </mapper>

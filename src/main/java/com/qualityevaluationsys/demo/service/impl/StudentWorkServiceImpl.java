@@ -82,7 +82,7 @@ public class StudentWorkServiceImpl implements StudentWorkService {
         }
         StudentExample example1=new StudentExample();
         StudentExample.Criteria criteria1 = example1.createCriteria();
-        criteria.andCidEqualTo(workInfos.get(0).getCid());
+        criteria1.andCidEqualTo(workInfos.get(0).getCid());
 
         long l = studentMapper.countByExample(example1);
         msg.put("total",l);
@@ -93,6 +93,11 @@ public class StudentWorkServiceImpl implements StudentWorkService {
         criteria2.andSubmitstatusEqualTo("已提交");
         long l1 = studentWorkMapper.countByExample(example2);
         msg.put("complete",l1);
-        return null;
+        return msg;
+    }
+
+    @Override
+    public List<WorkInfoAndStudentInfo> selectStudentInfoAndWorkInfoBySid(Integer sid) {
+        return studentWorkMapper.selectStudentInfoAndWorkInfoBySid(sid);
     }
 }

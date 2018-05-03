@@ -2,8 +2,6 @@ package com.qualityevaluationsys.demo.service.impl;
 
 import com.qiniu.util.StringUtils;
 import com.qualityevaluationsys.demo.dao.ParticipationMapper;
-import com.qualityevaluationsys.demo.domain.BreakRuleExample;
-import com.qualityevaluationsys.demo.domain.ClassExample;
 import com.qualityevaluationsys.demo.domain.Participation;
 import com.qualityevaluationsys.demo.domain.ParticipationExample;
 import com.qualityevaluationsys.demo.service.ParticipationService;
@@ -42,9 +40,16 @@ public class ParticipationServiceImpl implements ParticipationService {
     }
 
     @Override
-    public List<Participation> selectByExample(Participation participation) {
+    public List<Participation> selectByExample(Participation participation, String sort) {
         ParticipationExample example=new ParticipationExample();
         ParticipationExample.Criteria criteria = example.createCriteria();
+        if(!StringUtils.isNullOrEmpty(sort)){
+            if(sort.equals("-id")){
+                example.setOrderByClause("pid desc");
+            }else{
+                example.setOrderByClause("pid asc");
+            }
+        }
         if(participation!=null){
             criteria.andSidEqualTo(participation.getSid());
         }

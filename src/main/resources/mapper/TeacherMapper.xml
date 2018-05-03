@@ -11,6 +11,7 @@
     <result column="Cid" jdbcType="INTEGER" property="cid" />
     <result column="Uno" jdbcType="INTEGER" property="uno" />
     <result column="Ttel" jdbcType="VARCHAR" property="ttel" />
+    <result column="Cname" jdbcType="VARCHAR" property="cname" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    Tno, Tname, Ttime, TIntroduce, Tsex, Twage, Cid, Uno, Ttel
+    Tno, Tname, Ttime, TIntroduce, Tsex, Twage, Cid, Uno, Ttel, Cname
   </sql>
   <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.TeacherExample" resultMap="BaseResultMap">
     select
@@ -114,10 +115,12 @@
   <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.Teacher">
     insert into Teacher (Tno, Tname, Ttime, 
       TIntroduce, Tsex, Twage, 
-      Cid, Uno, Ttel)
+      Cid, Uno, Ttel, Cname
+      )
     values (#{tno,jdbcType=INTEGER}, #{tname,jdbcType=VARCHAR}, #{ttime,jdbcType=VARCHAR}, 
       #{tintroduce,jdbcType=VARCHAR}, #{tsex,jdbcType=CHAR}, #{twage,jdbcType=REAL}, 
-      #{cid,jdbcType=INTEGER}, #{uno,jdbcType=INTEGER}, #{ttel,jdbcType=VARCHAR})
+      #{cid,jdbcType=INTEGER}, #{uno,jdbcType=INTEGER}, #{ttel,jdbcType=VARCHAR}, #{cname,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.Teacher">
     insert into Teacher
@@ -149,6 +152,9 @@
       <if test="ttel != null">
         Ttel,
       </if>
+      <if test="cname != null">
+        Cname,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="tno != null">
@@ -177,6 +183,9 @@
       </if>
       <if test="ttel != null">
         #{ttel,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null">
+        #{cname,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -216,6 +225,9 @@
       <if test="record.ttel != null">
         Ttel = #{record.ttel,jdbcType=VARCHAR},
       </if>
+      <if test="record.cname != null">
+        Cname = #{record.cname,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -231,7 +243,8 @@
       Twage = #{record.twage,jdbcType=REAL},
       Cid = #{record.cid,jdbcType=INTEGER},
       Uno = #{record.uno,jdbcType=INTEGER},
-      Ttel = #{record.ttel,jdbcType=VARCHAR}
+      Ttel = #{record.ttel,jdbcType=VARCHAR},
+      Cname = #{record.cname,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -263,6 +276,9 @@
       <if test="ttel != null">
         Ttel = #{ttel,jdbcType=VARCHAR},
       </if>
+      <if test="cname != null">
+        Cname = #{cname,jdbcType=VARCHAR},
+      </if>
     </set>
     where Tno = #{tno,jdbcType=INTEGER}
   </update>
@@ -275,7 +291,8 @@
       Twage = #{twage,jdbcType=REAL},
       Cid = #{cid,jdbcType=INTEGER},
       Uno = #{uno,jdbcType=INTEGER},
-      Ttel = #{ttel,jdbcType=VARCHAR}
+      Ttel = #{ttel,jdbcType=VARCHAR},
+      Cname = #{cname,jdbcType=VARCHAR}
     where Tno = #{tno,jdbcType=INTEGER}
   </update>
 </mapper>

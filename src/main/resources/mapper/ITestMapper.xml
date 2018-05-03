@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qualityevaluationsys.demo.dao.TTMapper">
-  <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.TT">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="Tno" jdbcType="INTEGER" property="tno" />
-    <result column="Tid" jdbcType="VARCHAR" property="tid" />
+<mapper namespace="com.qualityevaluationsys.demo.dao.ITestMapper">
+  <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.ITest">
+    <id column="Tid" jdbcType="VARCHAR" property="tid" />
     <result column="Tname" jdbcType="VARCHAR" property="tname" />
-    <result column="Tdate" jdbcType="VARCHAR" property="tdate" />
+    <result column="Ttype" jdbcType="VARCHAR" property="ttype" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.qualityevaluationsys.demo.domain.ITest">
+    <result column="Tquestion" jdbcType="LONGVARCHAR" property="tquestion" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,15 +68,34 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, Tno, Tid, Tname, Tdate
+    Tid, Tname, Ttype
   </sql>
-  <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.TTExample" resultMap="BaseResultMap">
+  <sql id="Blob_Column_List">
+    Tquestion
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.qualityevaluationsys.demo.domain.ITestExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from TT
+    ,
+    <include refid="Blob_Column_List" />
+    from ITest
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.ITestExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ITest
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -91,129 +111,132 @@
       </if>
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
-    from TT
-    where id = #{id,jdbcType=INTEGER}
+    ,
+    <include refid="Blob_Column_List" />
+    from ITest
+    where Tid = #{tid,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from TT
-    where id = #{id,jdbcType=INTEGER}
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ITest
+    where Tid = #{tid,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.qualityevaluationsys.demo.domain.TTExample">
-    delete from TT
+  <delete id="deleteByExample" parameterType="com.qualityevaluationsys.demo.domain.ITestExample">
+    delete from ITest
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.TT">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into TT (Tno, Tid, Tname, 
-      Tdate)
-    values (#{tno,jdbcType=INTEGER}, #{tid,jdbcType=VARCHAR}, #{tname,jdbcType=VARCHAR}, 
-      #{tdate,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.ITest">
+    insert into ITest (Tid, Tname, Ttype, 
+      Tquestion)
+    values (#{tid,jdbcType=VARCHAR}, #{tname,jdbcType=VARCHAR}, #{ttype,jdbcType=VARCHAR}, 
+      #{tquestion,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.TT">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into TT
+  <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.ITest">
+    insert into ITest
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="tno != null">
-        Tno,
-      </if>
       <if test="tid != null">
         Tid,
       </if>
       <if test="tname != null">
         Tname,
       </if>
-      <if test="tdate != null">
-        Tdate,
+      <if test="ttype != null">
+        Ttype,
+      </if>
+      <if test="tquestion != null">
+        Tquestion,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="tno != null">
-        #{tno,jdbcType=INTEGER},
-      </if>
       <if test="tid != null">
         #{tid,jdbcType=VARCHAR},
       </if>
       <if test="tname != null">
         #{tname,jdbcType=VARCHAR},
       </if>
-      <if test="tdate != null">
-        #{tdate,jdbcType=VARCHAR},
+      <if test="ttype != null">
+        #{ttype,jdbcType=VARCHAR},
+      </if>
+      <if test="tquestion != null">
+        #{tquestion,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.qualityevaluationsys.demo.domain.TTExample" resultType="java.lang.Long">
-    select count(*) from TT
+  <select id="countByExample" parameterType="com.qualityevaluationsys.demo.domain.ITestExample" resultType="java.lang.Long">
+    select count(*) from ITest
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update TT
+    update ITest
     <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.tno != null">
-        Tno = #{record.tno,jdbcType=INTEGER},
-      </if>
       <if test="record.tid != null">
         Tid = #{record.tid,jdbcType=VARCHAR},
       </if>
       <if test="record.tname != null">
         Tname = #{record.tname,jdbcType=VARCHAR},
       </if>
-      <if test="record.tdate != null">
-        Tdate = #{record.tdate,jdbcType=VARCHAR},
+      <if test="record.ttype != null">
+        Ttype = #{record.ttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tquestion != null">
+        Tquestion = #{record.tquestion,jdbcType=LONGVARCHAR},
       </if>
     </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update ITest
+    set Tid = #{record.tid,jdbcType=VARCHAR},
+      Tname = #{record.tname,jdbcType=VARCHAR},
+      Ttype = #{record.ttype,jdbcType=VARCHAR},
+      Tquestion = #{record.tquestion,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update TT
-    set id = #{record.id,jdbcType=INTEGER},
-      Tno = #{record.tno,jdbcType=INTEGER},
-      Tid = #{record.tid,jdbcType=VARCHAR},
+    update ITest
+    set Tid = #{record.tid,jdbcType=VARCHAR},
       Tname = #{record.tname,jdbcType=VARCHAR},
-      Tdate = #{record.tdate,jdbcType=VARCHAR}
+      Ttype = #{record.ttype,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.qualityevaluationsys.demo.domain.TT">
-    update TT
+  <update id="updateByPrimaryKeySelective" parameterType="com.qualityevaluationsys.demo.domain.ITest">
+    update ITest
     <set>
-      <if test="tno != null">
-        Tno = #{tno,jdbcType=INTEGER},
-      </if>
-      <if test="tid != null">
-        Tid = #{tid,jdbcType=VARCHAR},
-      </if>
       <if test="tname != null">
         Tname = #{tname,jdbcType=VARCHAR},
       </if>
-      <if test="tdate != null">
-        Tdate = #{tdate,jdbcType=VARCHAR},
+      <if test="ttype != null">
+        Ttype = #{ttype,jdbcType=VARCHAR},
+      </if>
+      <if test="tquestion != null">
+        Tquestion = #{tquestion,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where Tid = #{tid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.qualityevaluationsys.demo.domain.TT">
-    update TT
-    set Tno = #{tno,jdbcType=INTEGER},
-      Tid = #{tid,jdbcType=VARCHAR},
-      Tname = #{tname,jdbcType=VARCHAR},
-      Tdate = #{tdate,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qualityevaluationsys.demo.domain.ITest">
+    update ITest
+    set Tname = #{tname,jdbcType=VARCHAR},
+      Ttype = #{ttype,jdbcType=VARCHAR},
+      Tquestion = #{tquestion,jdbcType=LONGVARCHAR}
+    where Tid = #{tid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qualityevaluationsys.demo.domain.ITest">
+    update ITest
+    set Tname = #{tname,jdbcType=VARCHAR},
+      Ttype = #{ttype,jdbcType=VARCHAR}
+    where Tid = #{tid,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -4,6 +4,7 @@ import com.qualityevaluationsys.demo.domain.StudentWork;
 import com.qualityevaluationsys.demo.domain.StudentWorkExample;
 import java.util.List;
 
+import com.qualityevaluationsys.demo.domain.WorkInfoAndStudentInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -32,4 +33,6 @@ public interface StudentWorkMapper {
     int updateByPrimaryKeySelective(StudentWork record);
 
     int updateByPrimaryKey(StudentWork record);
+
+    List<WorkInfoAndStudentInfo> selectStudentInfoAndWorkInfoBySid(@Param("sid")Integer sid);
 }

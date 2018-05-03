@@ -1,13 +1,26 @@
 package com.qualityevaluationsys.demo.service;
 
+import com.qualityevaluationsys.demo.domain.OtherImportant;
 import com.qualityevaluationsys.demo.domain.TT;
+import com.qualityevaluationsys.demo.domain.TTExample;
+import com.qualityevaluationsys.demo.utils.PageBean;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface TTService {
-    int deleteByTid(String tid);
 
-    int insert(TT record);
 
-    TT selectByTno(Integer tno);
+    int deleteByPrimaryKey(Integer id);
 
-    int updateByTid(TT record);
+
+    int insertSelective(TT record);
+
+
+    TT selectByPrimaryKey(Integer id);
+
+    PageBean getPageBean(Integer limit, String sort, Integer page, TT tt);
+
+    int updateByPrimaryKeySelective(TT record);
+
 }

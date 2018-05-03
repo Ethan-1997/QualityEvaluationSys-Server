@@ -248,4 +248,12 @@
       grade = #{grade,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectStudentInfoAndWorkInfoBySid" parameterType="java.lang.Integer" resultType="com.qualityevaluationsys.demo.domain.WorkInfoAndStudentInfo">
+    select * from StudentWork,WorkInfo where StudentWork.Wid=WorkInfo.Wid
+    <if test="sid != null">
+      and sid=#{sid,jdbcType=INTEGER}
+    </if>
+
+  </select>
 </mapper>

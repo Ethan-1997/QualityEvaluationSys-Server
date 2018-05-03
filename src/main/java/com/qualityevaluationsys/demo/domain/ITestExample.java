@@ -3,7 +3,7 @@ package com.qualityevaluationsys.demo.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentTestExample {
+public class ITestExample {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -14,7 +14,7 @@ public class StudentTestExample {
 
     private Integer offset;
 
-    public StudentTestExample() {
+    public ITestExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -124,66 +124,6 @@ public class StudentTestExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andIdIsNull() {
-            addCriterion("id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdIsNotNull() {
-            addCriterion("id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdEqualTo(Integer value) {
-            addCriterion("id =", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdNotEqualTo(Integer value) {
-            addCriterion("id <>", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdGreaterThan(Integer value) {
-            addCriterion("id >", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("id >=", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdLessThan(Integer value) {
-            addCriterion("id <", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdLessThanOrEqualTo(Integer value) {
-            addCriterion("id <=", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdIn(List<Integer> values) {
-            addCriterion("id in", values, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdNotIn(List<Integer> values) {
-            addCriterion("id not in", values, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdBetween(Integer value1, Integer value2) {
-            addCriterion("id between", value1, value2, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("id not between", value1, value2, "id");
-            return (Criteria) this;
-        }
-
         public Criteria andTidIsNull() {
             addCriterion("Tid is null");
             return (Criteria) this;
@@ -254,76 +194,6 @@ public class StudentTestExample {
             return (Criteria) this;
         }
 
-        public Criteria andSidIsNull() {
-            addCriterion("Sid is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSidIsNotNull() {
-            addCriterion("Sid is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSidEqualTo(String value) {
-            addCriterion("Sid =", value, "sid");
-            return (Criteria) this;
-        }
-
-        public Criteria andSidNotEqualTo(String value) {
-            addCriterion("Sid <>", value, "sid");
-            return (Criteria) this;
-        }
-
-        public Criteria andSidGreaterThan(String value) {
-            addCriterion("Sid >", value, "sid");
-            return (Criteria) this;
-        }
-
-        public Criteria andSidGreaterThanOrEqualTo(String value) {
-            addCriterion("Sid >=", value, "sid");
-            return (Criteria) this;
-        }
-
-        public Criteria andSidLessThan(String value) {
-            addCriterion("Sid <", value, "sid");
-            return (Criteria) this;
-        }
-
-        public Criteria andSidLessThanOrEqualTo(String value) {
-            addCriterion("Sid <=", value, "sid");
-            return (Criteria) this;
-        }
-
-        public Criteria andSidLike(String value) {
-            addCriterion("Sid like", value, "sid");
-            return (Criteria) this;
-        }
-
-        public Criteria andSidNotLike(String value) {
-            addCriterion("Sid not like", value, "sid");
-            return (Criteria) this;
-        }
-
-        public Criteria andSidIn(List<String> values) {
-            addCriterion("Sid in", values, "sid");
-            return (Criteria) this;
-        }
-
-        public Criteria andSidNotIn(List<String> values) {
-            addCriterion("Sid not in", values, "sid");
-            return (Criteria) this;
-        }
-
-        public Criteria andSidBetween(String value1, String value2) {
-            addCriterion("Sid between", value1, value2, "sid");
-            return (Criteria) this;
-        }
-
-        public Criteria andSidNotBetween(String value1, String value2) {
-            addCriterion("Sid not between", value1, value2, "sid");
-            return (Criteria) this;
-        }
-
         public Criteria andTnameIsNull() {
             addCriterion("Tname is null");
             return (Criteria) this;
@@ -391,206 +261,6 @@ public class StudentTestExample {
 
         public Criteria andTnameNotBetween(String value1, String value2) {
             addCriterion("Tname not between", value1, value2, "tname");
-            return (Criteria) this;
-        }
-
-        public Criteria andTdateIsNull() {
-            addCriterion("Tdate is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTdateIsNotNull() {
-            addCriterion("Tdate is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTdateEqualTo(String value) {
-            addCriterion("Tdate =", value, "tdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andTdateNotEqualTo(String value) {
-            addCriterion("Tdate <>", value, "tdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andTdateGreaterThan(String value) {
-            addCriterion("Tdate >", value, "tdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andTdateGreaterThanOrEqualTo(String value) {
-            addCriterion("Tdate >=", value, "tdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andTdateLessThan(String value) {
-            addCriterion("Tdate <", value, "tdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andTdateLessThanOrEqualTo(String value) {
-            addCriterion("Tdate <=", value, "tdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andTdateLike(String value) {
-            addCriterion("Tdate like", value, "tdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andTdateNotLike(String value) {
-            addCriterion("Tdate not like", value, "tdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andTdateIn(List<String> values) {
-            addCriterion("Tdate in", values, "tdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andTdateNotIn(List<String> values) {
-            addCriterion("Tdate not in", values, "tdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andTdateBetween(String value1, String value2) {
-            addCriterion("Tdate between", value1, value2, "tdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andTdateNotBetween(String value1, String value2) {
-            addCriterion("Tdate not between", value1, value2, "tdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andSstateIsNull() {
-            addCriterion("Sstate is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSstateIsNotNull() {
-            addCriterion("Sstate is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSstateEqualTo(String value) {
-            addCriterion("Sstate =", value, "sstate");
-            return (Criteria) this;
-        }
-
-        public Criteria andSstateNotEqualTo(String value) {
-            addCriterion("Sstate <>", value, "sstate");
-            return (Criteria) this;
-        }
-
-        public Criteria andSstateGreaterThan(String value) {
-            addCriterion("Sstate >", value, "sstate");
-            return (Criteria) this;
-        }
-
-        public Criteria andSstateGreaterThanOrEqualTo(String value) {
-            addCriterion("Sstate >=", value, "sstate");
-            return (Criteria) this;
-        }
-
-        public Criteria andSstateLessThan(String value) {
-            addCriterion("Sstate <", value, "sstate");
-            return (Criteria) this;
-        }
-
-        public Criteria andSstateLessThanOrEqualTo(String value) {
-            addCriterion("Sstate <=", value, "sstate");
-            return (Criteria) this;
-        }
-
-        public Criteria andSstateLike(String value) {
-            addCriterion("Sstate like", value, "sstate");
-            return (Criteria) this;
-        }
-
-        public Criteria andSstateNotLike(String value) {
-            addCriterion("Sstate not like", value, "sstate");
-            return (Criteria) this;
-        }
-
-        public Criteria andSstateIn(List<String> values) {
-            addCriterion("Sstate in", values, "sstate");
-            return (Criteria) this;
-        }
-
-        public Criteria andSstateNotIn(List<String> values) {
-            addCriterion("Sstate not in", values, "sstate");
-            return (Criteria) this;
-        }
-
-        public Criteria andSstateBetween(String value1, String value2) {
-            addCriterion("Sstate between", value1, value2, "sstate");
-            return (Criteria) this;
-        }
-
-        public Criteria andSstateNotBetween(String value1, String value2) {
-            addCriterion("Sstate not between", value1, value2, "sstate");
-            return (Criteria) this;
-        }
-
-        public Criteria andSgradeIsNull() {
-            addCriterion("Sgrade is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSgradeIsNotNull() {
-            addCriterion("Sgrade is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSgradeEqualTo(Integer value) {
-            addCriterion("Sgrade =", value, "sgrade");
-            return (Criteria) this;
-        }
-
-        public Criteria andSgradeNotEqualTo(Integer value) {
-            addCriterion("Sgrade <>", value, "sgrade");
-            return (Criteria) this;
-        }
-
-        public Criteria andSgradeGreaterThan(Integer value) {
-            addCriterion("Sgrade >", value, "sgrade");
-            return (Criteria) this;
-        }
-
-        public Criteria andSgradeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("Sgrade >=", value, "sgrade");
-            return (Criteria) this;
-        }
-
-        public Criteria andSgradeLessThan(Integer value) {
-            addCriterion("Sgrade <", value, "sgrade");
-            return (Criteria) this;
-        }
-
-        public Criteria andSgradeLessThanOrEqualTo(Integer value) {
-            addCriterion("Sgrade <=", value, "sgrade");
-            return (Criteria) this;
-        }
-
-        public Criteria andSgradeIn(List<Integer> values) {
-            addCriterion("Sgrade in", values, "sgrade");
-            return (Criteria) this;
-        }
-
-        public Criteria andSgradeNotIn(List<Integer> values) {
-            addCriterion("Sgrade not in", values, "sgrade");
-            return (Criteria) this;
-        }
-
-        public Criteria andSgradeBetween(Integer value1, Integer value2) {
-            addCriterion("Sgrade between", value1, value2, "sgrade");
-            return (Criteria) this;
-        }
-
-        public Criteria andSgradeNotBetween(Integer value1, Integer value2) {
-            addCriterion("Sgrade not between", value1, value2, "sgrade");
             return (Criteria) this;
         }
 

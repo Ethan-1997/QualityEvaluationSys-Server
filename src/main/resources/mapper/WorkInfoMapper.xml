@@ -4,11 +4,14 @@
   <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.WorkInfo">
     <id column="Wid" jdbcType="INTEGER" property="wid" />
     <result column="Cid" jdbcType="INTEGER" property="cid" />
+    <result column="Cname" jdbcType="VARCHAR" property="cname" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="author" jdbcType="VARCHAR" property="author" />
     <result column="startTime" jdbcType="VARCHAR" property="starttime" />
     <result column="endTime" jdbcType="VARCHAR" property="endtime" />
     <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="submit" jdbcType="INTEGER" property="submit" />
+    <result column="sum" jdbcType="INTEGER" property="sum" />
     <result column="fileList" jdbcType="VARCHAR" property="filelist" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -70,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    Wid, Cid, title, author, startTime, endTime, content, fileList
+    Wid, Cid, Cname, title, author, startTime, endTime, content, submit, sum, fileList
   </sql>
   <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.WorkInfoExample" resultMap="BaseResultMap">
     select
@@ -111,12 +114,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.WorkInfo">
-    insert into WorkInfo (Wid, Cid, title, 
-      author, startTime, endTime, 
-      content, fileList)
-    values (#{wid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
-      #{author,jdbcType=VARCHAR}, #{starttime,jdbcType=VARCHAR}, #{endtime,jdbcType=VARCHAR}, 
-      #{content,jdbcType=VARCHAR}, #{filelist,jdbcType=VARCHAR})
+    insert into WorkInfo (Wid, Cid, Cname, 
+      title, author, startTime, 
+      endTime, content, submit, 
+      sum, fileList)
+    values (#{wid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{cname,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{starttime,jdbcType=VARCHAR}, 
+      #{endtime,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{submit,jdbcType=INTEGER}, 
+      #{sum,jdbcType=INTEGER}, #{filelist,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.WorkInfo">
     insert into WorkInfo
@@ -126,6 +131,9 @@
       </if>
       <if test="cid != null">
         Cid,
+      </if>
+      <if test="cname != null">
+        Cname,
       </if>
       <if test="title != null">
         title,
@@ -142,6 +150,12 @@
       <if test="content != null">
         content,
       </if>
+      <if test="submit != null">
+        submit,
+      </if>
+      <if test="sum != null">
+        sum,
+      </if>
       <if test="filelist != null">
         fileList,
       </if>
@@ -152,6 +166,9 @@
       </if>
       <if test="cid != null">
         #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="cname != null">
+        #{cname,jdbcType=VARCHAR},
       </if>
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
@@ -167,6 +184,12 @@
       </if>
       <if test="content != null">
         #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="submit != null">
+        #{submit,jdbcType=INTEGER},
+      </if>
+      <if test="sum != null">
+        #{sum,jdbcType=INTEGER},
       </if>
       <if test="filelist != null">
         #{filelist,jdbcType=VARCHAR},
@@ -188,6 +211,9 @@
       <if test="record.cid != null">
         Cid = #{record.cid,jdbcType=INTEGER},
       </if>
+      <if test="record.cname != null">
+        Cname = #{record.cname,jdbcType=VARCHAR},
+      </if>
       <if test="record.title != null">
         title = #{record.title,jdbcType=VARCHAR},
       </if>
@@ -203,6 +229,12 @@
       <if test="record.content != null">
         content = #{record.content,jdbcType=VARCHAR},
       </if>
+      <if test="record.submit != null">
+        submit = #{record.submit,jdbcType=INTEGER},
+      </if>
+      <if test="record.sum != null">
+        sum = #{record.sum,jdbcType=INTEGER},
+      </if>
       <if test="record.filelist != null">
         fileList = #{record.filelist,jdbcType=VARCHAR},
       </if>
@@ -215,11 +247,14 @@
     update WorkInfo
     set Wid = #{record.wid,jdbcType=INTEGER},
       Cid = #{record.cid,jdbcType=INTEGER},
+      Cname = #{record.cname,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       author = #{record.author,jdbcType=VARCHAR},
       startTime = #{record.starttime,jdbcType=VARCHAR},
       endTime = #{record.endtime,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=VARCHAR},
+      submit = #{record.submit,jdbcType=INTEGER},
+      sum = #{record.sum,jdbcType=INTEGER},
       fileList = #{record.filelist,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -230,6 +265,9 @@
     <set>
       <if test="cid != null">
         Cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="cname != null">
+        Cname = #{cname,jdbcType=VARCHAR},
       </if>
       <if test="title != null">
         title = #{title,jdbcType=VARCHAR},
@@ -246,6 +284,12 @@
       <if test="content != null">
         content = #{content,jdbcType=VARCHAR},
       </if>
+      <if test="submit != null">
+        submit = #{submit,jdbcType=INTEGER},
+      </if>
+      <if test="sum != null">
+        sum = #{sum,jdbcType=INTEGER},
+      </if>
       <if test="filelist != null">
         fileList = #{filelist,jdbcType=VARCHAR},
       </if>
@@ -255,11 +299,14 @@
   <update id="updateByPrimaryKey" parameterType="com.qualityevaluationsys.demo.domain.WorkInfo">
     update WorkInfo
     set Cid = #{cid,jdbcType=INTEGER},
+      Cname = #{cname,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       author = #{author,jdbcType=VARCHAR},
       startTime = #{starttime,jdbcType=VARCHAR},
       endTime = #{endtime,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
+      submit = #{submit,jdbcType=INTEGER},
+      sum = #{sum,jdbcType=INTEGER},
       fileList = #{filelist,jdbcType=VARCHAR}
     where Wid = #{wid,jdbcType=INTEGER}
   </update>

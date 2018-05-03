@@ -21,11 +21,12 @@ public class ParticipationController  extends BaseController{
     ParticipationService service;
 
     @RequestMapping(value = "/listBySid",method = RequestMethod.GET)
-    public Map<String,Object> listBySid( @ModelAttribute Participation pojo){
+    public Map<String,Object> listBySid(String sort, @ModelAttribute Participation pojo){
         msg.clear();
         try {
-            List<Participation> participations = service.selectByExample(pojo);
+            List<Participation> participations = service.selectByExample(pojo,sort);
             msg.put("items",participations);
+            msg.put("count",participations.size());
         }catch (Exception e){
             msg.put("data","error");
             msg.put("message",e.getMessage());

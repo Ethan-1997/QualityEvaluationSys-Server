@@ -30,10 +30,13 @@ public class ClassServiceImpl implements ClassService {
         if(myClass!=null){
             ClassExample.Criteria criteria = example.createCriteria();
             if(!StringUtils.isNullOrEmpty(myClass.getCname())){
-                criteria.andCnameLike("%"+myClass.getClass()+"%");
+                criteria.andCnameLike("%"+myClass.getCname()+"%");
             }
             if(!StringUtils.isNullOrEmpty(myClass.getProfession())){
-                criteria.andProfessionLike("%"+myClass.getProfession()+"%");
+                criteria.andProfessionEqualTo(myClass.getProfession());
+            }
+            if(!StringUtils.isNullOrEmpty(myClass.getHeadTeacher())){
+                criteria.andHeadTeacherLike("%"+myClass.getHeadTeacher()+"%");
             }
 
         }

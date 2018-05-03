@@ -1,39 +1,27 @@
 package com.qualityevaluationsys.demo.web;
-import com.qualityevaluationsys.demo.domain.StudentTest;
-import com.qualityevaluationsys.demo.service.StudentTestService;
+
+import com.qualityevaluationsys.demo.domain.ITest;
+import com.qualityevaluationsys.demo.service.ITestService;
 import com.qualityevaluationsys.demo.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.qualityevaluationsys.demo.domain.StudentTest;
-import com.qualityevaluationsys.demo.service.StudentTestService;
 
 import java.util.List;
 import java.util.Map;
-@RequestMapping(value = "studenttest")
+
 @RestController
-public class StudentTestController extends BaseController{
+@RequestMapping(value = "itest")
+public class ITestController extends BaseController {
     @Autowired
-    StudentTestService service;
+    ITestService service;
 
 
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public Map<String,Object> list(Integer limit, String sort, Integer page, @ModelAttribute StudentTest pojo){
-        msg.clear();
-        try {
-            PageBean pageBean= service.getPageBean(limit,sort,page,pojo);
-            msg.put("total",pageBean.getTotalCount());
-            msg.put("items",pageBean.getList());
-        }catch (Exception e){
-            msg.put("data","error");
-            msg.put("message",e.getMessage());
-        }
-        return  msg;
-    }
+
     @RequestMapping(value = "/create",method = RequestMethod.POST)
-    public Map<String,Object> create(@ModelAttribute StudentTest pojo){
+    public Map<String,Object> create(@ModelAttribute ITest pojo){
         msg.clear();
         try {
             int i = service.insertSelective(pojo);
@@ -49,10 +37,10 @@ public class StudentTestController extends BaseController{
         return  msg;
     }
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
-    public Map<String,Object> delete(@ModelAttribute StudentTest pojo){
+    public Map<String,Object> delete(@ModelAttribute ITest pojo){
         msg.clear();
         try {
-            int i = service.deleteByPrimaryKey(pojo.getId());
+            int i = service.deleteByPrimaryKey(pojo.getTid());
             if(i==1){
                 msg.put("data","success");
             }else{
@@ -66,10 +54,10 @@ public class StudentTestController extends BaseController{
     }
 
     @RequestMapping(value = "/get",method = RequestMethod.GET)
-    public Map<String,Object> get(@ModelAttribute StudentTest pojo){
+    public Map<String,Object> get(@ModelAttribute ITest pojo){
         msg.clear();
         try {
-            StudentTest temp = service.selectByPrimaryKey(pojo.getId());
+            ITest temp = service.selectByPrimaryKey(pojo.getTid());
             msg.put("item",temp);
         }catch (Exception e){
             msg.put("data","error");
@@ -78,7 +66,7 @@ public class StudentTestController extends BaseController{
         return  msg;
     }
     @RequestMapping(value = "/update",method = RequestMethod.POST)
-    public Map<String,Object> update(@ModelAttribute StudentTest pojo){
+    public Map<String,Object> update(@ModelAttribute ITest pojo){
         msg.clear();
         try {
             int i = service.updateByPrimaryKeySelective(pojo);

@@ -5,34 +5,19 @@ import java.io.Serializable;
 /**
  * @author 
  */
-public class TT implements Serializable {
-    private Integer id;
-
-    private Integer tno;
-
+public class ITest implements Serializable {
     private String tid;
 
     private String tname;
 
-    private String tdate;
+    /**
+     * 日常、期中、入学、期末
+     */
+    private String ttype;
+
+    private String tquestion;
 
     private static final long serialVersionUID = 1L;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getTno() {
-        return tno;
-    }
-
-    public void setTno(Integer tno) {
-        this.tno = tno;
-    }
 
     public String getTid() {
         return tid;
@@ -50,12 +35,20 @@ public class TT implements Serializable {
         this.tname = tname;
     }
 
-    public String getTdate() {
-        return tdate;
+    public String getTtype() {
+        return ttype;
     }
 
-    public void setTdate(String tdate) {
-        this.tdate = tdate;
+    public void setTtype(String ttype) {
+        this.ttype = ttype;
+    }
+
+    public String getTquestion() {
+        return tquestion;
+    }
+
+    public void setTquestion(String tquestion) {
+        this.tquestion = tquestion;
     }
 
     @Override
@@ -69,23 +62,21 @@ public class TT implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        TT other = (TT) that;
-        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getTno() == null ? other.getTno() == null : this.getTno().equals(other.getTno()))
-            && (this.getTid() == null ? other.getTid() == null : this.getTid().equals(other.getTid()))
+        ITest other = (ITest) that;
+        return (this.getTid() == null ? other.getTid() == null : this.getTid().equals(other.getTid()))
             && (this.getTname() == null ? other.getTname() == null : this.getTname().equals(other.getTname()))
-            && (this.getTdate() == null ? other.getTdate() == null : this.getTdate().equals(other.getTdate()));
+            && (this.getTtype() == null ? other.getTtype() == null : this.getTtype().equals(other.getTtype()))
+            && (this.getTquestion() == null ? other.getTquestion() == null : this.getTquestion().equals(other.getTquestion()));
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getTno() == null) ? 0 : getTno().hashCode());
         result = prime * result + ((getTid() == null) ? 0 : getTid().hashCode());
         result = prime * result + ((getTname() == null) ? 0 : getTname().hashCode());
-        result = prime * result + ((getTdate() == null) ? 0 : getTdate().hashCode());
+        result = prime * result + ((getTtype() == null) ? 0 : getTtype().hashCode());
+        result = prime * result + ((getTquestion() == null) ? 0 : getTquestion().hashCode());
         return result;
     }
 
@@ -95,11 +86,10 @@ public class TT implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", tno=").append(tno);
         sb.append(", tid=").append(tid);
         sb.append(", tname=").append(tname);
-        sb.append(", tdate=").append(tdate);
+        sb.append(", ttype=").append(ttype);
+        sb.append(", tquestion=").append(tquestion);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

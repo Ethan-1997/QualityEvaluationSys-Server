@@ -16,6 +16,8 @@ public class WorkInfo implements Serializable {
      */
     private Integer cid;
 
+    private String cname;
+
     /**
      * 作业标题
      */
@@ -41,6 +43,10 @@ public class WorkInfo implements Serializable {
      */
     private String content;
 
+    private Integer submit;
+
+    private Integer sum;
+
     /**
      * 附件列表
      */
@@ -62,6 +68,14 @@ public class WorkInfo implements Serializable {
 
     public void setCid(Integer cid) {
         this.cid = cid;
+    }
+
+    public String getCname() {
+        return cname;
+    }
+
+    public void setCname(String cname) {
+        this.cname = cname;
     }
 
     public String getTitle() {
@@ -104,6 +118,22 @@ public class WorkInfo implements Serializable {
         this.content = content;
     }
 
+    public Integer getSubmit() {
+        return submit;
+    }
+
+    public void setSubmit(Integer submit) {
+        this.submit = submit;
+    }
+
+    public Integer getSum() {
+        return sum;
+    }
+
+    public void setSum(Integer sum) {
+        this.sum = sum;
+    }
+
     public String getFilelist() {
         return filelist;
     }
@@ -126,11 +156,14 @@ public class WorkInfo implements Serializable {
         WorkInfo other = (WorkInfo) that;
         return (this.getWid() == null ? other.getWid() == null : this.getWid().equals(other.getWid()))
             && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()))
+            && (this.getCname() == null ? other.getCname() == null : this.getCname().equals(other.getCname()))
             && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
             && (this.getAuthor() == null ? other.getAuthor() == null : this.getAuthor().equals(other.getAuthor()))
             && (this.getStarttime() == null ? other.getStarttime() == null : this.getStarttime().equals(other.getStarttime()))
             && (this.getEndtime() == null ? other.getEndtime() == null : this.getEndtime().equals(other.getEndtime()))
             && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
+            && (this.getSubmit() == null ? other.getSubmit() == null : this.getSubmit().equals(other.getSubmit()))
+            && (this.getSum() == null ? other.getSum() == null : this.getSum().equals(other.getSum()))
             && (this.getFilelist() == null ? other.getFilelist() == null : this.getFilelist().equals(other.getFilelist()));
     }
 
@@ -140,11 +173,14 @@ public class WorkInfo implements Serializable {
         int result = 1;
         result = prime * result + ((getWid() == null) ? 0 : getWid().hashCode());
         result = prime * result + ((getCid() == null) ? 0 : getCid().hashCode());
+        result = prime * result + ((getCname() == null) ? 0 : getCname().hashCode());
         result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
         result = prime * result + ((getAuthor() == null) ? 0 : getAuthor().hashCode());
         result = prime * result + ((getStarttime() == null) ? 0 : getStarttime().hashCode());
         result = prime * result + ((getEndtime() == null) ? 0 : getEndtime().hashCode());
         result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
+        result = prime * result + ((getSubmit() == null) ? 0 : getSubmit().hashCode());
+        result = prime * result + ((getSum() == null) ? 0 : getSum().hashCode());
         result = prime * result + ((getFilelist() == null) ? 0 : getFilelist().hashCode());
         return result;
     }
@@ -157,11 +193,14 @@ public class WorkInfo implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", wid=").append(wid);
         sb.append(", cid=").append(cid);
+        sb.append(", cname=").append(cname);
         sb.append(", title=").append(title);
         sb.append(", author=").append(author);
         sb.append(", starttime=").append(starttime);
         sb.append(", endtime=").append(endtime);
         sb.append(", content=").append(content);
+        sb.append(", submit=").append(submit);
+        sb.append(", sum=").append(sum);
         sb.append(", filelist=").append(filelist);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

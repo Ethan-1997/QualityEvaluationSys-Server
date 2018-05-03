@@ -18,7 +18,7 @@ public interface SysuserService {
 
     int updateByPrimaryKey(Sysuser record);
 
-    PageBean getPageBean(Integer page, String limit, Integer sort, Sysuser example);
+    PageBean getPageBean(Integer page, Integer limit, String sort, Sysuser example);
 
     String login(Sysuser user);
 

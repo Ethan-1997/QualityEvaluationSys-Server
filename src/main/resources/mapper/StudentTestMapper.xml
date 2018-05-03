@@ -2,13 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qualityevaluationsys.demo.dao.StudentTestMapper">
   <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.StudentTest">
+    <id column="id" jdbcType="INTEGER" property="id" />
     <result column="Tid" jdbcType="VARCHAR" property="tid" />
     <result column="Sid" jdbcType="VARCHAR" property="sid" />
     <result column="Tname" jdbcType="VARCHAR" property="tname" />
     <result column="Tdate" jdbcType="VARCHAR" property="tdate" />
     <result column="Sstate" jdbcType="VARCHAR" property="sstate" />
     <result column="Sgrade" jdbcType="INTEGER" property="sgrade" />
-    <result column="Sradio" jdbcType="VARCHAR" property="sradio" />
+    <result column="Ttype" jdbcType="VARCHAR" property="ttype" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    Tid, Sid, Tname, Tdate, Sstate, Sgrade, Sradio
+    id, Tid, Sid, Tname, Tdate, Sstate, Sgrade, Ttype
   </sql>
   <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.StudentTestExample" resultMap="BaseResultMap">
     select
@@ -93,6 +94,16 @@
       </if>
     </if>
   </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from StudentTest
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from StudentTest
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
   <delete id="deleteByExample" parameterType="com.qualityevaluationsys.demo.domain.StudentTestExample">
     delete from StudentTest
     <if test="_parameter != null">
@@ -100,14 +111,20 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.StudentTest">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into StudentTest (Tid, Sid, Tname, 
       Tdate, Sstate, Sgrade, 
-      Sradio)
+      Ttype)
     values (#{tid,jdbcType=VARCHAR}, #{sid,jdbcType=VARCHAR}, #{tname,jdbcType=VARCHAR}, 
       #{tdate,jdbcType=VARCHAR}, #{sstate,jdbcType=VARCHAR}, #{sgrade,jdbcType=INTEGER}, 
-      #{sradio,jdbcType=VARCHAR})
+      #{ttype,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.StudentTest">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into StudentTest
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="tid != null">
@@ -128,8 +145,8 @@
       <if test="sgrade != null">
         Sgrade,
       </if>
-      <if test="sradio != null">
-        Sradio,
+      <if test="ttype != null">
+        Ttype,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -151,8 +168,8 @@
       <if test="sgrade != null">
         #{sgrade,jdbcType=INTEGER},
       </if>
-      <if test="sradio != null">
-        #{sradio,jdbcType=VARCHAR},
+      <if test="ttype != null">
+        #{ttype,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -165,6 +182,9 @@
   <update id="updateByExampleSelective" parameterType="map">
     update StudentTest
     <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
       <if test="record.tid != null">
         Tid = #{record.tid,jdbcType=VARCHAR},
       </if>
@@ -183,8 +203,8 @@
       <if test="record.sgrade != null">
         Sgrade = #{record.sgrade,jdbcType=INTEGER},
       </if>
-      <if test="record.sradio != null">
-        Sradio = #{record.sradio,jdbcType=VARCHAR},
+      <if test="record.ttype != null">
+        Ttype = #{record.ttype,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -193,32 +213,54 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update StudentTest
-    set Tid = #{record.tid,jdbcType=VARCHAR},
+    set id = #{record.id,jdbcType=INTEGER},
+      Tid = #{record.tid,jdbcType=VARCHAR},
       Sid = #{record.sid,jdbcType=VARCHAR},
       Tname = #{record.tname,jdbcType=VARCHAR},
       Tdate = #{record.tdate,jdbcType=VARCHAR},
       Sstate = #{record.sstate,jdbcType=VARCHAR},
       Sgrade = #{record.sgrade,jdbcType=INTEGER},
-      Sradio = #{record.sradio,jdbcType=VARCHAR}
+      Ttype = #{record.ttype,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <delete id="deleteByTid" parameterType="java.lang.String">
-    delete from StudentTest
-    where Tid = #{tid,jdbcType=VARCHAR}
-  </delete>
-  <select id="selectBySid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from StudentTest
-    where Sid = #{sid,jdbcType=VARCHAR}
-  </select>
-  <update id="updateBySTid" parameterType="com.qualityevaluationsys.demo.domain.TestInformation">
+  <update id="updateByPrimaryKeySelective" parameterType="com.qualityevaluationsys.demo.domain.StudentTest">
     update StudentTest
     <set>
-      Tdate = #{tdate,jdbcType=VARCHAR}
+      <if test="tid != null">
+        Tid = #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null">
+        Sid = #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="tname != null">
+        Tname = #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="tdate != null">
+        Tdate = #{tdate,jdbcType=VARCHAR},
+      </if>
+      <if test="sstate != null">
+        Sstate = #{sstate,jdbcType=VARCHAR},
+      </if>
+      <if test="sgrade != null">
+        Sgrade = #{sgrade,jdbcType=INTEGER},
+      </if>
+      <if test="ttype != null">
+        Ttype = #{ttype,jdbcType=VARCHAR},
+      </if>
     </set>
-    where Tid = #{tid,jdbcType=VARCHAR} and Sid = #{sid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qualityevaluationsys.demo.domain.StudentTest">
+    update StudentTest
+    set Tid = #{tid,jdbcType=VARCHAR},
+      Sid = #{sid,jdbcType=VARCHAR},
+      Tname = #{tname,jdbcType=VARCHAR},
+      Tdate = #{tdate,jdbcType=VARCHAR},
+      Sstate = #{sstate,jdbcType=VARCHAR},
+      Sgrade = #{sgrade,jdbcType=INTEGER},
+      Ttype = #{ttype,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

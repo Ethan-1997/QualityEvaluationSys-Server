@@ -1,5 +1,9 @@
 package com.qualityevaluationsys.demo.service.impl;
 
+import com.qiniu.util.StringUtils;
+import com.qualityevaluationsys.demo.domain.OtherImportantExample;
+import com.qualityevaluationsys.demo.domain.StudentTestExample;
+import com.qualityevaluationsys.demo.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.qualityevaluationsys.demo.domain.StudentTest;
@@ -11,14 +15,46 @@ public class StudentTestServiceImpl implements StudentTestService {
     private StudentTestMapper studentTestMapper;
 
     @Override
-    public int deleteByTid(String tid) { return studentTestMapper.deleteByTid(tid);}
+    public int deleteByPrimaryKey(Integer id) {
+        return studentTestMapper.deleteByPrimaryKey(id);
+    }
 
     @Override
-    public int insert(StudentTest record) {return studentTestMapper.insert(record);}
+    public int insertSelective(StudentTest record) {
+        return studentTestMapper.insertSelective(record);
+    }
 
     @Override
-    public StudentTest selectBySid(String sid) {return studentTestMapper.selectBySid(sid);}
+    public StudentTest selectByPrimaryKey(Integer id) {
+        return studentTestMapper.selectByPrimaryKey(id);
+    }
 
     @Override
-    public int updateByTid(StudentTest record) {return studentTestMapper.updateBySTid(record);}
+    public PageBean getPageBean(Integer limit, String sort, Integer page, StudentTest studentTest) {
+        StudentTestExample example=new StudentTestExample();
+        if(studentTest!=null){
+            StudentTestExample.Criteria criteria = example.createCriteria();
+//            if(!StringUtils.isNullOrEmpty(studentTest.getSid())){
+//                criteria.andSidLike("%"+studentTest.getSid()+"%");
+//            }
+
+        }
+        if(!StringUtils.isNullOrEmpty(sort)&& sort.equals("-id")){
+            example.setOrderByClause("id desc");
+        }else if(!StringUtils.isNullOrEmpty(sort)){
+            example.setOrderByClause("id asc");
+        }
+
+        int count = (int) studentTestMapper.countByExample(example);
+        PageBean pageBean=new PageBean(page,count,limit);
+        example.setLimit(limit);
+        example.setOffset(pageBean.getStart());
+        pageBean.setList(studentTestMapper.selectByExample(example));
+        return pageBean;
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(StudentTest record) {
+        return studentTestMapper.updateByPrimaryKeySelective(record);
+    }
 }

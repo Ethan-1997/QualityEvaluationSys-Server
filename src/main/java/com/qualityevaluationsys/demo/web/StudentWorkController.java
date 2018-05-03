@@ -93,11 +93,24 @@ public class StudentWorkController extends BaseController {
     }
 
     @RequestMapping(value = "/getStatisticsByWid",method = RequestMethod.POST)
-    public Map<String,Object> getStatisticsByWid(@ModelAttribute WorkInfo user){
+    public Map<String,Object> getStatisticsByWid(Integer wid){
         msg.clear();
         try {
-           msg= sysuserService.getStatisticsByWid(user.getWid());
+           msg= sysuserService.getStatisticsByWid(wid);
            msg.put("data","success");
+        }catch (Exception e){
+            msg.put("data","error");
+            msg.put("message",e.getMessage());
+        }
+        return  msg;
+    }
+
+    @RequestMapping(value = "/selectStudentInfoAndWorkInfoBySid",method = RequestMethod.POST)
+    public Map<String,Object> selectStudentInfoAndWorkInfoBySid(Integer sid){
+        msg.clear();
+        try {
+            msg.put("items",sysuserService.selectStudentInfoAndWorkInfoBySid(sid)) ;
+            msg.put("data","success");
         }catch (Exception e){
             msg.put("data","error");
             msg.put("message",e.getMessage());
