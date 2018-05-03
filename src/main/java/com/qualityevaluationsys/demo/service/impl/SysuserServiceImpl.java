@@ -115,7 +115,7 @@ public class SysuserServiceImpl implements SysuserService {
             if(sysuser.getUtype().equals("老师")){
                 TeacherExample example=new TeacherExample();
                 TeacherExample.Criteria criteria = example.createCriteria();
-                criteria.andTnoEqualTo(sysuser.getUno());
+                criteria.andUnoEqualTo(sysuser.getUno());
                 List<Teacher> teachers = teacherMapper.selectByExample(example);
                 LocalConfig.ID= teachers.get(0).getTno().toString();
             }else if(sysuser.getUtype().equals("学生")){
@@ -144,7 +144,7 @@ public class SysuserServiceImpl implements SysuserService {
             if(sysuser.getUtype().equals("老师")){
                 TeacherExample example=new TeacherExample();
                 TeacherExample.Criteria criteria = example.createCriteria();
-                criteria.andTnoEqualTo(sysuser.getUno());
+                criteria.andUnoEqualTo(sysuser.getUno());
                 List<Teacher> teachers = teacherMapper.selectByExample(example);
                 LocalConfig.ID= teachers.get(0).getTno().toString();
                 return  teachers.get(0);

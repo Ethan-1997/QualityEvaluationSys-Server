@@ -100,7 +100,7 @@ public class StudentController  extends BaseController{
         msg.clear();
         try {
             List temp = service.selectByCid(Cid);
-            msg.put("item",temp);
+            msg.put("items",temp);
         }catch (Exception e){
             msg.put("data","error");
             msg.put("message",e.getMessage());

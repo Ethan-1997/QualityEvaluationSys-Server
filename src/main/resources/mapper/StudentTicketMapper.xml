@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qualityevaluationsys.demo.dao.TTMapper">
-  <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.TT">
-    <result column="Tno" jdbcType="INTEGER" property="tno" />
-    <result column="Tid" jdbcType="VARCHAR" property="tid" />
-    <result column="Tname" jdbcType="VARCHAR" property="tname" />
-    <result column="Tdate" jdbcType="VARCHAR" property="tdate" />
+<mapper namespace="com.qualityevaluationsys.demo.dao.StudentTicketMapper">
+  <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.StudentTicket">
+    <result column="Sid" jdbcType="VARCHAR" property="sid" />
+    <result column="Sname" jdbcType="CHAR" property="sname" />
+    <result column="Cid" jdbcType="INTEGER" property="cid" />
+    <result column="Ticket" jdbcType="INTEGER" property="ticket" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    Tno, Tid, Tname, Tdate
+    Sid, Sname, Cid, Ticket
   </sql>
-  <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.TTExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.StudentTicketExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from TT
+    from StudentTicket
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -90,69 +90,69 @@
       </if>
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.qualityevaluationsys.demo.domain.TTExample">
-    delete from TT
+  <delete id="deleteByExample" parameterType="com.qualityevaluationsys.demo.domain.StudentTicketExample">
+    delete from StudentTicket
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.TT">
-    insert into TT (Tno, Tid, Tname, 
-      Tdate)
-    values (#{tno,jdbcType=INTEGER}, #{tid,jdbcType=VARCHAR}, #{tname,jdbcType=VARCHAR}, 
-      #{tdate,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.StudentTicket">
+    insert into StudentTicket (Sid, Sname, Cid, 
+      Ticket)
+    values (#{sid,jdbcType=VARCHAR}, #{sname,jdbcType=CHAR}, #{cid,jdbcType=INTEGER}, 
+      #{ticket,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.TT">
-    insert into TT
+  <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.StudentTicket">
+    insert into StudentTicket
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="tno != null">
-        Tno,
+      <if test="sid != null">
+        Sid,
       </if>
-      <if test="tid != null">
-        Tid,
+      <if test="sname != null">
+        Sname,
       </if>
-      <if test="tname != null">
-        Tname,
+      <if test="cid != null">
+        Cid,
       </if>
-      <if test="tdate != null">
-        Tdate,
+      <if test="ticket != null">
+        Ticket,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="tno != null">
-        #{tno,jdbcType=INTEGER},
+      <if test="sid != null">
+        #{sid,jdbcType=VARCHAR},
       </if>
-      <if test="tid != null">
-        #{tid,jdbcType=VARCHAR},
+      <if test="sname != null">
+        #{sname,jdbcType=CHAR},
       </if>
-      <if test="tname != null">
-        #{tname,jdbcType=VARCHAR},
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
       </if>
-      <if test="tdate != null">
-        #{tdate,jdbcType=VARCHAR},
+      <if test="ticket != null">
+        #{ticket,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.qualityevaluationsys.demo.domain.TTExample" resultType="java.lang.Long">
-    select count(*) from TT
+  <select id="countByExample" parameterType="com.qualityevaluationsys.demo.domain.StudentTicketExample" resultType="java.lang.Long">
+    select count(*) from StudentTicket
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update TT
+    update StudentTicket
     <set>
-      <if test="record.tno != null">
-        Tno = #{record.tno,jdbcType=INTEGER},
+      <if test="record.sid != null">
+        Sid = #{record.sid,jdbcType=VARCHAR},
       </if>
-      <if test="record.tid != null">
-        Tid = #{record.tid,jdbcType=VARCHAR},
+      <if test="record.sname != null">
+        Sname = #{record.sname,jdbcType=CHAR},
       </if>
-      <if test="record.tname != null">
-        Tname = #{record.tname,jdbcType=VARCHAR},
+      <if test="record.cid != null">
+        Cid = #{record.cid,jdbcType=INTEGER},
       </if>
-      <if test="record.tdate != null">
-        Tdate = #{record.tdate,jdbcType=VARCHAR},
+      <if test="record.ticket != null">
+        Ticket = #{record.ticket,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -160,30 +160,33 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update TT
-    set Tno = #{record.tno,jdbcType=INTEGER},
-      Tid = #{record.tid,jdbcType=VARCHAR},
-      Tname = #{record.tname,jdbcType=VARCHAR},
-      Tdate = #{record.tdate,jdbcType=VARCHAR}
+    update StudentTicket
+    set Sid = #{record.sid,jdbcType=VARCHAR},
+      Sname = #{record.sname,jdbcType=CHAR},
+      Cid = #{record.cid,jdbcType=INTEGER},
+      Ticket = #{record.ticket,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <delete id="deleteByTid" parameterType="java.lang.String">
-    delete from TT
-    where Tid = #{tid,jdbcType=VARCHAR}
-  </delete>
-  <select id="selectByTno" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByCid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
-    <include refid="Base_Column_List" />
-    from TT
-    where Tno = #{tno,jdbcType=VARCHAR}
+    <include refid="Base_Column_List"/>
+    from StudentTicket
+    where Cid= #{cid,jdbcType=VARCHAR}
   </select>
-  <update id="updateByTid" parameterType="com.qualityevaluationsys.demo.domain.TT">
-    update TT
+  <update id="updateBySid" parameterType="com.qualityevaluationsys.demo.domain.StudentTicket">
+    update StudentTicket
     <set>
-      Tdate = #{tdate,jdbcType=VARCHAR}
+      Sid = #{sid,jdbcType=VARCHAR},
+      Sname = #{sname,jdbcType=CHAR},
+      Cid = #{cid,jdbcType=INTEGER},
+      Ticket = #{ticket,jdbcType=INTEGER}
     </set>
-    where Tid = #{tid,jdbcType=VARCHAR}
+    where Sid = #{sid,jdbcType=VARCHAR}
   </update>
+  <delete id="deleteBySid" parameterType="java.lang.String">
+    delete from TT
+    where Sid = #{sid,jdbcType=VARCHAR}
+  </delete>
 </mapper>

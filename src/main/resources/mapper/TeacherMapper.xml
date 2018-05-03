@@ -8,6 +8,7 @@
     <result column="TIntroduce" jdbcType="VARCHAR" property="tintroduce" />
     <result column="Tsex" jdbcType="CHAR" property="tsex" />
     <result column="Twage" jdbcType="REAL" property="twage" />
+    <result column="Cid" jdbcType="INTEGER" property="cid" />
     <result column="Uno" jdbcType="INTEGER" property="uno" />
     <result column="Ttel" jdbcType="VARCHAR" property="ttel" />
   </resultMap>
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    Tno, Tname, Ttime, TIntroduce, Tsex, Twage, Uno, Ttel
+    Tno, Tname, Ttime, TIntroduce, Tsex, Twage, Cid, Uno, Ttel
   </sql>
   <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.TeacherExample" resultMap="BaseResultMap">
     select
@@ -113,10 +114,10 @@
   <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.Teacher">
     insert into Teacher (Tno, Tname, Ttime, 
       TIntroduce, Tsex, Twage, 
-      Uno, Ttel)
+      Cid, Uno, Ttel)
     values (#{tno,jdbcType=INTEGER}, #{tname,jdbcType=VARCHAR}, #{ttime,jdbcType=VARCHAR}, 
       #{tintroduce,jdbcType=VARCHAR}, #{tsex,jdbcType=CHAR}, #{twage,jdbcType=REAL}, 
-      #{uno,jdbcType=INTEGER}, #{ttel,jdbcType=VARCHAR})
+      #{cid,jdbcType=INTEGER}, #{uno,jdbcType=INTEGER}, #{ttel,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.Teacher">
     insert into Teacher
@@ -138,6 +139,9 @@
       </if>
       <if test="twage != null">
         Twage,
+      </if>
+      <if test="cid != null">
+        Cid,
       </if>
       <if test="uno != null">
         Uno,
@@ -164,6 +168,9 @@
       </if>
       <if test="twage != null">
         #{twage,jdbcType=REAL},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
       </if>
       <if test="uno != null">
         #{uno,jdbcType=INTEGER},
@@ -200,6 +207,9 @@
       <if test="record.twage != null">
         Twage = #{record.twage,jdbcType=REAL},
       </if>
+      <if test="record.cid != null">
+        Cid = #{record.cid,jdbcType=INTEGER},
+      </if>
       <if test="record.uno != null">
         Uno = #{record.uno,jdbcType=INTEGER},
       </if>
@@ -219,6 +229,7 @@
       TIntroduce = #{record.tintroduce,jdbcType=VARCHAR},
       Tsex = #{record.tsex,jdbcType=CHAR},
       Twage = #{record.twage,jdbcType=REAL},
+      Cid = #{record.cid,jdbcType=INTEGER},
       Uno = #{record.uno,jdbcType=INTEGER},
       Ttel = #{record.ttel,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -243,6 +254,9 @@
       <if test="twage != null">
         Twage = #{twage,jdbcType=REAL},
       </if>
+      <if test="cid != null">
+        Cid = #{cid,jdbcType=INTEGER},
+      </if>
       <if test="uno != null">
         Uno = #{uno,jdbcType=INTEGER},
       </if>
@@ -259,6 +273,7 @@
       TIntroduce = #{tintroduce,jdbcType=VARCHAR},
       Tsex = #{tsex,jdbcType=CHAR},
       Twage = #{twage,jdbcType=REAL},
+      Cid = #{cid,jdbcType=INTEGER},
       Uno = #{uno,jdbcType=INTEGER},
       Ttel = #{ttel,jdbcType=VARCHAR}
     where Tno = #{tno,jdbcType=INTEGER}

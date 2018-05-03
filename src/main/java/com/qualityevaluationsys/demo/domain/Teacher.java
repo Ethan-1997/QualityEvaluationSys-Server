@@ -33,6 +33,8 @@ public class Teacher implements Serializable {
      */
     private Float twage;
 
+    private Integer cid;
+
     private Integer uno;
 
     private String ttel;
@@ -87,6 +89,14 @@ public class Teacher implements Serializable {
         this.twage = twage;
     }
 
+    public Integer getCid() {
+        return cid;
+    }
+
+    public void setCid(Integer cid) {
+        this.cid = cid;
+    }
+
     public Integer getUno() {
         return uno;
     }
@@ -121,6 +131,7 @@ public class Teacher implements Serializable {
             && (this.getTintroduce() == null ? other.getTintroduce() == null : this.getTintroduce().equals(other.getTintroduce()))
             && (this.getTsex() == null ? other.getTsex() == null : this.getTsex().equals(other.getTsex()))
             && (this.getTwage() == null ? other.getTwage() == null : this.getTwage().equals(other.getTwage()))
+            && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()))
             && (this.getUno() == null ? other.getUno() == null : this.getUno().equals(other.getUno()))
             && (this.getTtel() == null ? other.getTtel() == null : this.getTtel().equals(other.getTtel()));
     }
@@ -135,6 +146,7 @@ public class Teacher implements Serializable {
         result = prime * result + ((getTintroduce() == null) ? 0 : getTintroduce().hashCode());
         result = prime * result + ((getTsex() == null) ? 0 : getTsex().hashCode());
         result = prime * result + ((getTwage() == null) ? 0 : getTwage().hashCode());
+        result = prime * result + ((getCid() == null) ? 0 : getCid().hashCode());
         result = prime * result + ((getUno() == null) ? 0 : getUno().hashCode());
         result = prime * result + ((getTtel() == null) ? 0 : getTtel().hashCode());
         return result;
@@ -152,6 +164,7 @@ public class Teacher implements Serializable {
         sb.append(", tintroduce=").append(tintroduce);
         sb.append(", tsex=").append(tsex);
         sb.append(", twage=").append(twage);
+        sb.append(", cid=").append(cid);
         sb.append(", uno=").append(uno);
         sb.append(", ttel=").append(ttel);
         sb.append(", serialVersionUID=").append(serialVersionUID);
