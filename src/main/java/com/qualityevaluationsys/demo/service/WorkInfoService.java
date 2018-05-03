@@ -14,7 +14,7 @@ public interface WorkInfoService {
     int deleteByPrimaryKey(Integer wid);
 
 
-    int insertSelective(WorkInfo record);
+    int insertSelective(WorkInfo record) throws Exception;
 
 
     WorkInfo selectByPrimaryKey(Integer wid);

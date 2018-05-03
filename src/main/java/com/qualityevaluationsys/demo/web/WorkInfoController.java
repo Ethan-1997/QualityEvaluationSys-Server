@@ -19,12 +19,12 @@ import java.util.Map;
 @RequestMapping(value = "workinfo")
 public class WorkInfoController  extends BaseController{
     @Autowired
-    private WorkInfoService sysuserService;
+    private WorkInfoService workInfoService;
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public Map<String,Object> list(Integer limit, String sort, Integer page, @ModelAttribute WorkInfo user){
         msg.clear();
         try {
-            PageBean pageBean= sysuserService.getPageBean(limit,sort,page,user);
+            PageBean pageBean= workInfoService.getPageBean(limit,sort,page,user);
             msg.put("total",pageBean.getTotalCount());
             msg.put("items",pageBean.getList());
         }catch (Exception e){
@@ -34,10 +34,10 @@ public class WorkInfoController  extends BaseController{
         return  msg;
     }
     @RequestMapping(value = "/create",method = RequestMethod.POST)
-    public Map<String,Object> create(@ModelAttribute WorkInfo user){
+    public Map<String,Object> create(@ModelAttribute WorkInfo workInfo){
         msg.clear();
         try {
-            int i = sysuserService.insertSelective(user);
+            int i = workInfoService.insertSelective(workInfo);
             if(i==1){
                 msg.put("data","success");
             }else{
@@ -53,7 +53,7 @@ public class WorkInfoController  extends BaseController{
     public Map<String,Object> delete(@ModelAttribute WorkInfo user){
         msg.clear();
         try {
-            int i = sysuserService.deleteByPrimaryKey(user.getWid());
+            int i = workInfoService.deleteByPrimaryKey(user.getWid());
             if(i==1){
                 msg.put("data","success");
             }else{
@@ -70,7 +70,7 @@ public class WorkInfoController  extends BaseController{
     public Map<String,Object> get(@ModelAttribute WorkInfo user){
         msg.clear();
         try {
-            WorkInfo temp = sysuserService.selectByPrimaryKey(user.getWid());
+            WorkInfo temp = workInfoService.selectByPrimaryKey(user.getWid());
             msg.put("item",temp);
         }catch (Exception e){
             msg.put("data","error");
@@ -82,7 +82,7 @@ public class WorkInfoController  extends BaseController{
     public Map<String,Object> update(@ModelAttribute WorkInfo user){
         msg.clear();
         try {
-            int i = sysuserService.updateByPrimaryKeySelective(user);
+            int i = workInfoService.updateByPrimaryKeySelective(user);
             if(i==1){
                 msg.put("data","success");
             }else{

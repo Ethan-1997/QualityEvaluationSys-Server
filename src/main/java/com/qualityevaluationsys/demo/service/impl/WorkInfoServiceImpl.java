@@ -1,10 +1,11 @@
 package com.qualityevaluationsys.demo.service.impl;
 
 import com.qiniu.util.StringUtils;
+import com.qualityevaluationsys.demo.dao.StudentMapper;
+import com.qualityevaluationsys.demo.dao.StudentWorkMapper;
+import com.qualityevaluationsys.demo.dao.SysuserMapper;
 import com.qualityevaluationsys.demo.dao.WorkInfoMapper;
-import com.qualityevaluationsys.demo.domain.StudentWorkExample;
-import com.qualityevaluationsys.demo.domain.WorkInfo;
-import com.qualityevaluationsys.demo.domain.WorkInfoExample;
+import com.qualityevaluationsys.demo.domain.*;
 import com.qualityevaluationsys.demo.service.WorkInfoService;
 import com.qualityevaluationsys.demo.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,12 @@ import org.springframework.stereotype.Service;
 public class WorkInfoServiceImpl implements WorkInfoService {
     @Autowired
     private WorkInfoMapper workInfoMapper;
+    @Autowired
+    private SysuserMapper sysuserMapper;
+    @Autowired
+    private StudentMapper studentMapper;
+    @Autowired
+    private StudentWorkMapper studentWorkMapper;
 
     @Override
     public int deleteByPrimaryKey(Integer wid) {
@@ -21,8 +28,22 @@ public class WorkInfoServiceImpl implements WorkInfoService {
     }
 
     @Override
-    public int insertSelective(WorkInfo record) {
-        return workInfoMapper.insertSelective(record);
+    public int insertSelective(WorkInfo record) throws Exception {
+        int i = workInfoMapper.insertSelective(record);
+        int wid = sysuserMapper.lastInsertId();
+        StudentExample example=new StudentExample();
+        StudentExample.Criteria criteria = example.createCriteria();
+        criteria.andCidEqualTo(record.getCid());
+        for (Student student : studentMapper.selectByExample(example)) {
+            String sid = student.getSid();
+            StudentWork studentWork=new StudentWork();
+            studentWork.setSid(sid);
+            studentWork.setWid(wid);
+            studentWork.setUptime("0000-00-00 00:00:00");
+            studentWork.setSubmitstatus("未提交");
+            studentWorkMapper.insertSelective(studentWork);
+        }
+        return i;
     }
 
     @Override
