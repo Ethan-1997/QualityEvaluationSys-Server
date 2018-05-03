@@ -1,6 +1,5 @@
 package com.qualityevaluationsys.demo.web;
 
-import com.qualityevaluationsys.demo.domain.Leave;
 import com.qualityevaluationsys.demo.domain.OtherImportant;
 import com.qualityevaluationsys.demo.service.OtherImportantService;
 import com.qualityevaluationsys.demo.utils.PageBean;

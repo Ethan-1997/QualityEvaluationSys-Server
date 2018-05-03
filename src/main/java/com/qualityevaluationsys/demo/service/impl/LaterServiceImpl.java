@@ -4,10 +4,13 @@ import com.qiniu.util.StringUtils;
 import com.qualityevaluationsys.demo.dao.LaterMapper;
 import com.qualityevaluationsys.demo.domain.Later;
 import com.qualityevaluationsys.demo.domain.LaterExample;
+import com.qualityevaluationsys.demo.domain.OtherImportantExample;
 import com.qualityevaluationsys.demo.service.LaterService;
 import com.qualityevaluationsys.demo.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class LaterServiceImpl implements LaterService {
@@ -22,6 +25,16 @@ public class LaterServiceImpl implements LaterService {
     @Override
     public int insertSelective(Later record) {
         return laterMapper.insertSelective(record);
+    }
+
+    @Override
+    public List<Later> selectByExample(Later leave) {
+        LaterExample example=new LaterExample();
+        LaterExample.Criteria criteria = example.createCriteria();
+        if(leave!=null){
+            criteria.andSidEqualTo(leave.getSid());
+        }
+        return laterMapper.selectByExample(example);
     }
 
     @Override

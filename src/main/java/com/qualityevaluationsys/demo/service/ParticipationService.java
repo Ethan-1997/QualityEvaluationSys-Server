@@ -1,7 +1,6 @@
 package com.qualityevaluationsys.demo.service;
 
 import com.qualityevaluationsys.demo.domain.Class;
-import com.qualityevaluationsys.demo.domain.Leave;
 import com.qualityevaluationsys.demo.domain.Participation;
 import com.qualityevaluationsys.demo.domain.ParticipationExample;
 import com.qualityevaluationsys.demo.utils.PageBean;
