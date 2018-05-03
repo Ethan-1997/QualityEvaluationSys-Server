@@ -10,6 +10,8 @@ import com.qualityevaluationsys.demo.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BreakRuleServiceImpl implements BreakRuleService {
     @Autowired
@@ -20,8 +22,31 @@ public class BreakRuleServiceImpl implements BreakRuleService {
     }
 
     @Override
+    public int countByStatusAndSid(String status, String sid) throws Exception {
+        BreakRuleExample example=new BreakRuleExample();
+        BreakRuleExample.Criteria criteria = example.createCriteria();
+        if(StringUtils.isNullOrEmpty(status)){
+            throw new Exception("状态不能为空");
+        }
+        if(StringUtils.isNullOrEmpty(sid)){
+            throw new Exception("sid不能为空");
+        }
+        return (int) breakRuleMapper.countByExample(example);
+    }
+
+    @Override
     public int insertSelective(BreakRule record) {
         return breakRuleMapper.insertSelective(record);
+    }
+
+    @Override
+    public List<BreakRule> selectByExample(BreakRule breakRule) {
+        BreakRuleExample example=new BreakRuleExample();
+        BreakRuleExample.Criteria criteria = example.createCriteria();
+        if(breakRule!=null){
+            criteria.andSidEqualTo(breakRule.getSid());
+        }
+        return breakRuleMapper.selectByExample(example);
     }
 
     @Override

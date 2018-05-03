@@ -2,6 +2,7 @@ package com.qualityevaluationsys.demo.service.impl;
 
 import com.qiniu.util.StringUtils;
 import com.qualityevaluationsys.demo.dao.ParticipationMapper;
+import com.qualityevaluationsys.demo.domain.BreakRuleExample;
 import com.qualityevaluationsys.demo.domain.ClassExample;
 import com.qualityevaluationsys.demo.domain.Participation;
 import com.qualityevaluationsys.demo.domain.ParticipationExample;
@@ -9,6 +10,8 @@ import com.qualityevaluationsys.demo.service.ParticipationService;
 import com.qualityevaluationsys.demo.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ParticipationServiceImpl implements ParticipationService {
@@ -21,8 +24,31 @@ public class ParticipationServiceImpl implements ParticipationService {
     }
 
     @Override
+    public int countByStatusAndSid(String status, String sid) throws Exception {
+        ParticipationExample example=new ParticipationExample();
+        ParticipationExample.Criteria criteria = example.createCriteria();
+        if(StringUtils.isNullOrEmpty(status)){
+            throw new Exception("状态不能为空");
+        }
+        if(StringUtils.isNullOrEmpty(sid)){
+            throw new Exception("sid不能为空");
+        }
+        return (int) participationMapper.countByExample(example);
+    }
+
+    @Override
     public int insertSelective(Participation record) {
         return participationMapper.insertSelective(record);
+    }
+
+    @Override
+    public List<Participation> selectByExample(Participation participation) {
+        ParticipationExample example=new ParticipationExample();
+        ParticipationExample.Criteria criteria = example.createCriteria();
+        if(participation!=null){
+            criteria.andSidEqualTo(participation.getSid());
+        }
+        return participationMapper.selectByExample(example);
     }
 
     @Override

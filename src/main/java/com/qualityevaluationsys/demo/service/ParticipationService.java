@@ -13,9 +13,11 @@ public interface ParticipationService {
 
     int deleteByPrimaryKey(Integer pid);
 
+    int countByStatusAndSid(String status,String sid) throws Exception;
 
     int insertSelective(Participation record);
 
+    List<Participation> selectByExample(Participation participation);
 
     Participation selectByPrimaryKey(Integer pid);
 

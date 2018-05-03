@@ -1,5 +1,7 @@
 package com.qualityevaluationsys.demo.web;
 
+import com.qualityevaluationsys.demo.domain.BreakRule;
+import com.qualityevaluationsys.demo.domain.OtherImportant;
 import com.qualityevaluationsys.demo.domain.Participation;
 import com.qualityevaluationsys.demo.service.ParticipationService;
 import com.qualityevaluationsys.demo.utils.PageBean;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -16,6 +19,33 @@ import java.util.Map;
 public class ParticipationController  extends BaseController{
     @Autowired
     ParticipationService service;
+
+    @RequestMapping(value = "/listBySid",method = RequestMethod.GET)
+    public Map<String,Object> listBySid( @ModelAttribute Participation pojo){
+        msg.clear();
+        try {
+            List<Participation> participations = service.selectByExample(pojo);
+            msg.put("items",participations);
+        }catch (Exception e){
+            msg.put("data","error");
+            msg.put("message",e.getMessage());
+        }
+        return  msg;
+    }
+
+    @RequestMapping(value = "/countByStatusAndSid",method = RequestMethod.GET)
+    public Map<String,Object> countByStatusAndSid( @ModelAttribute Participation pojo){
+        msg.clear();
+        try {
+            int i = service.countByStatusAndSid(pojo.getStatus(), pojo.getSid());
+            msg.put("count",i);
+            msg.put("data","success");
+        }catch (Exception e){
+            msg.put("data","error");
+            msg.put("message",e.getMessage());
+        }
+        return  msg;
+    }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public Map<String,Object> list(Integer limit, String sort, Integer page, @ModelAttribute Participation pojo){

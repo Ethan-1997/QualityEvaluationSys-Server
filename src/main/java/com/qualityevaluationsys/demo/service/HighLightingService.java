@@ -1,5 +1,6 @@
 package com.qualityevaluationsys.demo.service;
 
+import com.qualityevaluationsys.demo.domain.BreakRule;
 import com.qualityevaluationsys.demo.domain.Class;
 import com.qualityevaluationsys.demo.domain.HighLighting;
 import com.qualityevaluationsys.demo.domain.HighLightingExample;
@@ -19,7 +20,7 @@ public interface HighLightingService {
 
     HighLighting selectByPrimaryKey(Integer hid);
 
-
+    List<HighLighting> selectByExample(HighLighting highLighting);
 
     int updateByPrimaryKeySelective(HighLighting record);
 

@@ -1,10 +1,8 @@
 package com.qualityevaluationsys.demo.service;
 
-import com.qualityevaluationsys.demo.domain.Class;
+
 import com.qualityevaluationsys.demo.domain.Later;
-import com.qualityevaluationsys.demo.domain.LaterExample;
 import com.qualityevaluationsys.demo.utils.PageBean;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,6 +14,7 @@ public interface LaterService {
 
     int insertSelective(Later record);
 
+    List<Later> selectByExample(Later leave);
 
     Later selectByPrimaryKey(Integer lid);
 
