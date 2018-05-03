@@ -3,7 +3,7 @@ package com.qualityevaluationsys.demo.dao;
 import com.qualityevaluationsys.demo.domain.Student;
 import com.qualityevaluationsys.demo.domain.StudentExample;
 import java.util.List;
-
+import com.qualityevaluationsys.demo.utils.Array;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -20,6 +20,8 @@ public interface StudentMapper {
     int insert(Student record);
 
     int insertSelective(Student record);
+
+    List<Student> selectByCid(Integer cid);
 
     List<Student> selectByExample(StudentExample example);
 

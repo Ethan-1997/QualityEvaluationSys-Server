@@ -52,13 +52,15 @@ public class HighLightingServiceImpl implements HighLightingService {
         HighLightingExample example=new HighLightingExample();
         if(highLighting!=null){
             HighLightingExample.Criteria criteria = example.createCriteria();
-            if(!StringUtils.isNullOrEmpty(highLighting.getSname())){
-                criteria.andSnameLike("%"+highLighting.getSname()+"%");
+            if(!StringUtils.isNullOrEmpty(highLighting.getSid())){
+                criteria.andSidLike("%"+highLighting.getSid()+"%");
             }
             if(!StringUtils.isNullOrEmpty(highLighting.getSclass())){
                 criteria.andSclassLike("%"+highLighting.getSclass()+"%");
             }
-
+            if(!StringUtils.isNullOrEmpty(highLighting.getTime())){
+                criteria.andTimeLike("%"+highLighting.getTime()+"%");
+            }
         }
         if(!StringUtils.isNullOrEmpty(sort)&& sort.equals("-id")){
             example.setOrderByClause("hid desc");

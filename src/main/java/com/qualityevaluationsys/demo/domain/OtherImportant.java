@@ -1,7 +1,6 @@
 package com.qualityevaluationsys.demo.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @author 
@@ -17,7 +16,7 @@ public class OtherImportant implements Serializable {
     /**
      * 时间
      */
-    private Date time;
+    private String time;
 
     private String sid;
 
@@ -49,11 +48,11 @@ public class OtherImportant implements Serializable {
         this.title = title;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

@@ -343,4 +343,10 @@
       Cid = #{cid,jdbcType=INTEGER}
     where Sid = #{sid,jdbcType=VARCHAR}
   </update>
+  <select id="selectByCid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from Student
+    where Cid = #{cid,jdbcType=VARCHAR}
+  </select>
 </mapper>
