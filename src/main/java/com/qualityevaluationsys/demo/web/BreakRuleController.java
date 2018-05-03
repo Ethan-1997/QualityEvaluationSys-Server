@@ -25,6 +25,7 @@ public class BreakRuleController extends BaseController {
         try {
             List<BreakRule> breakRules = service.selectByExample(pojo);
             msg.put("items",breakRules);
+            msg.put("count",breakRules.size());
         }catch (Exception e){
             msg.put("data","error");
             msg.put("message",e.getMessage());

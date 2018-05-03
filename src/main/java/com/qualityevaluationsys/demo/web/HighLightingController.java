@@ -26,6 +26,7 @@ public class HighLightingController  extends BaseController{
         try {
             List<HighLighting> highLightings = service.selectByExample(pojo);
             msg.put("items",highLightings);
+            msg.put("count",highLightings.size());
         }catch (Exception e){
             msg.put("data","error");
             msg.put("message",e.getMessage());

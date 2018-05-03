@@ -2,6 +2,7 @@ package com.qualityevaluationsys.demo.service.impl;
 
 import com.qiniu.util.StringUtils;
 import com.qualityevaluationsys.demo.dao.ParticipationMapper;
+import com.qualityevaluationsys.demo.domain.BreakRuleExample;
 import com.qualityevaluationsys.demo.domain.ClassExample;
 import com.qualityevaluationsys.demo.domain.Participation;
 import com.qualityevaluationsys.demo.domain.ParticipationExample;
@@ -20,6 +21,19 @@ public class ParticipationServiceImpl implements ParticipationService {
     @Override
     public int deleteByPrimaryKey(Integer pid) {
         return participationMapper.deleteByPrimaryKey(pid);
+    }
+
+    @Override
+    public int countByStatusAndSid(String status, String sid) throws Exception {
+        ParticipationExample example=new ParticipationExample();
+        ParticipationExample.Criteria criteria = example.createCriteria();
+        if(StringUtils.isNullOrEmpty(status)){
+            throw new Exception("状态不能为空");
+        }
+        if(StringUtils.isNullOrEmpty(sid)){
+            throw new Exception("sid不能为空");
+        }
+        return (int) participationMapper.countByExample(example);
     }
 
     @Override

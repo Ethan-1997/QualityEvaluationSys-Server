@@ -1,5 +1,6 @@
 package com.qualityevaluationsys.demo.web;
 
+import com.qualityevaluationsys.demo.domain.BreakRule;
 import com.qualityevaluationsys.demo.domain.OtherImportant;
 import com.qualityevaluationsys.demo.domain.Participation;
 import com.qualityevaluationsys.demo.service.ParticipationService;
@@ -25,6 +26,20 @@ public class ParticipationController  extends BaseController{
         try {
             List<Participation> participations = service.selectByExample(pojo);
             msg.put("items",participations);
+        }catch (Exception e){
+            msg.put("data","error");
+            msg.put("message",e.getMessage());
+        }
+        return  msg;
+    }
+
+    @RequestMapping(value = "/countByStatusAndSid",method = RequestMethod.GET)
+    public Map<String,Object> countByStatusAndSid( @ModelAttribute Participation pojo){
+        msg.clear();
+        try {
+            int i = service.countByStatusAndSid(pojo.getStatus(), pojo.getSid());
+            msg.put("count",i);
+            msg.put("data","success");
         }catch (Exception e){
             msg.put("data","error");
             msg.put("message",e.getMessage());

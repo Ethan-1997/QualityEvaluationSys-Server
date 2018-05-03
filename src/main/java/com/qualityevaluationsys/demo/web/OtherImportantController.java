@@ -25,6 +25,7 @@ public class OtherImportantController  extends BaseController{
         try {
             List<OtherImportant> otherImportants = service.selectByExample(pojo);
             msg.put("items",otherImportants);
+            msg.put("count",otherImportants.size());
         }catch (Exception e){
             msg.put("data","error");
             msg.put("message",e.getMessage());
