@@ -251,9 +251,42 @@
 
   <select id="selectStudentInfoAndWorkInfoBySid" parameterType="java.lang.Integer" resultType="com.qualityevaluationsys.demo.domain.WorkInfoAndStudentInfo">
     select * from StudentWork,WorkInfo where StudentWork.Wid=WorkInfo.Wid
-    <if test="sid != null">
-      and sid=#{sid,jdbcType=INTEGER}
+    <if test="sid != null and sid!=''">
+      and sid LIKE #{sid,jdbcType=VARCHAR}
     </if>
+    <if test="title != null and title!=''">
+      and  title LIKE #{title,jdbcType=VARCHAR}
+    </if>
+    <if test="cname != null and cname!=''">
+      and  cname= #{cname,jdbcType=VARCHAR}
+    </if>
+    <if test="submit != null and submit!=''">
+      and  submitStatus= #{submit,jdbcType=VARCHAR}
+    </if>
+    <if test="sort!=null and sort == '-id'">
+      ORDER BY id DESC
+    </if>
+    <if test="sort!=null and sort == '+id'">
+      ORDER BY id ASC
+    </if>
+    <if test="start != null and end!=null">
+        limit #{start,jdbcType=INTEGER},#{end,jdbcType=INTEGER}
+    </if>
+  </select>
 
+  <select id="CountStudentInfoAndWorkInfoBySid" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select count(*) from StudentWork,WorkInfo where StudentWork.Wid=WorkInfo.Wid
+    <if test="sid != null and sid!=''">
+      and sid LIKE #{sid,jdbcType=VARCHAR}
+    </if>
+    <if test="title != null and title!=''">
+      and  title LIKE #{title,jdbcType=VARCHAR}
+    </if>
+    <if test="cname != null and cname!=''">
+      and  cname= #{cname,jdbcType=VARCHAR}
+    </if>
+    <if test="submit != null and submit!=''">
+      and  submitStatus= #{submit,jdbcType=VARCHAR}
+    </if>
   </select>
 </mapper>

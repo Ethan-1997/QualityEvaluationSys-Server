@@ -8,6 +8,7 @@ import com.qualityevaluationsys.demo.dao.WorkInfoMapper;
 import com.qualityevaluationsys.demo.domain.*;
 import com.qualityevaluationsys.demo.service.StudentWorkService;
 import com.qualityevaluationsys.demo.utils.PageBean;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -97,7 +98,16 @@ public class StudentWorkServiceImpl implements StudentWorkService {
     }
 
     @Override
-    public List<WorkInfoAndStudentInfo> selectStudentInfoAndWorkInfoBySid(Integer sid) {
-        return studentWorkMapper.selectStudentInfoAndWorkInfoBySid(sid);
+    public PageBean selectStudentInfoAndWorkInfoBySid(String sid,
+                                                                          String title,
+                                                                          String cname,
+                                                                          String submit,
+                                                                          String sort,
+                                                                          Integer page,
+                                                                          Integer limit) {
+        Integer count = studentWorkMapper.CountStudentInfoAndWorkInfoBySid(sid, title, cname, submit);
+        PageBean pageBean=new PageBean(page,count,limit);
+        pageBean.setList(studentWorkMapper.selectStudentInfoAndWorkInfoBySid(sid,title,cname,submit,sort,pageBean.getStart(),limit)); ;
+        return pageBean;
     }
 }

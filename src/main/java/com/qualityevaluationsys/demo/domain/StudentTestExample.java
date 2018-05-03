@@ -663,6 +663,66 @@ public class StudentTestExample {
             addCriterion("Ttype not between", value1, value2, "ttype");
             return (Criteria) this;
         }
+
+        public Criteria andDisplayIsNull() {
+            addCriterion("display is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayIsNotNull() {
+            addCriterion("display is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayEqualTo(Byte value) {
+            addCriterion("display =", value, "display");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayNotEqualTo(Byte value) {
+            addCriterion("display <>", value, "display");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayGreaterThan(Byte value) {
+            addCriterion("display >", value, "display");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayGreaterThanOrEqualTo(Byte value) {
+            addCriterion("display >=", value, "display");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayLessThan(Byte value) {
+            addCriterion("display <", value, "display");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayLessThanOrEqualTo(Byte value) {
+            addCriterion("display <=", value, "display");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayIn(List<Byte> values) {
+            addCriterion("display in", values, "display");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayNotIn(List<Byte> values) {
+            addCriterion("display not in", values, "display");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayBetween(Byte value1, Byte value2) {
+            addCriterion("display between", value1, value2, "display");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayNotBetween(Byte value1, Byte value2) {
+            addCriterion("display not between", value1, value2, "display");
+            return (Criteria) this;
+        }
     }
 
     /**

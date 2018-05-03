@@ -37,6 +37,8 @@ public class StudentTest implements Serializable {
 
     private String ttype;
 
+    private Byte display;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -103,6 +105,14 @@ public class StudentTest implements Serializable {
         this.ttype = ttype;
     }
 
+    public Byte getDisplay() {
+        return display;
+    }
+
+    public void setDisplay(Byte display) {
+        this.display = display;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -122,7 +132,8 @@ public class StudentTest implements Serializable {
             && (this.getTdate() == null ? other.getTdate() == null : this.getTdate().equals(other.getTdate()))
             && (this.getSstate() == null ? other.getSstate() == null : this.getSstate().equals(other.getSstate()))
             && (this.getSgrade() == null ? other.getSgrade() == null : this.getSgrade().equals(other.getSgrade()))
-            && (this.getTtype() == null ? other.getTtype() == null : this.getTtype().equals(other.getTtype()));
+            && (this.getTtype() == null ? other.getTtype() == null : this.getTtype().equals(other.getTtype()))
+            && (this.getDisplay() == null ? other.getDisplay() == null : this.getDisplay().equals(other.getDisplay()));
     }
 
     @Override
@@ -137,6 +148,7 @@ public class StudentTest implements Serializable {
         result = prime * result + ((getSstate() == null) ? 0 : getSstate().hashCode());
         result = prime * result + ((getSgrade() == null) ? 0 : getSgrade().hashCode());
         result = prime * result + ((getTtype() == null) ? 0 : getTtype().hashCode());
+        result = prime * result + ((getDisplay() == null) ? 0 : getDisplay().hashCode());
         return result;
     }
 
@@ -154,6 +166,7 @@ public class StudentTest implements Serializable {
         sb.append(", sstate=").append(sstate);
         sb.append(", sgrade=").append(sgrade);
         sb.append(", ttype=").append(ttype);
+        sb.append(", display=").append(display);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

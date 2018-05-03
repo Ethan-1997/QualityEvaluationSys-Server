@@ -9,6 +9,7 @@ public class WorkInfoAndStudentInfo {
     private  Integer grade;
     private String wid1;
     private Integer cid;
+    private String sid;
     private String cname;
     private String title;
     private String author;
@@ -18,6 +19,14 @@ public class WorkInfoAndStudentInfo {
     private Integer submit;
     private Integer sum;
     private String fileList1;
+
+    public String getSid() {
+        return sid;
+    }
+
+    public void setSid(String sid) {
+        this.sid = sid;
+    }
 
     public Integer getId() {
         return id;

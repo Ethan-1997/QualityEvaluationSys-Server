@@ -23,4 +23,5 @@ public interface StudentTestService {
 
     int updateByPrimaryKeySelective(StudentTest record);
 
+    void switchDisplay(Integer cid, String tid,int status);
 }

@@ -75,6 +75,18 @@ public class TTController extends BaseController{
         }
         return  msg;
     }
+    @RequestMapping(value = "/getByExample",method = RequestMethod.GET)
+    public Map<String,Object> getByTno(@ModelAttribute TT pojo){
+        msg.clear();
+        try {
+            List<TT> temp = service.selectByExample(pojo);
+            msg.put("item",temp);
+        }catch (Exception e){
+            msg.put("data","error");
+            msg.put("message",e.getMessage());
+        }
+        return  msg;
+    }
     @RequestMapping(value = "/update",method = RequestMethod.POST)
     public Map<String,Object> update(@ModelAttribute TT pojo){
         msg.clear();

@@ -23,4 +23,5 @@ public interface TTService {
 
     int updateByPrimaryKeySelective(TT record);
 
+    List<TT> selectByExample(TT pojo);
 }

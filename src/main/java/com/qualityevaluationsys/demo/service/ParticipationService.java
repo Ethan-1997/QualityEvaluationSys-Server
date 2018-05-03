@@ -22,4 +22,5 @@ public interface ParticipationService {
 
     int updateByPrimaryKeySelective(Participation record);
 
+    Boolean checkSignIn(String date, String sid);
 }

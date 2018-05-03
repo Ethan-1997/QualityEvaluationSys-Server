@@ -31,8 +31,22 @@ public interface StudentWorkMapper {
     int updateByExample(@Param("record") StudentWork record, @Param("example") StudentWorkExample example);
 
     int updateByPrimaryKeySelective(StudentWork record);
-
+    Integer CountStudentInfoAndWorkInfoBySid(
+            @Param("sid")String sid,
+            @Param("title")String title,
+            @Param("cname")String cname,
+            @Param("submit")String submit
+    );
     int updateByPrimaryKey(StudentWork record);
 
-    List<WorkInfoAndStudentInfo> selectStudentInfoAndWorkInfoBySid(@Param("sid")Integer sid);
+    List<WorkInfoAndStudentInfo> selectStudentInfoAndWorkInfoBySid(
+            @Param("sid")String sid,
+            @Param("title")String title,
+            @Param("cname")String cname,
+            @Param("submit")String submit,
+            @Param("sort")String sort,
+            @Param("start")Integer start,
+            @Param("end")Integer end);
+
+
 }

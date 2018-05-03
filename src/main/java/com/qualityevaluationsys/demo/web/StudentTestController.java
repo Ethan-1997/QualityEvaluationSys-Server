@@ -18,6 +18,19 @@ public class StudentTestController extends BaseController{
     @Autowired
     StudentTestService service;
 
+    @RequestMapping(value = "/switchDisplay",method = RequestMethod.GET)
+    public Map<String,Object> switchDisplay(Integer cid,String tid,int status){
+        msg.clear();
+        try {
+            service.switchDisplay(cid,tid,status);
+            msg.put("data","success");
+        }catch (Exception e){
+            msg.put("data","error");
+            msg.put("message",e.getMessage());
+        }
+        return  msg;
+    }
+
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public Map<String,Object> list(Integer limit, String sort, Integer page, @ModelAttribute StudentTest pojo){

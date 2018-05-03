@@ -25,6 +25,12 @@ public interface StudentWorkService {
 
     Map<String,Object> getStatisticsByWid(Integer wid) throws Exception;
 
-    List<WorkInfoAndStudentInfo> selectStudentInfoAndWorkInfoBySid(Integer sid);
+    PageBean selectStudentInfoAndWorkInfoBySid(String sid,
+                                                                   String title,
+                                                                   String cname,
+                                                                   String submit,
+                                                                   String sort,
+                                                                   Integer start,
+                                                                   Integer end);
 
 }

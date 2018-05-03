@@ -1,5 +1,6 @@
 package com.qualityevaluationsys.demo.web;
 
+import com.qiniu.util.StringUtils;
 import com.qualityevaluationsys.demo.domain.StudentWork;
 import com.qualityevaluationsys.demo.domain.WorkInfo;
 import com.qualityevaluationsys.demo.service.StudentWorkService;
@@ -106,10 +107,24 @@ public class StudentWorkController extends BaseController {
     }
 
     @RequestMapping(value = "/selectStudentInfoAndWorkInfoBySid",method = RequestMethod.POST)
-    public Map<String,Object> selectStudentInfoAndWorkInfoBySid(Integer sid){
+    public Map<String,Object> selectStudentInfoAndWorkInfoBySid(String sid,
+                                                                String title,
+                                                                String cname,
+                                                                String submit,
+                                                                String sort,
+                                                                Integer page,
+                                                                Integer limit){
         msg.clear();
         try {
-            msg.put("items",sysuserService.selectStudentInfoAndWorkInfoBySid(sid)) ;
+            if(!StringUtils.isNullOrEmpty(title)){
+                title="%"+title+"%";
+            }
+            if(!StringUtils.isNullOrEmpty(sid)){
+                sid="%"+sid+"%";
+            }
+            PageBean pageBean = sysuserService.selectStudentInfoAndWorkInfoBySid(sid,title,cname,submit,sort,page,limit);
+            msg.put("items",pageBean.getList()) ;
+            msg.put("count",pageBean.getTotalCount()) ;
             msg.put("data","success");
         }catch (Exception e){
             msg.put("data","error");

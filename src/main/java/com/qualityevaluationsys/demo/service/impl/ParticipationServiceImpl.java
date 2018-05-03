@@ -9,6 +9,7 @@ import com.qualityevaluationsys.demo.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -94,5 +95,14 @@ public class ParticipationServiceImpl implements ParticipationService {
     @Override
     public int updateByPrimaryKeySelective(Participation record) {
         return participationMapper.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public Boolean checkSignIn(String date, String sid) {
+        ParticipationExample example=new ParticipationExample();
+        ParticipationExample.Criteria criteria = example.createCriteria();
+        criteria.andDateEqualTo(date);
+        criteria.andSidEqualTo(sid);
+        return participationMapper.countByExample(example)!=0;
     }
 }

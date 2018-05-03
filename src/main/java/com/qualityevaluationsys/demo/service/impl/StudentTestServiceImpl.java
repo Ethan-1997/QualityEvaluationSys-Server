@@ -1,18 +1,19 @@
 package com.qualityevaluationsys.demo.service.impl;
 
 import com.qiniu.util.StringUtils;
-import com.qualityevaluationsys.demo.domain.OtherImportantExample;
-import com.qualityevaluationsys.demo.domain.StudentTestExample;
+import com.qualityevaluationsys.demo.dao.StudentMapper;
+import com.qualityevaluationsys.demo.domain.*;
 import com.qualityevaluationsys.demo.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.qualityevaluationsys.demo.domain.StudentTest;
 import com.qualityevaluationsys.demo.dao.StudentTestMapper;
 import com.qualityevaluationsys.demo.service.StudentTestService;
 @Service
 public class StudentTestServiceImpl implements StudentTestService {
     @Autowired
     private StudentTestMapper studentTestMapper;
+    @Autowired
+    private StudentMapper studentMapper;
 
     @Override
     public int deleteByPrimaryKey(Integer id) {
@@ -53,8 +54,29 @@ public class StudentTestServiceImpl implements StudentTestService {
         return pageBean;
     }
 
+
+
     @Override
     public int updateByPrimaryKeySelective(StudentTest record) {
         return studentTestMapper.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public void switchDisplay(Integer cid, String tid,int status) {
+
+
+        StudentExample studentExample=new StudentExample();
+        StudentExample.Criteria criteria1 = studentExample.createCriteria();
+        criteria1.andCidEqualTo(cid);
+        for (Student student : studentMapper.selectByExample(studentExample)) {
+            StudentTestExample example=new StudentTestExample();
+            StudentTestExample.Criteria criteria = example.createCriteria();
+            criteria.andTidEqualTo(tid);
+            criteria.andSidEqualTo(student.getSid());
+            StudentTest studentTest=new StudentTest();
+            studentTest.setDisplay((byte) status);
+            studentTestMapper.updateByExample(studentTest,example);
+        }
+
     }
 }

@@ -20,6 +20,19 @@ public class ParticipationController  extends BaseController{
     @Autowired
     ParticipationService service;
 
+
+    @RequestMapping(value = "/checkSignIn",method = RequestMethod.GET)
+    public Map<String,Object> checkSignIn(String date,String sid){
+        msg.clear();
+        try {
+            Boolean flag=service.checkSignIn(date,sid);
+            msg.put("flag",flag);
+        }catch (Exception e){
+            msg.put("data","error");
+            msg.put("message",e.getMessage());
+        }
+        return  msg;
+    }
     @RequestMapping(value = "/listBySid",method = RequestMethod.GET)
     public Map<String,Object> listBySid(String sort, @ModelAttribute Participation pojo){
         msg.clear();
