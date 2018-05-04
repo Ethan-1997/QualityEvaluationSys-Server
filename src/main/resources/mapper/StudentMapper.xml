@@ -349,4 +349,10 @@
     from Student
     where Cid = #{cid,jdbcType=VARCHAR}
   </select>
+
+  <select id="selectall" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from Student
+  </select>
 </mapper>

@@ -21,4 +21,6 @@ public interface StudentService {
     List selectByCid(Integer cid);
 
     int updateByPrimaryKey(Student record);
+
+    List selectall();
 }

@@ -30,6 +30,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public List selectall() {
+        return studentMapper.selectall();
+    }
+
+    @Override
     public int insert(Student record) {
 
         //TODO 事务优化

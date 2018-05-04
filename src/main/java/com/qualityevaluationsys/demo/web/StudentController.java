@@ -106,4 +106,17 @@ public class StudentController  extends BaseController{
         }
         return  msg;
     }
+
+    @RequestMapping(value = "/getstudentall",method = RequestMethod.GET)
+    public Map<String,Object> getstudentall(){
+        msg.clear();
+        try {
+            List temp = service.selectall();
+            msg.put("items",temp);
+        }catch (Exception e){
+            msg.put("data","error");
+            msg.put("message",e.getMessage());
+        }
+        return  msg;
+    }
 }
