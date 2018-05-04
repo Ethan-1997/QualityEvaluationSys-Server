@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qualityevaluationsys.demo.dao.StudentWorkMapper">
+  <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.StudentWork">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="Wid" jdbcType="INTEGER" property="wid" />
+    <result column="Sid" jdbcType="VARCHAR" property="sid" />
+    <result column="upTime" jdbcType="VARCHAR" property="uptime" />
+    <result column="submitStatus" jdbcType="VARCHAR" property="submitstatus" />
+    <result column="fileList" jdbcType="VARCHAR" property="filelist" />
+    <result column="grade" jdbcType="INTEGER" property="grade" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, Wid, Sid, upTime, submitStatus, fileList, grade
+  </sql>
+  <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.StudentWorkExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from StudentWork
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from StudentWork
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from StudentWork
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qualityevaluationsys.demo.domain.StudentWorkExample">
+    delete from StudentWork
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.StudentWork">
+    insert into StudentWork (id, Wid, Sid, 
+      upTime, submitStatus, fileList, 
+      grade)
+    values (#{id,jdbcType=INTEGER}, #{wid,jdbcType=INTEGER}, #{sid,jdbcType=VARCHAR}, 
+      #{uptime,jdbcType=VARCHAR}, #{submitstatus,jdbcType=VARCHAR}, #{filelist,jdbcType=VARCHAR}, 
+      #{grade,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.StudentWork">
+    insert into StudentWork
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="wid != null">
+        Wid,
+      </if>
+      <if test="sid != null">
+        Sid,
+      </if>
+      <if test="uptime != null">
+        upTime,
+      </if>
+      <if test="submitstatus != null">
+        submitStatus,
+      </if>
+      <if test="filelist != null">
+        fileList,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="wid != null">
+        #{wid,jdbcType=INTEGER},
+      </if>
+      <if test="sid != null">
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="uptime != null">
+        #{uptime,jdbcType=VARCHAR},
+      </if>
+      <if test="submitstatus != null">
+        #{submitstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="filelist != null">
+        #{filelist,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qualityevaluationsys.demo.domain.StudentWorkExample" resultType="java.lang.Long">
+    select count(*) from StudentWork
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update StudentWork
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.wid != null">
+        Wid = #{record.wid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sid != null">
+        Sid = #{record.sid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uptime != null">
+        upTime = #{record.uptime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.submitstatus != null">
+        submitStatus = #{record.submitstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.filelist != null">
+        fileList = #{record.filelist,jdbcType=VARCHAR},
+      </if>
+      <if test="record.grade != null">
+        grade = #{record.grade,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update StudentWork
+    set id = #{record.id,jdbcType=INTEGER},
+      Wid = #{record.wid,jdbcType=INTEGER},
+      Sid = #{record.sid,jdbcType=VARCHAR},
+      upTime = #{record.uptime,jdbcType=VARCHAR},
+      submitStatus = #{record.submitstatus,jdbcType=VARCHAR},
+      fileList = #{record.filelist,jdbcType=VARCHAR},
+      grade = #{record.grade,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qualityevaluationsys.demo.domain.StudentWork">
+    update StudentWork
+    <set>
+      <if test="wid != null">
+        Wid = #{wid,jdbcType=INTEGER},
+      </if>
+      <if test="sid != null">
+        Sid = #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="uptime != null">
+        upTime = #{uptime,jdbcType=VARCHAR},
+      </if>
+      <if test="submitstatus != null">
+        submitStatus = #{submitstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="filelist != null">
+        fileList = #{filelist,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qualityevaluationsys.demo.domain.StudentWork">
+    update StudentWork
+    set Wid = #{wid,jdbcType=INTEGER},
+      Sid = #{sid,jdbcType=VARCHAR},
+      upTime = #{uptime,jdbcType=VARCHAR},
+      submitStatus = #{submitstatus,jdbcType=VARCHAR},
+      fileList = #{filelist,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectStudentInfoAndWorkInfoBySid" parameterType="java.lang.Integer" resultType="com.qualityevaluationsys.demo.domain.WorkInfoAndStudentInfo">
+    select *,StudentWork.fileList as stuFileList,WorkInfo.fileList as teaFileList from StudentWork,WorkInfo where StudentWork.Wid=WorkInfo.Wid
+    <if test="sid != null and sid!=''">
+      and sid LIKE #{sid,jdbcType=VARCHAR}
+    </if>
+    <if test="title != null and title!=''">
+      and  title LIKE #{title,jdbcType=VARCHAR}
+    </if>
+    <if test="cname != null and cname!=''">
+      and  cname= #{cname,jdbcType=VARCHAR}
+    </if>
+    <if test="submit != null and submit!=''">
+      and  submitStatus= #{submit,jdbcType=VARCHAR}
+    </if>
+    <if test="sort!=null and sort == '-id'">
+      ORDER BY id DESC
+    </if>
+    <if test="sort!=null and sort == '+id'">
+      ORDER BY id ASC
+    </if>
+    <if test="start != null and end!=null">
+        limit #{start,jdbcType=INTEGER},#{end,jdbcType=INTEGER}
+    </if>
+  </select>
+
+  <select id="CountStudentInfoAndWorkInfoBySid" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select count(*) from StudentWork,WorkInfo where StudentWork.Wid=WorkInfo.Wid
+    <if test="sid != null and sid!=''">
+      and sid LIKE #{sid,jdbcType=VARCHAR}
+    </if>
+    <if test="title != null and title!=''">
+      and  title LIKE #{title,jdbcType=VARCHAR}
+    </if>
+    <if test="cname != null and cname!=''">
+      and  cname= #{cname,jdbcType=VARCHAR}
+    </if>
+    <if test="submit != null and submit!=''">
+      and  submitStatus= #{submit,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

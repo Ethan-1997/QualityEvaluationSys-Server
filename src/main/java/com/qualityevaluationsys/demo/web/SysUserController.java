@@ -22,7 +22,7 @@ public class SysUserController extends BaseController {
     public Map<String,Object> list(Integer limit, String sort, Integer page, @ModelAttribute Sysuser user){
         msg.clear();
         try {
-            PageBean pageBean= sysuserService.getPageBean(limit,sort,page,user);
+            PageBean pageBean= sysuserService.getPageBean(page,limit,sort,user);
             msg.put("total",pageBean.getTotalCount());
             msg.put("items",pageBean.getList());
         }catch (Exception e){

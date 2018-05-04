@@ -713,6 +713,76 @@ public class TeacherExample {
             addCriterion("Ttel not between", value1, value2, "ttel");
             return (Criteria) this;
         }
+
+        public Criteria andCnameIsNull() {
+            addCriterion("Cname is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameIsNotNull() {
+            addCriterion("Cname is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameEqualTo(String value) {
+            addCriterion("Cname =", value, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameNotEqualTo(String value) {
+            addCriterion("Cname <>", value, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameGreaterThan(String value) {
+            addCriterion("Cname >", value, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameGreaterThanOrEqualTo(String value) {
+            addCriterion("Cname >=", value, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameLessThan(String value) {
+            addCriterion("Cname <", value, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameLessThanOrEqualTo(String value) {
+            addCriterion("Cname <=", value, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameLike(String value) {
+            addCriterion("Cname like", value, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameNotLike(String value) {
+            addCriterion("Cname not like", value, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameIn(List<String> values) {
+            addCriterion("Cname in", values, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameNotIn(List<String> values) {
+            addCriterion("Cname not in", values, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameBetween(String value1, String value2) {
+            addCriterion("Cname between", value1, value2, "cname");
+            return (Criteria) this;
+        }
+
+        public Criteria andCnameNotBetween(String value1, String value2) {
+            addCriterion("Cname not between", value1, value2, "cname");
+            return (Criteria) this;
+        }
     }
 
     /**

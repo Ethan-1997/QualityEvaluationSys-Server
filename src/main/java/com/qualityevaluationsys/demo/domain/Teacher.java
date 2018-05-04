@@ -39,6 +39,8 @@ public class Teacher implements Serializable {
 
     private String ttel;
 
+    private String cname;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getTno() {
@@ -113,6 +115,14 @@ public class Teacher implements Serializable {
         this.ttel = ttel;
     }
 
+    public String getCname() {
+        return cname;
+    }
+
+    public void setCname(String cname) {
+        this.cname = cname;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -133,7 +143,8 @@ public class Teacher implements Serializable {
             && (this.getTwage() == null ? other.getTwage() == null : this.getTwage().equals(other.getTwage()))
             && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()))
             && (this.getUno() == null ? other.getUno() == null : this.getUno().equals(other.getUno()))
-            && (this.getTtel() == null ? other.getTtel() == null : this.getTtel().equals(other.getTtel()));
+            && (this.getTtel() == null ? other.getTtel() == null : this.getTtel().equals(other.getTtel()))
+            && (this.getCname() == null ? other.getCname() == null : this.getCname().equals(other.getCname()));
     }
 
     @Override
@@ -149,6 +160,7 @@ public class Teacher implements Serializable {
         result = prime * result + ((getCid() == null) ? 0 : getCid().hashCode());
         result = prime * result + ((getUno() == null) ? 0 : getUno().hashCode());
         result = prime * result + ((getTtel() == null) ? 0 : getTtel().hashCode());
+        result = prime * result + ((getCname() == null) ? 0 : getCname().hashCode());
         return result;
     }
 
@@ -167,6 +179,7 @@ public class Teacher implements Serializable {
         sb.append(", cid=").append(cid);
         sb.append(", uno=").append(uno);
         sb.append(", ttel=").append(ttel);
+        sb.append(", cname=").append(cname);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

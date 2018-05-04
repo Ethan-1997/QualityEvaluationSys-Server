@@ -2,10 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qualityevaluationsys.demo.dao.TTMapper">
   <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.TT">
+    <id column="id" jdbcType="INTEGER" property="id" />
     <result column="Tno" jdbcType="INTEGER" property="tno" />
     <result column="Tid" jdbcType="VARCHAR" property="tid" />
     <result column="Tname" jdbcType="VARCHAR" property="tname" />
     <result column="Tdate" jdbcType="VARCHAR" property="tdate" />
+    <result column="Tdisplay" jdbcType="VARCHAR" property="tdisplay" />
+    <result column="Cid" jdbcType="INTEGER" property="cid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    Tno, Tid, Tname, Tdate
+    id, Tno, Tid, Tname, Tdate, Tdisplay, Cid
   </sql>
   <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.TTExample" resultMap="BaseResultMap">
     select
@@ -90,6 +93,16 @@
       </if>
     </if>
   </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TT
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from TT
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
   <delete id="deleteByExample" parameterType="com.qualityevaluationsys.demo.domain.TTExample">
     delete from TT
     <if test="_parameter != null">
@@ -97,12 +110,20 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.TT">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into TT (Tno, Tid, Tname, 
-      Tdate)
+      Tdate, Tdisplay, Cid
+      )
     values (#{tno,jdbcType=INTEGER}, #{tid,jdbcType=VARCHAR}, #{tname,jdbcType=VARCHAR}, 
-      #{tdate,jdbcType=VARCHAR})
+      #{tdate,jdbcType=VARCHAR}, #{tdisplay,jdbcType=VARCHAR}, #{cid,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.TT">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into TT
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="tno != null">
@@ -116,6 +137,12 @@
       </if>
       <if test="tdate != null">
         Tdate,
+      </if>
+      <if test="tdisplay != null">
+        Tdisplay,
+      </if>
+      <if test="cid != null">
+        Cid,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -131,6 +158,12 @@
       <if test="tdate != null">
         #{tdate,jdbcType=VARCHAR},
       </if>
+      <if test="tdisplay != null">
+        #{tdisplay,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.qualityevaluationsys.demo.domain.TTExample" resultType="java.lang.Long">
@@ -142,6 +175,9 @@
   <update id="updateByExampleSelective" parameterType="map">
     update TT
     <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
       <if test="record.tno != null">
         Tno = #{record.tno,jdbcType=INTEGER},
       </if>
@@ -154,6 +190,12 @@
       <if test="record.tdate != null">
         Tdate = #{record.tdate,jdbcType=VARCHAR},
       </if>
+      <if test="record.tdisplay != null">
+        Tdisplay = #{record.tdisplay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cid != null">
+        Cid = #{record.cid,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -161,29 +203,49 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update TT
-    set Tno = #{record.tno,jdbcType=INTEGER},
+    set id = #{record.id,jdbcType=INTEGER},
+      Tno = #{record.tno,jdbcType=INTEGER},
       Tid = #{record.tid,jdbcType=VARCHAR},
       Tname = #{record.tname,jdbcType=VARCHAR},
-      Tdate = #{record.tdate,jdbcType=VARCHAR}
+      Tdate = #{record.tdate,jdbcType=VARCHAR},
+      Tdisplay = #{record.tdisplay,jdbcType=VARCHAR},
+      Cid = #{record.cid,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <delete id="deleteByTid" parameterType="java.lang.String">
-    delete from TT
-    where Tid = #{tid,jdbcType=VARCHAR}
-  </delete>
-  <select id="selectByTno" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from TT
-    where Tno = #{tno,jdbcType=VARCHAR}
-  </select>
-  <update id="updateByTid" parameterType="com.qualityevaluationsys.demo.domain.TT">
+  <update id="updateByPrimaryKeySelective" parameterType="com.qualityevaluationsys.demo.domain.TT">
     update TT
     <set>
-      Tdate = #{tdate,jdbcType=VARCHAR}
+      <if test="tno != null">
+        Tno = #{tno,jdbcType=INTEGER},
+      </if>
+      <if test="tid != null">
+        Tid = #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="tname != null">
+        Tname = #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="tdate != null">
+        Tdate = #{tdate,jdbcType=VARCHAR},
+      </if>
+      <if test="tdisplay != null">
+        Tdisplay = #{tdisplay,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null">
+        Cid = #{cid,jdbcType=INTEGER},
+      </if>
     </set>
-    where Tid = #{tid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qualityevaluationsys.demo.domain.TT">
+    update TT
+    set Tno = #{tno,jdbcType=INTEGER},
+      Tid = #{tid,jdbcType=VARCHAR},
+      Tname = #{tname,jdbcType=VARCHAR},
+      Tdate = #{tdate,jdbcType=VARCHAR},
+      Tdisplay = #{tdisplay,jdbcType=VARCHAR},
+      Cid = #{cid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -2,8 +2,6 @@ package com.qualityevaluationsys.demo.service.impl;
 
 import com.qiniu.util.StringUtils;
 import com.qualityevaluationsys.demo.dao.ParticipationMapper;
-import com.qualityevaluationsys.demo.domain.BreakRuleExample;
-import com.qualityevaluationsys.demo.domain.ClassExample;
 import com.qualityevaluationsys.demo.domain.Participation;
 import com.qualityevaluationsys.demo.domain.ParticipationExample;
 import com.qualityevaluationsys.demo.service.ParticipationService;
@@ -11,6 +9,7 @@ import com.qualityevaluationsys.demo.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -42,9 +41,16 @@ public class ParticipationServiceImpl implements ParticipationService {
     }
 
     @Override
-    public List<Participation> selectByExample(Participation participation) {
+    public List<Participation> selectByExample(Participation participation, String sort) {
         ParticipationExample example=new ParticipationExample();
         ParticipationExample.Criteria criteria = example.createCriteria();
+        if(!StringUtils.isNullOrEmpty(sort)){
+            if(sort.equals("-id")){
+                example.setOrderByClause("pid desc");
+            }else{
+                example.setOrderByClause("pid asc");
+            }
+        }
         if(participation!=null){
             criteria.andSidEqualTo(participation.getSid());
         }
@@ -89,5 +95,14 @@ public class ParticipationServiceImpl implements ParticipationService {
     @Override
     public int updateByPrimaryKeySelective(Participation record) {
         return participationMapper.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public Boolean checkSignIn(String date, String sid) {
+        ParticipationExample example=new ParticipationExample();
+        ParticipationExample.Criteria criteria = example.createCriteria();
+        criteria.andDateEqualTo(date);
+        criteria.andSidEqualTo(sid);
+        return participationMapper.countByExample(example)!=0;
     }
 }

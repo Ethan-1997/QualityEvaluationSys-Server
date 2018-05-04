@@ -4,7 +4,6 @@ import com.qualityevaluationsys.demo.domain.Student;
 import com.qualityevaluationsys.demo.domain.StudentExample;
 import com.qualityevaluationsys.demo.service.StudentService;
 import com.qualityevaluationsys.demo.utils.PageBean;
-import com.qualityevaluationsys.demo.utils.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -24,6 +24,7 @@ public class ReviewGradeController extends BaseController {
         try {
             List<ReviewGrade> reviewGrades = service.selectByExample(pojo);
             msg.put("items",reviewGrades);
+
         }catch (Exception e){
             msg.put("data","error");
             msg.put("message",e.getMessage());

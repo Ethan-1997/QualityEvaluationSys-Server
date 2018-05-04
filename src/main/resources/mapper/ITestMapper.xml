@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qualityevaluationsys.demo.dao.ITestMapper">
+  <resultMap id="BaseResultMap" type="com.qualityevaluationsys.demo.domain.ITest">
+    <id column="Tid" jdbcType="VARCHAR" property="tid" />
+    <result column="Tname" jdbcType="VARCHAR" property="tname" />
+    <result column="Ttype" jdbcType="VARCHAR" property="ttype" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.qualityevaluationsys.demo.domain.ITest">
+    <result column="Tquestion" jdbcType="LONGVARCHAR" property="tquestion" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Tid, Tname, Ttype
+  </sql>
+  <sql id="Blob_Column_List">
+    Tquestion
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.qualityevaluationsys.demo.domain.ITestExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ITest
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.qualityevaluationsys.demo.domain.ITestExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ITest
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ITest
+    where Tid = #{tid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ITest
+    where Tid = #{tid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qualityevaluationsys.demo.domain.ITestExample">
+    delete from ITest
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qualityevaluationsys.demo.domain.ITest">
+    insert into ITest (Tid, Tname, Ttype, 
+      Tquestion)
+    values (#{tid,jdbcType=VARCHAR}, #{tname,jdbcType=VARCHAR}, #{ttype,jdbcType=VARCHAR}, 
+      #{tquestion,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qualityevaluationsys.demo.domain.ITest">
+    insert into ITest
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tid != null">
+        Tid,
+      </if>
+      <if test="tname != null">
+        Tname,
+      </if>
+      <if test="ttype != null">
+        Ttype,
+      </if>
+      <if test="tquestion != null">
+        Tquestion,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tid != null">
+        #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="tname != null">
+        #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="ttype != null">
+        #{ttype,jdbcType=VARCHAR},
+      </if>
+      <if test="tquestion != null">
+        #{tquestion,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qualityevaluationsys.demo.domain.ITestExample" resultType="java.lang.Long">
+    select count(*) from ITest
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ITest
+    <set>
+      <if test="record.tid != null">
+        Tid = #{record.tid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tname != null">
+        Tname = #{record.tname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ttype != null">
+        Ttype = #{record.ttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tquestion != null">
+        Tquestion = #{record.tquestion,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update ITest
+    set Tid = #{record.tid,jdbcType=VARCHAR},
+      Tname = #{record.tname,jdbcType=VARCHAR},
+      Ttype = #{record.ttype,jdbcType=VARCHAR},
+      Tquestion = #{record.tquestion,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ITest
+    set Tid = #{record.tid,jdbcType=VARCHAR},
+      Tname = #{record.tname,jdbcType=VARCHAR},
+      Ttype = #{record.ttype,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qualityevaluationsys.demo.domain.ITest">
+    update ITest
+    <set>
+      <if test="tname != null">
+        Tname = #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="ttype != null">
+        Ttype = #{ttype,jdbcType=VARCHAR},
+      </if>
+      <if test="tquestion != null">
+        Tquestion = #{tquestion,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Tid = #{tid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qualityevaluationsys.demo.domain.ITest">
+    update ITest
+    set Tname = #{tname,jdbcType=VARCHAR},
+      Ttype = #{ttype,jdbcType=VARCHAR},
+      Tquestion = #{tquestion,jdbcType=LONGVARCHAR}
+    where Tid = #{tid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qualityevaluationsys.demo.domain.ITest">
+    update ITest
+    set Tname = #{tname,jdbcType=VARCHAR},
+      Ttype = #{ttype,jdbcType=VARCHAR}
+    where Tid = #{tid,jdbcType=VARCHAR}
+  </update>
+</mapper>

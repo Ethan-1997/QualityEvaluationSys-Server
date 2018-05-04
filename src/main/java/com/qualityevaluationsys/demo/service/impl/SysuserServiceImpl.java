@@ -1,5 +1,6 @@
 package com.qualityevaluationsys.demo.service.impl;
 
+import com.qiniu.util.StringUtils;
 import com.qualityevaluationsys.demo.dao.StudentMapper;
 import com.qualityevaluationsys.demo.dao.SysuserMapper;
 import com.qualityevaluationsys.demo.dao.TeacherMapper;
@@ -56,8 +57,15 @@ public class SysuserServiceImpl implements SysuserService {
     }
 
     @Override
-    public PageBean getPageBean(Integer page, String limit, Integer sort, Sysuser example) {
+    public PageBean getPageBean(Integer page, Integer limit, String sort, Sysuser sysuser) {
         SysuserExample sysuserExample=new SysuserExample();
+        SysuserExample.Criteria criteria = sysuserExample.createCriteria();
+        if(!StringUtils.isNullOrEmpty(sysuser.getUname())){
+            criteria.andUnameLike("%"+sysuser.getUname()+"%");
+        }
+        if(!StringUtils.isNullOrEmpty(sysuser.getUtype())){
+            criteria.andUtypeEqualTo(sysuser.getUtype());
+        }
         if(sort!=null){
             if(sort.equals("-id")){
                 sysuserExample.setOrderByClause("uno desc");
@@ -65,8 +73,14 @@ public class SysuserServiceImpl implements SysuserService {
                 sysuserExample.setOrderByClause("uno asc");
             }
         }
-        SysuserExample.Criteria criteria = sysuserExample.createCriteria();
-        return null;
+
+
+        int count = (int) sysuserMapper.countByExample(sysuserExample);
+        PageBean pageBean=new PageBean(page,count,limit);
+        sysuserExample.setLimit(limit);
+        sysuserExample.setOffset(pageBean.getStart());
+        pageBean.setList(sysuserMapper.selectByExample(sysuserExample));
+        return pageBean;
     }
 
     @Override

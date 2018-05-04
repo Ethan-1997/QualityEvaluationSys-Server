@@ -124,6 +124,66 @@ public class StudentTestExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andIdIsNull() {
+            addCriterion("id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdIsNotNull() {
+            addCriterion("id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdEqualTo(Integer value) {
+            addCriterion("id =", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotEqualTo(Integer value) {
+            addCriterion("id <>", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdGreaterThan(Integer value) {
+            addCriterion("id >", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("id >=", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdLessThan(Integer value) {
+            addCriterion("id <", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdLessThanOrEqualTo(Integer value) {
+            addCriterion("id <=", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdIn(List<Integer> values) {
+            addCriterion("id in", values, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotIn(List<Integer> values) {
+            addCriterion("id not in", values, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdBetween(Integer value1, Integer value2) {
+            addCriterion("id between", value1, value2, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("id not between", value1, value2, "id");
+            return (Criteria) this;
+        }
+
         public Criteria andTidIsNull() {
             addCriterion("Tid is null");
             return (Criteria) this;
@@ -534,73 +594,133 @@ public class StudentTestExample {
             return (Criteria) this;
         }
 
-        public Criteria andSradioIsNull() {
-            addCriterion("Sradio is null");
+        public Criteria andTtypeIsNull() {
+            addCriterion("Ttype is null");
             return (Criteria) this;
         }
 
-        public Criteria andSradioIsNotNull() {
-            addCriterion("Sradio is not null");
+        public Criteria andTtypeIsNotNull() {
+            addCriterion("Ttype is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSradioEqualTo(String value) {
-            addCriterion("Sradio =", value, "sradio");
+        public Criteria andTtypeEqualTo(String value) {
+            addCriterion("Ttype =", value, "ttype");
             return (Criteria) this;
         }
 
-        public Criteria andSradioNotEqualTo(String value) {
-            addCriterion("Sradio <>", value, "sradio");
+        public Criteria andTtypeNotEqualTo(String value) {
+            addCriterion("Ttype <>", value, "ttype");
             return (Criteria) this;
         }
 
-        public Criteria andSradioGreaterThan(String value) {
-            addCriterion("Sradio >", value, "sradio");
+        public Criteria andTtypeGreaterThan(String value) {
+            addCriterion("Ttype >", value, "ttype");
             return (Criteria) this;
         }
 
-        public Criteria andSradioGreaterThanOrEqualTo(String value) {
-            addCriterion("Sradio >=", value, "sradio");
+        public Criteria andTtypeGreaterThanOrEqualTo(String value) {
+            addCriterion("Ttype >=", value, "ttype");
             return (Criteria) this;
         }
 
-        public Criteria andSradioLessThan(String value) {
-            addCriterion("Sradio <", value, "sradio");
+        public Criteria andTtypeLessThan(String value) {
+            addCriterion("Ttype <", value, "ttype");
             return (Criteria) this;
         }
 
-        public Criteria andSradioLessThanOrEqualTo(String value) {
-            addCriterion("Sradio <=", value, "sradio");
+        public Criteria andTtypeLessThanOrEqualTo(String value) {
+            addCriterion("Ttype <=", value, "ttype");
             return (Criteria) this;
         }
 
-        public Criteria andSradioLike(String value) {
-            addCriterion("Sradio like", value, "sradio");
+        public Criteria andTtypeLike(String value) {
+            addCriterion("Ttype like", value, "ttype");
             return (Criteria) this;
         }
 
-        public Criteria andSradioNotLike(String value) {
-            addCriterion("Sradio not like", value, "sradio");
+        public Criteria andTtypeNotLike(String value) {
+            addCriterion("Ttype not like", value, "ttype");
             return (Criteria) this;
         }
 
-        public Criteria andSradioIn(List<String> values) {
-            addCriterion("Sradio in", values, "sradio");
+        public Criteria andTtypeIn(List<String> values) {
+            addCriterion("Ttype in", values, "ttype");
             return (Criteria) this;
         }
 
-        public Criteria andSradioNotIn(List<String> values) {
-            addCriterion("Sradio not in", values, "sradio");
+        public Criteria andTtypeNotIn(List<String> values) {
+            addCriterion("Ttype not in", values, "ttype");
             return (Criteria) this;
         }
 
-        public Criteria andSradioBetween(String value1, String value2) {
-            addCriterion("Sradio between", value1, value2, "sradio");
+        public Criteria andTtypeBetween(String value1, String value2) {
+            addCriterion("Ttype between", value1, value2, "ttype");
             return (Criteria) this;
         }
 
-        public Criteria andSradioNotBetween(String value1, String value2) {
-            addCriterion("Sradio not between", value1, value2, "sradio");
+        public Criteria andTtypeNotBetween(String value1, String value2) {
+            addCriterion("Ttype not between", value1, value2, "ttype");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayIsNull() {
+            addCriterion("display is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayIsNotNull() {
+            addCriterion("display is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayEqualTo(Byte value) {
+            addCriterion("display =", value, "display");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayNotEqualTo(Byte value) {
+            addCriterion("display <>", value, "display");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayGreaterThan(Byte value) {
+            addCriterion("display >", value, "display");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayGreaterThanOrEqualTo(Byte value) {
+            addCriterion("display >=", value, "display");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayLessThan(Byte value) {
+            addCriterion("display <", value, "display");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayLessThanOrEqualTo(Byte value) {
+            addCriterion("display <=", value, "display");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayIn(List<Byte> values) {
+            addCriterion("display in", values, "display");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayNotIn(List<Byte> values) {
+            addCriterion("display not in", values, "display");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayBetween(Byte value1, Byte value2) {
+            addCriterion("display between", value1, value2, "display");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplayNotBetween(Byte value1, Byte value2) {
+            addCriterion("display not between", value1, value2, "display");
             return (Criteria) this;
         }
     }
