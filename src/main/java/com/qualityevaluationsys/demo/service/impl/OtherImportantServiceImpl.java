@@ -39,7 +39,7 @@ public class OtherImportantServiceImpl implements OtherImportantService {
         if(otherImportant!=null){
             criteria.andSidEqualTo(otherImportant.getSid());
        }
-        return null;
+        return otherImportantMapper.selectByExample(example);
     }
 
     @Override
