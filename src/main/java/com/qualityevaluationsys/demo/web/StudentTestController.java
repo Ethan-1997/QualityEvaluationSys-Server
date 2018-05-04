@@ -109,7 +109,7 @@ public class StudentTestController extends BaseController{
         msg.clear();
         try {
             int i = service.updateByPrimaryKeySelective(pojo);
-            if(i==1){
+            if(i!=0){
                 msg.put("data","success");
             }else{
                 msg.put("data","update failed");
