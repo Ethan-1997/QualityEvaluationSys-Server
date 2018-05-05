@@ -16,6 +16,8 @@ public interface StudentWorkService {
 
     int insertSelective(StudentWork record);
 
+    double averageOfWork(String sid);
+
 
     StudentWork selectByPrimaryKey(Integer id);
 

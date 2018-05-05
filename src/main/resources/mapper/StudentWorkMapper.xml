@@ -289,4 +289,9 @@
       and  submitStatus= #{submit,jdbcType=VARCHAR}
     </if>
   </select>
+
+  <select id="averageOfWork" parameterType="java.lang.String" resultType="com.qualityevaluationsys.demo.domain.AverageGrade">
+    SELECT avg(StudentWork.grade) as grade from StudentWork WHERE submitStatus='已提交' AND
+    Sid= #{sid,jdbcType=VARCHAR}
+  </select>
 </mapper>

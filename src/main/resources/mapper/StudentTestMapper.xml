@@ -264,7 +264,7 @@
         display = #{display,jdbcType=TINYINT},
       </if>
     </set>
-    where Sid = #{sid,jdbcType=VARCHAR}
+    where Sid = #{sid,jdbcType=VARCHAR} AND Tid = #{tid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.qualityevaluationsys.demo.domain.StudentTest">
     update StudentTest

@@ -37,6 +37,12 @@ public class StudentWorkServiceImpl implements StudentWorkService {
     }
 
     @Override
+    public double averageOfWork(String sid) {
+        List<AverageGrade> averageGrades = studentWorkMapper.averageOfWork(sid);
+        return averageGrades.get(0).getGrade();
+    }
+
+    @Override
     public StudentWork selectByPrimaryKey(Integer id) {
         return studentWorkMapper.selectByPrimaryKey(id);
     }

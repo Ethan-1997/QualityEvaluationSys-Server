@@ -1,5 +1,6 @@
 package com.qualityevaluationsys.demo.dao;
 
+import com.qualityevaluationsys.demo.domain.AverageGrade;
 import com.qualityevaluationsys.demo.domain.StudentWork;
 import com.qualityevaluationsys.demo.domain.StudentWorkExample;
 import java.util.List;
@@ -38,6 +39,8 @@ public interface StudentWorkMapper {
             @Param("submit")String submit
     );
     int updateByPrimaryKey(StudentWork record);
+
+    List<AverageGrade> averageOfWork(@Param("sid")String sid);
 
     List<WorkInfoAndStudentInfo> selectStudentInfoAndWorkInfoBySid(
             @Param("sid")String sid,

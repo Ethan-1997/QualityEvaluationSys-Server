@@ -105,6 +105,20 @@ public class StudentWorkController extends BaseController {
         }
         return  msg;
     }
+    @RequestMapping(value = "/averageOfWork",method = RequestMethod.POST)
+    public Map<String,Object> getStatisticsByWid(String sid){
+        msg.clear();
+        try {
+            double v = sysuserService.averageOfWork(sid);
+            msg.put("average",v);
+            msg.put("data","success");
+        }catch (Exception e){
+            msg.put("data","error");
+            msg.put("message",e.getMessage());
+        }
+        return  msg;
+    }
+
 
     @RequestMapping(value = "/selectStudentInfoAndWorkInfoBySid",method = RequestMethod.POST)
     public Map<String,Object> selectStudentInfoAndWorkInfoBySid(String sid,
